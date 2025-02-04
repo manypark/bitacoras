@@ -1,6 +1,6 @@
 import 'package:bitacoras/core/utils/utils.dart';
-import 'package:bitacoras/features/auth/domain/entities/entities.dart';
+import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 
 abstract interface class LoginDataSource {
-  Future<(ErrorMessage, LogInEntitie)> postLogin( String email, String password );
+  Future<(ErrorMessage?, LogInDto)> postLogin( String email, String password );
 }

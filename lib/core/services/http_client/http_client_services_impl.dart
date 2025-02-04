@@ -7,7 +7,7 @@ class HttpClientServiceImpl extends HttpClientService {
 
   late final Dio _dio;
 
-  HttpClientServiceImpl(this._dio) {
+  HttpClientServiceImpl() {
     _dio
     ..options.baseUrl         = Environments.pathUrl
     ..options.connectTimeout  = const Duration( minutes: 5 )

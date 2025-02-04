@@ -8,7 +8,7 @@ class LoginUserCase {
 
   LoginUserCase({required this.repository});
 
-  Future<(ErrorMessage, LogInEntitie)> call( String email, String password ) async {
+  Future<(ErrorMessage?, LogInEntitie)> call( String email, String password ) async {
     return await repository.postLogin(email, password);
   }
   

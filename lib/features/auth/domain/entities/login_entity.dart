@@ -7,15 +7,15 @@ class LogInEntitie {
     final int expiresIn;
     final int expiresAt;
     final String refreshToken;
-    final User user;
+    final User? user;
 
     LogInEntitie({
+        this.user,
         required this.accessToken,
         required this.tokenType,
         required this.expiresIn,
         required this.expiresAt,
         required this.refreshToken,
-        required this.user,
     });
 
 }
