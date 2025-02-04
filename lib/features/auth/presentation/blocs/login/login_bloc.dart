@@ -20,11 +20,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     final (err, responseLogin) = await _loginRespository.postLogin(email, password);
 
-    add( PostLoginSuccess(userLogin: responseLogin.user) );
+    add( PostLoginSuccess( userLogin: responseLogin.user ) );
   }
 
   void _postLoginHandler( PostLoginSuccess event, Emitter<LoginState> emit) {
-    emit(state.copyWith(userLogin: event.userLogin) );
+    emit(state.copyWith( userLogin: event.userLogin ) );
   }
 
 }

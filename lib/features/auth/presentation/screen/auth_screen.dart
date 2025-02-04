@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bitacoras/features/auth/presentation/blocs/login/login_bloc.dart';
 class AuthScreen extends StatelessWidget {
 
   static const path = '/auth-screen';
@@ -11,7 +12,12 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text('Auth Screen'),
+        child: ElevatedButton(
+          onPressed : () {
+            context.read<LoginBloc>().postLogin("manypark@live.com", 'developerPerron2019.');
+          },
+          child     : Text('Aceptar')
+        ),
       ),
     );
   }

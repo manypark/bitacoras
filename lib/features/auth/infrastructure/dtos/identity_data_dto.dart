@@ -15,10 +15,10 @@ class IdentityDataDto {
 
   factory IdentityDataDto.fromMap(Map<String, dynamic> map) {
     return IdentityDataDto(
-      email: map['email'] as String,
-      emailVerified: map['emailVerified'] as bool,
-      phoneVerified: map['phoneVerified'] as bool,
-      sub: map['sub'] as String,
+      email: map['email'],
+      emailVerified: bool.parse( map['email_verified'].toString() ),
+      phoneVerified: bool.parse( map['phone_verified'].toString() ),
+      sub: map['sub'],
     );
   }
 }

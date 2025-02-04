@@ -20,12 +20,12 @@ class LogInDto {
 
   factory LogInDto.fromMap(Map<String, dynamic> map) {
     return LogInDto(
-      accessToken: map['accessToken'] as String,
-      tokenType: map['tokenType'] as String,
-      expiresIn: map['expiresIn'] as int,
-      expiresAt: map['expiresAt'] as int,
-      refreshToken: map['refreshToken'] as String,
-      user: map['user'] != null ? UserDto.fromMap(map['user'] as Map<String,dynamic>) : null,
+      accessToken: map['access_token'] as String,
+      tokenType: map['token_type'] as String,
+      expiresIn: map['expires_in'] as int,
+      expiresAt: map['expires_at'] as int,
+      refreshToken: map['refresh_token'] as String,
+      user: map['user'] != null ? UserDto.fromMap(map['user']) : null,
     );
   }
 

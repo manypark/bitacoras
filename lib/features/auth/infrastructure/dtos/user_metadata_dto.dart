@@ -9,7 +9,7 @@ class UserMetadatasDto {
 
   factory UserMetadatasDto.fromMap(Map<String, dynamic> map) {
     return UserMetadatasDto(
-      emailVerified: map['emailVerified'] as bool,
+      emailVerified: map['email_verified'] as bool,
     );
   }
 

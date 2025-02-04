@@ -26,14 +26,14 @@ class Identity {
 
   factory Identity.fromMap(Map<String, dynamic> map) {
     return Identity(
-      identityId: map['identityId'] as String,
+      identityId: map['identity_id'] as String,
       id: map['id'] as String,
-      userId: map['userId'] as String,
-      identityData: IdentityDataDto.fromMap(map['identityData'] as Map<String,dynamic>),
+      userId: map['user_id'] as String,
+      identityData: IdentityDataDto.fromMap(map['identity_data']),
       provider: map['provider'] as String,
-      lastSignInAt: DateTime.fromMillisecondsSinceEpoch(map['lastSignInAt'] as int),
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      lastSignInAt: DateTime.parse(map['last_sign_in_at']),
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
       email: map['email'] as String,
     );
   }

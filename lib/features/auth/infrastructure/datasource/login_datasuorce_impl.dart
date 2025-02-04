@@ -3,6 +3,7 @@ import 'package:bitacoras/core/utils/error_message.dart';
 import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 import 'package:bitacoras/features/auth/config/constants/constants.dart';
 import 'package:bitacoras/features/auth/domain/datasource/datasource.dart';
+import 'package:dio/dio.dart';
 
 class LoginDatasourceImpl implements LoginDataSource {
 
@@ -16,19 +17,23 @@ class LoginDatasourceImpl implements LoginDataSource {
   Future<(ErrorMessage?, LogInDto)> postLogin(String email, String password) async {
     try {
       
-      final response = await httpClient.post(path: '/auth/v1/token?grant_type=password');
+      final response = await httpClient.post(
+        path: '/auth/v1/token?grant_type=password',
+        data: {
+          "email"   : email,
+          "password": password
+        }
+      );
       
       return (null, LogInDto.fromMap(response) );
 
-    } on Exception catch (e) {
-      return (
-        ErrorMessage(
-          code      : 400,
-          error_code: e.toString(), 
-          msg       : e.toString()
-        ),
-        loginError
-      );
+    } on DioException catch (e) {
+
+      final int code         = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? 500);
+      final String errorCode = e.response?.data['hint'] ?? (e.response?.data['error_code'] ?? 'Error');
+      final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Algun Error');
+      
+      return ( ErrorMessage( code  : code, error_code: errorCode, msg  : msg ), loginError );
     }
   }
 

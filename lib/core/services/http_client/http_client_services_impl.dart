@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import 'http_client_interceptor.dart';
 import 'http_client_services.dart';
 import 'package:bitacoras/core/utils/utils.dart';
 
@@ -8,11 +9,17 @@ class HttpClientServiceImpl extends HttpClientService {
   late final Dio _dio;
 
   HttpClientServiceImpl() {
-    _dio
-    ..options.baseUrl         = Environments.pathUrl
-    ..options.connectTimeout  = const Duration( minutes: 5 )
-    ..options.receiveTimeout  = const Duration( minutes: 5 )
-    ..options.responseType    = ResponseType.json;
+    
+    _dio = Dio(
+      BaseOptions(
+        baseUrl       : Environments.pathUrl,
+        connectTimeout: const Duration( minutes: 2 ),
+        receiveTimeout: const Duration( minutes: 2 ),
+        responseType  : ResponseType.json
+      )
+    );
+
+    _dio.interceptors.add(HttpClientInterceptor());
   }
   
   @override

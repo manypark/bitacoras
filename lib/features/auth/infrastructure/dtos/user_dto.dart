@@ -37,21 +37,22 @@ class UserDto {
     });
 
   factory UserDto.fromMap(Map<String, dynamic> map) {
+    
     return UserDto(
       id: map['id'] as String,
       aud: map['aud'] as String,
       role: map['role'] as String,
       email: map['email'] as String,
-      emailConfirmedAt: DateTime.fromMillisecondsSinceEpoch(map['emailConfirmedAt'] as int),
+      emailConfirmedAt: DateTime.parse(map['email_confirmed_at']),
       phone: map['phone'] as String,
-      confirmedAt: DateTime.fromMillisecondsSinceEpoch(map['confirmedAt'] as int),
-      lastSignInAt: DateTime.fromMillisecondsSinceEpoch(map['lastSignInAt'] as int),
-      appMetadata: AppMetadataDto.fromMap(map['appMetadata'] as Map<String,dynamic>),
-      userMetadata: UserMetadatasDto.fromMap(map['userMetadata'] as Map<String,dynamic>),
-      identities: List<Identity>.from((map['identities'] as List<int>).map<Identity>((x) => Identity.fromMap(x as Map<String,dynamic>),),),
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
-      isAnonymous: map['isAnonymous'] as bool,
+      confirmedAt: DateTime.parse(map['confirmed_at']),
+      lastSignInAt: DateTime.parse(map['last_sign_in_at']),
+      appMetadata: AppMetadataDto.fromMap(map['app_metadata'] as Map<String,dynamic>),
+      userMetadata: UserMetadatasDto.fromMap(map['user_metadata'] as Map<String,dynamic>),
+      identities: List<Identity>.from((map['identities']).map<Identity>((x) => Identity.fromMap(x as Map<String,dynamic>),),),
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
+      isAnonymous: map['is_anonymous'] as bool,
     );
   }
 

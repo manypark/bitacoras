@@ -12,7 +12,7 @@ class AppMetadataDto {
   factory AppMetadataDto.fromMap(Map<String, dynamic> map) {
     return AppMetadataDto(
       provider: map['provider'] as String,
-      providers: List<String>.from((map['providers'] as List<String>),
+      providers: List<String>.from((map['providers']),
     ));
   }
 
