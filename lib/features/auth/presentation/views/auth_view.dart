@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
-import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/features/auth/presentation/widgets/widgets.dart';
 
 class AuthView extends StatelessWidget {
@@ -19,27 +18,15 @@ class AuthView extends StatelessWidget {
         child   : Column(
           spacing           : LayoutConstants.spaceXL,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children          : [
+          children          : const [
         
             // Logo
-            Center(
-              child: Container(
-                height    : 120,
-                width     : 120,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                  color: Colors.grey.shade300
-                ),
-              ),
-            ),
+            LogoLogin(),
 
             SizedBox( height: LayoutConstants.spaceM ),
       
             // Title
-            Text(
-              'Iniciar sesión',
-              style: GlobalFonts.paragraphBodyTitleRegular,
-            ),
+            TitleLogin(),
 
             //Input: email
             InputEmail(),
@@ -48,10 +35,10 @@ class AuthView extends StatelessWidget {
             InputPassword(),
 
             // Acept terms and conditions text
-            CheckBoxTermsAndConditions()
+            CheckBoxTermsAndConditions(),
 
             // Button login
-
+            ButtonLogin()
       
           ],
         ),
