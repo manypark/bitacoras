@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/auth/config/constants/constants.dart';
 
 class ButtonLogin extends StatelessWidget {
 
@@ -27,7 +28,7 @@ class ButtonLogin extends StatelessWidget {
           backgroundColor: WidgetStatePropertyAll(Colors.black)
         ),
         child     : Text(
-          'Iniciar sesión',
+          buttonLogin,
           style: GlobalFonts.paragraphBodyLargeBold.copyWith( color: Colors.white ),
         ),
       ),

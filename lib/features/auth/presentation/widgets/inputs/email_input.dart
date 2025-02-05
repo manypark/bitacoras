@@ -1,3 +1,4 @@
+import 'package:bitacoras/features/auth/config/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
@@ -16,13 +17,13 @@ class InputEmail extends StatelessWidget {
       spacing           : LayoutConstants.spaceS,
       children          : [
         Text(
-          'Correo',
+          email,
           style: GlobalFonts.paragraphBodyMediumBold,
         ),
         TextFormField(
           keyboardType: TextInputType.emailAddress,
           decoration  : InputDecoration(
-            hintText  : 'Tu correo',
+            hintText  : hintTextEmail,
             hintStyle : GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.grey ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/configs/theme/fonts/fonts_global.dart';
+import 'package:bitacoras/features/auth/config/constants/constants.dart';
 
 class CheckBoxTermsAndConditions extends StatelessWidget {
 
@@ -17,7 +18,7 @@ class CheckBoxTermsAndConditions extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       title: Text(
-        'Acepto los términos y condiciones',
+        termnsAndConditions,
         style: GlobalFonts.paragraphBodyMediumBold,
       ),
       value: true,

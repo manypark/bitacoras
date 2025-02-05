@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/auth/config/constants/constants.dart';
 
 class TitleLogin extends StatelessWidget {
 
@@ -9,7 +10,7 @@ class TitleLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Iniciar sesión',
+      titleLogin,
       style: GlobalFonts.paragraphBodyTitleRegular,
     );
   }

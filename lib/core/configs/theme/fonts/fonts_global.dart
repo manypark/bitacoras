@@ -1,83 +1,72 @@
-// coverage:ignore-start
-
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
 class GlobalFonts {
 
-  static TextStyle paragraphBodyTitleRegular = const TextStyle(
+  static TextStyle paragraphBodyTitleRegular = GoogleFonts.outfit(
     fontSize: 32,
-    fontFamily: 'Lato',
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w500,
   );
 
 
-  static TextStyle inputLabel = const TextStyle(
+  static TextStyle inputLabel = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     color: Colors.black,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle buttonLabel = const TextStyle(
+  static TextStyle buttonLabel = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle paragraphBodyLargeBold = const TextStyle(
+  static TextStyle paragraphBodyLargeBold = GoogleFonts.outfit(
     fontSize: 18,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 28,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle paragraphBodyLargeSemiBold = const TextStyle(
+  static TextStyle paragraphBodyLargeSemiBold = GoogleFonts.outfit(
     fontSize: 18,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 28,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle paragraphBodyLargeRegular = const TextStyle(
+  static TextStyle paragraphBodyLargeRegular = GoogleFonts.outfit(
     fontSize: 18,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 28,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
 
-  static TextStyle paragraphBodyLargeItalic = const TextStyle(
+  static TextStyle paragraphBodyLargeItalic = GoogleFonts.outfit(
     fontSize: 18,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 28,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
 
-  static TextStyle paragraphBodyLargeUnderline = const TextStyle(
+  static TextStyle paragraphBodyLargeUnderline = GoogleFonts.outfit(
     fontSize: 18,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 28,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
 
-  static TextStyle paragraphBodyLargeStrikeThrougt = const TextStyle(
+  static TextStyle paragraphBodyLargeStrikeThrougt = GoogleFonts.outfit(
     fontSize: 18,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 28,
     color: Colors.black,
@@ -85,54 +74,48 @@ class GlobalFonts {
   );
 
 
-  static TextStyle paragraphBodyMediumBold = const TextStyle(
+  static TextStyle paragraphBodyMediumBold = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 24,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle paragraphBodyMediumSemiBold = const TextStyle(
+  static TextStyle paragraphBodyMediumSemiBold = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 24,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle paragraphBodyMediumRegular = const TextStyle(
+  static TextStyle paragraphBodyMediumRegular = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 24,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
 
-  static TextStyle paragraphBodyMediumItalic = const TextStyle(
+  static TextStyle paragraphBodyMediumItalic = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 24,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
 
-  static TextStyle paragraphBodyMediumUnderline = const TextStyle(
+  static TextStyle paragraphBodyMediumUnderline = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 24,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
 
-  static TextStyle paragraphBodyMediumStrikeThrougt = const TextStyle(
+  static TextStyle paragraphBodyMediumStrikeThrougt = GoogleFonts.outfit(
     fontSize: 16,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 24,
     color: Colors.black,
@@ -140,54 +123,48 @@ class GlobalFonts {
   );
 
 
-  static TextStyle paragraphBodySmallBold = const TextStyle(
+  static TextStyle paragraphBodySmallBold = GoogleFonts.outfit(
     fontSize: 14,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle paragraphBodySmallSemiBold = const TextStyle(
+  static TextStyle paragraphBodySmallSemiBold = GoogleFonts.outfit(
     fontSize: 14,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle paragraphBodySmallRegular = const TextStyle(
+  static TextStyle paragraphBodySmallRegular = GoogleFonts.outfit(
     fontSize: 14,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
 
-  static TextStyle paragraphBodySmallItalic = const TextStyle(
+  static TextStyle paragraphBodySmallItalic = GoogleFonts.outfit(
     fontSize: 14,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
 
-  static TextStyle paragraphBodySmallUnderline = const TextStyle(
+  static TextStyle paragraphBodySmallUnderline = GoogleFonts.outfit(
     fontSize: 14,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
 
-  static TextStyle paragraphBodySmallStrikeThrougt = const TextStyle(
+  static TextStyle paragraphBodySmallStrikeThrougt = GoogleFonts.outfit(
     fontSize: 14,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
@@ -195,54 +172,48 @@ class GlobalFonts {
   );
 
 
-  static TextStyle paragraphBodyXsSmallBold = const TextStyle(
+  static TextStyle paragraphBodyXsSmallBold = GoogleFonts.outfit(
     fontSize: 12,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle paragraphBodyXsSmallSemiBold = const TextStyle(
+  static TextStyle paragraphBodyXsSmallSemiBold = GoogleFonts.outfit(
     fontSize: 12,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle paragraphBodyXsSmallRegular = const TextStyle(
+  static TextStyle paragraphBodyXsSmallRegular = GoogleFonts.outfit(
     fontSize: 12,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
 
-  static TextStyle paragraphBodyXsSmallItalic = const TextStyle(
+  static TextStyle paragraphBodyXsSmallItalic = GoogleFonts.outfit(
     fontSize: 12,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
 
-  static TextStyle paragraphBodyXsSmallUnderLine = const TextStyle(
+  static TextStyle paragraphBodyXsSmallUnderLine = GoogleFonts.outfit(
     fontSize: 12,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
 
-  static TextStyle paragraphBodyXsSmallStrikeThrougt = const TextStyle(
+  static TextStyle paragraphBodyXsSmallStrikeThrougt = GoogleFonts.outfit(
     fontSize: 12,
-    fontFamily: 'Lato',
     letterSpacing: 0,
     // height: 20,
     color: Colors.black,
