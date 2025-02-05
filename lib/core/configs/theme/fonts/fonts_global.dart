@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 
 class GlobalFonts {
 
+  static TextStyle paragraphBodyTitleRegular = const TextStyle(
+    fontSize: 32,
+    fontFamily: 'Lato',
+    letterSpacing: 0,
+    // height: 28,
+    color: Colors.black,
+    fontWeight: FontWeight.normal,
+  );
+
+
   static TextStyle inputLabel = const TextStyle(
     fontSize: 16,
     fontFamily: 'Lato',

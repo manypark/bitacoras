@@ -1,0 +1,1 @@
+export 'acept_terms_conditions.dart';

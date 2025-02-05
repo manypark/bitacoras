@@ -6,6 +6,10 @@ final appRouter = GoRouter(
   initialLocation : '/auth',
   routes          : [
     routeLogin,
-  ]
-
+  ],
+  redirect        : (context, state) {
+    // Validacion de auth
+    // if(true) routeLogin.path;
+    return null;
+  },
 );

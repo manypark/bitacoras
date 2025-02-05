@@ -7,7 +7,7 @@ class AppTheme {
     colorSchemeSeed : Colors.black26,
     brightness      : Brightness.light,
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: Colors.grey.shade100,
+      fillColor: Colors.black,
       hintStyle: const TextStyle( color: Colors.black )
     ),
     textTheme       : const TextTheme(
