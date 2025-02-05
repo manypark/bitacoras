@@ -1,3 +1,4 @@
+import 'package:bitacoras/shared/widgets/input/inputs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
@@ -20,23 +21,9 @@ class InputPassword extends StatelessWidget {
           password,
           style: GlobalFonts.paragraphBodyMediumBold,
         ),
-        TextFormField(
-          // keyboardType: TextInputType.visiblePassword,
+        InputGlobal(
+          hintText    : hintTextPassword,
           obscureText : true,
-          decoration  : InputDecoration(
-            // remove_red_eye_outlined
-            // suffixIcon: Icon( Icons.visibility_off_outlined ),
-            hintText  : hintTextPassword,
-            hintStyle : GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.grey ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide( color: Colors.grey )
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide( color: Colors.red.shade300 )
-            )
-          ),
         ),
       ],
     );
