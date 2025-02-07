@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
-import 'features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 
 void main() async {
 
@@ -23,6 +23,7 @@ class BlocsProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers : [
         BlocProvider(create: (context) => getIt<LoginBloc>(), ),
+        BlocProvider(create: (context) => getIt<FormLoginBloc>(), ),
       ],
       child     : const MainApp(),
     );

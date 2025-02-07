@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
-import 'package:bitacoras/features/auth/presentation/widgets/widgets.dart';
+import 'package:bitacoras/features/auth/presentation/presentation.dart';
 
 class AuthView extends StatelessWidget {
 
@@ -18,7 +19,7 @@ class AuthView extends StatelessWidget {
         child   : Column(
           spacing           : LayoutConstants.spaceXL,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children          : const [
+          children          : [
         
             // Logo
             LogoLogin(),
@@ -28,11 +29,19 @@ class AuthView extends StatelessWidget {
             // Title
             TitleLogin(),
 
-            //Input: email
-            InputEmail(),
+            Form(
+              key: context.watch<FormLoginBloc>().state.globalKeyFormLogin,
+              child: Column(
+                spacing : LayoutConstants.spaceL,
+                children: [
+                    //Input: email
+                    InputEmail(),
 
-            //Input: password
-            InputPassword(),
+                    //Input: password
+                    InputPassword(),
+                ],
+              )
+            ),
 
             // Acept terms and conditions text
             CheckBoxTermsAndConditions(),

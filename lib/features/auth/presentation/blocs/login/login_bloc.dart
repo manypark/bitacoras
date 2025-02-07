@@ -14,17 +14,33 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   LoginBloc() : super( LoginState() ) {
     on<PostLoginSuccess>( _postLoginHandler );
+    on<PostLoginError>( _errorHandler );
   }
 
-  Future<void> postLogin( String email, String password ) async {
+  Future<bool> postLogin( String email, String password ) async {
 
     final (err, responseLogin) = await _loginRespository.postLogin(email, password);
 
+    if(err != null) {
+      onErrorPost(err);
+      return false;
+    }
+
     add( PostLoginSuccess( userLogin: responseLogin.user ) );
+
+    return true;
+  }
+
+  void onErrorPost( ErrorMessage? err ) {
+    add( PostLoginError( errorMessage: err ) );
   }
 
   void _postLoginHandler( PostLoginSuccess event, Emitter<LoginState> emit) {
     emit(state.copyWith( userLogin: event.userLogin ) );
+  }
+
+  void _errorHandler( PostLoginError event, Emitter<LoginState> emit) {
+    emit(state.copyWith( errorMessage: event.errorMessage ) );
   }
 
 }

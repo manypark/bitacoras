@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/config/constants/constants.dart';
 
 class ButtonLogin extends StatelessWidget {
@@ -23,7 +26,16 @@ class ButtonLogin extends StatelessWidget {
       height    : 60,
       width     : double.infinity,
       child     : ElevatedButton(
-        onPressed : () { },
+        onPressed : () async {
+          
+          final response = await context.read<FormLoginBloc>().onSubmit();
+
+          //Mostrar error
+          // if(!response);
+
+          // ignore: use_build_context_synchronously
+          if(response) context.push('');
+        },
         style     : ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(Colors.black)
         ),

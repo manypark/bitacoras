@@ -7,12 +7,16 @@ class InputGlobal extends StatelessWidget {
   final bool obscureText;
   final String hintText;
   final TextInputType textInputType;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   const InputGlobal({
     super.key,
     this.textInputType = TextInputType.text,
     this.obscureText = false,
     this.controller,
+    this.onChanged,
+    this.validator,
     required this.hintText,
   });
 
@@ -20,11 +24,16 @@ class InputGlobal extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return TextFormField(
-      controller: controller,
+      textInputAction : TextInputAction.next,
+      keyboardType    : textInputType,
+      obscureText     : obscureText,
+      controller      : controller,
+      onChanged       : onChanged,
+      validator       : validator,
       decoration: InputDecoration(
         hintText  : hintText,
         hintStyle : GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.grey ),
-        border: OutlineInputBorder(
+        border    : OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide( color: Colors.grey )
         ),
