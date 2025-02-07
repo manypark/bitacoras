@@ -22,6 +22,7 @@ class InputPassword extends StatelessWidget {
           style: GlobalFonts.paragraphBodyMediumBold,
         ),
         InputGlobal(
+          initialValue: 'developerPerron2019',
           hintText    : hintTextPassword,
           obscureText : true,
           onChanged   : (value) {

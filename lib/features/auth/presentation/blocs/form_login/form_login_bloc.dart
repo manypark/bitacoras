@@ -9,11 +9,10 @@ part 'form_login_state.dart';
 
 class FormLoginBloc extends Bloc<FormLoginEvent, FormLoginState> {
 
-  final loginBloc = LoginBloc();
-
   FormLoginBloc() : super(FormLoginState()) {
     on<FormLoginOnChangeEmail>( _onChangeEmailHandler );
     on<FormLoginOnChangePassword>( _onChangePasswordHandler );
+    on<FormLoginIsLoading>( _onIsLoadingHandler );
   }
 
   void onChangeEmail( String email ) {
@@ -24,14 +23,20 @@ class FormLoginBloc extends Bloc<FormLoginEvent, FormLoginState> {
     add(FormLoginOnChangePassword( password:password ));
   }
 
-  Future<bool> onSubmit() async {
+  void onIsLoading( bool value ) {
+    add(FormLoginIsLoading( isLoading:value ));
+  }
+
+  Future<bool> onSubmit( BuildContext context ) async {
 
     if( state.globalKeyFormLogin.currentState!.validate() ) {
 
-      final response = await loginBloc.postLogin(state.email, state.password);
+      onIsLoading(true);
+      final response = await context.read<LoginBloc>().postLogin(state.email, state.password);
 
       state.globalKeyFormLogin.currentState?.reset();
 
+      onIsLoading(false);
       return response;
     }
 
@@ -45,6 +50,10 @@ class FormLoginBloc extends Bloc<FormLoginEvent, FormLoginState> {
 
   void _onChangePasswordHandler(FormLoginOnChangePassword event, Emitter<FormLoginState> emit) {
     emit( state.copyWith( password: event.password ) );
+  }
+
+  void _onIsLoadingHandler(FormLoginIsLoading event, Emitter<FormLoginState> emit) {
+    emit( state.copyWith( isLoading: event.isLoading ) );
   }
 
 }

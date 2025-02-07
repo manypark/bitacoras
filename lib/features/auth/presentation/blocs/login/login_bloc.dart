@@ -1,16 +1,16 @@
-import 'package:bitacoras/core/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bitacoras/core/utils/utils.dart';
+import 'package:bitacoras/features/auth/domain/usecase/usecase.dart';
 import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
-import 'package:bitacoras/features/auth/infrastructure/infrastructure.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
-  final _loginRespository = LoginRepositoryImpl();
+  final _loginUseCase = LoginUserCase();
 
   LoginBloc() : super( LoginState() ) {
     on<PostLoginSuccess>( _postLoginHandler );
@@ -19,7 +19,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future<bool> postLogin( String email, String password ) async {
 
-    final (err, responseLogin) = await _loginRespository.postLogin(email, password);
+    final (err, responseLogin) = await _loginUseCase(email, password);
 
     if(err != null) {
       onErrorPost(err);
@@ -36,7 +36,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _postLoginHandler( PostLoginSuccess event, Emitter<LoginState> emit) {
-    emit(state.copyWith( userLogin: event.userLogin ) );
+    emit(state.copyWith( userLogin: event.userLogin, errorMessage: ErrorMessage(code: 0, error_code: '', msg: '') ) );
   }
 
   void _errorHandler( PostLoginError event, Emitter<LoginState> emit) {

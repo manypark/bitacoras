@@ -5,25 +5,29 @@ class FormLoginState extends Equatable {
 
   final String email;
   final String password;
+  final bool isLoading;
   final GlobalKey<FormState> globalKeyFormLogin;
 
   FormLoginState({
     this.email = '',
     this.password = '',
+    this.isLoading = false,
     GlobalKey<FormState>? globalKeyFormLogin,
   }) : globalKeyFormLogin = globalKeyFormLogin ?? GlobalKey<FormState>();
   
   @override
-  List<Object> get props => [email, password, globalKeyFormLogin];
+  List<Object> get props => [email, password, globalKeyFormLogin, isLoading];
 
   FormLoginState copyWith({
     String? email,
     String? password,
+    bool? isLoading,
     GlobalKey<FormState>? globalKeyFormLogin,
   }) {
     return FormLoginState(
       email: email ?? this.email,
       password: password ?? this.password,
+      isLoading: isLoading ?? this.isLoading,
       globalKeyFormLogin: globalKeyFormLogin ?? this.globalKeyFormLogin,
     );
   }

@@ -24,3 +24,14 @@ class FormLoginOnChangePassword extends FormLoginEvent {
   List<Object> get props => [ password ];
   
 }
+
+class FormLoginIsLoading extends FormLoginEvent {
+
+  final bool isLoading;
+
+  const FormLoginIsLoading({ this.isLoading = false});
+
+  @override
+  List<Object> get props => [ isLoading ];
+  
+}

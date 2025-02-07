@@ -6,6 +6,7 @@ class InputGlobal extends StatelessWidget {
   final TextEditingController? controller;
   final bool obscureText;
   final String hintText;
+  final String initialValue;
   final TextInputType textInputType;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -17,6 +18,7 @@ class InputGlobal extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.validator,
+    this.initialValue = '',
     required this.hintText,
   });
 
@@ -24,6 +26,7 @@ class InputGlobal extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return TextFormField(
+      initialValue    : initialValue,
       textInputAction : TextInputAction.next,
       keyboardType    : textInputType,
       obscureText     : obscureText,
