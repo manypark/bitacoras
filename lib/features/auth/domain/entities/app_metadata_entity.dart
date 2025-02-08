@@ -1,3 +1,4 @@
+
 class AppMetadata {
   
     final String provider;
@@ -8,4 +9,18 @@ class AppMetadata {
         required this.providers,
     });
 
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'provider': provider,
+      'providers': providers,
+    };
+  }
+
+  factory AppMetadata.fromMap(Map<String, dynamic> map) {
+    return AppMetadata(
+      provider: map['provider'] as String,
+      providers: List<String>.from((map['providers'] as List<String>)),
+    );
+  }
 }

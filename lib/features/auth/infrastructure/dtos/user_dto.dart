@@ -8,15 +8,15 @@ class UserDto {
     final String aud;
     final String role;
     final String email;
-    final DateTime emailConfirmedAt;
+    final String emailConfirmedAt;
     final String phone;
-    final DateTime confirmedAt;
-    final DateTime lastSignInAt;
+    final String confirmedAt;
+    final String lastSignInAt;
     final AppMetadataDto appMetadata;
     final UserMetadatasDto userMetadata;
     final List<Identity> identities;
-    final DateTime createdAt;
-    final DateTime updatedAt;
+    final String createdAt;
+    final String updatedAt;
     final bool isAnonymous;
 
     UserDto({
@@ -43,15 +43,15 @@ class UserDto {
       aud: map['aud'] as String,
       role: map['role'] as String,
       email: map['email'] as String,
-      emailConfirmedAt: DateTime.parse(map['email_confirmed_at']),
+      emailConfirmedAt: map['email_confirmed_at'] as String,
       phone: map['phone'] as String,
-      confirmedAt: DateTime.parse(map['confirmed_at']),
-      lastSignInAt: DateTime.parse(map['last_sign_in_at']),
+      confirmedAt: map['confirmed_at'] as String,
+      lastSignInAt: map['last_sign_in_at'] as String,
       appMetadata: AppMetadataDto.fromMap(map['app_metadata'] as Map<String,dynamic>),
       userMetadata: UserMetadatasDto.fromMap(map['user_metadata'] as Map<String,dynamic>),
       identities: List<Identity>.from((map['identities']).map<Identity>((x) => Identity.fromMap(x as Map<String,dynamic>),),),
-      createdAt: DateTime.parse(map['created_at']),
-      updatedAt: DateTime.parse(map['updated_at']),
+      createdAt: map['created_at'] as String,
+      updatedAt: map['updated_at'] as String,
       isAnonymous: map['is_anonymous'] as bool,
     );
   }

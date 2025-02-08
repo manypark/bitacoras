@@ -17,15 +17,14 @@ class LoginMapper {
       aud: data.user?.aud ?? '', 
       role: data.user?.role ?? '', 
       email: data.user?.email ?? '', 
-      emailConfirmedAt: data.user?.emailConfirmedAt ?? DateTime.now(),
+      emailConfirmedAt: data.user?.emailConfirmedAt ?? '',
       phone: data.user?.phone ?? '', 
-      confirmedAt: data.user?.confirmedAt ?? DateTime.now(), 
-      lastSignInAt: data.user?.lastSignInAt ?? DateTime.now(), 
+      confirmedAt: data.user?.confirmedAt ?? '', 
+      lastSignInAt: data.user?.lastSignInAt ?? '', 
       appMetadata: AppMetadata(provider: '', providers: []),
       userMetadata: UserMetadata(emailVerified: false), 
-      identities: [], 
-      createdAt: data.user?.createdAt ?? DateTime.now(), 
-      updatedAt: data.user?.updatedAt ?? DateTime.now(), 
+      createdAt: data.user?.createdAt ?? '', 
+      updatedAt: data.user?.updatedAt ?? '', 
       isAnonymous: data.user?.isAnonymous ?? false
     )
   );

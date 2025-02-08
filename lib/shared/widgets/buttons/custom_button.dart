@@ -16,19 +16,22 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          blurRadius: 35,
-          spreadRadius: 0,
-          color: Colors.black45,
-          offset: Offset(0, 12),
-        )
-      ]),
+      decoration: BoxDecoration(
+        boxShadow: [
+          if(onPress != null)
+          BoxShadow(
+            blurRadius: 35,
+            spreadRadius: 0,
+            color: Colors.black45,
+            offset: Offset(0, 12),
+          )
+        ]
+      ),
       height: 60,
       width: double.infinity,
       child: ElevatedButton(
         onPressed : onPress,
-        style     : ButtonStyle( backgroundColor: WidgetStatePropertyAll(Colors.black) ),
+        style     : ButtonStyle( backgroundColor: WidgetStatePropertyAll(onPress == null ? Colors.grey.shade600 : Colors.black) ),
         child     : Text(
           text,
           style: GlobalFonts.paragraphBodyLargeBold.copyWith(color: Colors.white),

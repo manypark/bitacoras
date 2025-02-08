@@ -11,9 +11,9 @@ class ButtonLogin extends StatelessWidget {
 
   const ButtonLogin({super.key});
 
-
   @override
   Widget build(BuildContext context) {
+
     return CustomButton(
       text    : buttonLogin,
       onPress : () async {
@@ -41,7 +41,7 @@ class ButtonLogin extends StatelessWidget {
           return;
         }
 
-        if (response) context.go('/home');
+        if (response) context.push('/home');
       },
     );
   }

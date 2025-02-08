@@ -5,10 +5,12 @@ import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/auth/presentation/presentation.dart';
 
 class AuthView extends StatelessWidget {
+
   const AuthView({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -19,6 +21,7 @@ class AuthView extends StatelessWidget {
           spacing: LayoutConstants.spaceXL,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            
             // Logo
             LogoLogin(),
     

@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:bitacoras/core/services/services.dart';
 import 'package:bitacoras/core/utils/error_message.dart';
 import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
@@ -16,16 +18,18 @@ class LoginDatasourceImpl implements LoginDataSource {
   @override
   Future<(ErrorMessage?, LogInDto)> postLogin(String email, String password) async {
     try {
+
+      final isolateResponse = await Isolate.run( () async {
+        return await httpClient.post(
+          path: '/auth/v1/token?grant_type=password',
+          data: {
+            "email"   : email,
+            "password": password
+          }
+        );
+      }, );
       
-      final response = await httpClient.post(
-        path: '/auth/v1/token?grant_type=password',
-        data: {
-          "email"   : email,
-          "password": password
-        }
-      );
-      
-      return (null, LogInDto.fromMap(response) );
+      return (null, LogInDto.fromMap(isolateResponse) );
 
     } on DioException catch (e) {
 
