@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/widgets/stack_loader.dart';
+import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/presentation.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  
   @override
   void initState() {
 
@@ -28,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final state = loginBloc.state.userLogin?.id ?? '';
       if (state != '') {
+        context.read<MenuBloc>().loadMenuList();
         context.go('/home');
       } else {
         context.go('/auth');
@@ -38,8 +41,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const StackLoader(
-      animate: true,
-      child: SizedBox.expand(),
+      animate : true,
+      child   : SizedBox.expand(),
     );
   }
 }

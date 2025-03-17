@@ -1,11 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
+import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 
 void main() async {
@@ -33,6 +34,7 @@ class BlocsProviders extends StatelessWidget {
       providers : [
         BlocProvider(create: (context) => getIt<LoginBloc>(), ),
         BlocProvider(create: (context) => getIt<FormLoginBloc>(), ),
+        BlocProvider(create: (context) => getIt<MenuBloc>(), ),
       ],
       child     : const MainApp(),
     );
