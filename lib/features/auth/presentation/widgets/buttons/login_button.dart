@@ -18,6 +18,10 @@ class ButtonLogin extends StatelessWidget {
       text    : buttonLogin,
       onPress : () async {
 
+        final isValid = context.read<FormLoginBloc>().state.globalKeyFormLogin.currentState!.validate();
+
+        if(!isValid) return;
+
         final response = await context.read<FormLoginBloc>().onSubmit(context);
 
         if( !response ) {
@@ -41,7 +45,7 @@ class ButtonLogin extends StatelessWidget {
           return;
         }
 
-        if (response) context.push('/home');
+        if (response) context.go('/home');
       },
     );
   }

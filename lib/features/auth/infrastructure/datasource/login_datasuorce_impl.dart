@@ -1,11 +1,11 @@
 import 'dart:isolate';
+import 'package:dio/dio.dart';
 
 import 'package:bitacoras/core/services/services.dart';
 import 'package:bitacoras/core/utils/error_message.dart';
 import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 import 'package:bitacoras/features/auth/config/constants/constants.dart';
 import 'package:bitacoras/features/auth/domain/datasource/datasource.dart';
-import 'package:dio/dio.dart';
 
 class LoginDatasourceImpl implements LoginDataSource {
 
@@ -20,7 +20,7 @@ class LoginDatasourceImpl implements LoginDataSource {
     try {
 
       final isolateResponse = await Isolate.run( () async {
-        return await httpClient.post(
+        return await httpClient.postWithoutAuth(
           path: '/auth/v1/token?grant_type=password',
           data: {
             "email"   : email,

@@ -40,10 +40,12 @@ class BlocsProviders extends StatelessWidget {
 }
 
 class MainApp extends StatelessWidget {
+
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title       : 'Bitacoras',

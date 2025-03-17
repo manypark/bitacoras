@@ -42,7 +42,22 @@ class HttpClientServiceImpl extends HttpClientService {
   
   @override
   Future put({required String path, required Map<String, dynamic> data, Options? options}) async {
-    final response = await _dio.get( path, options: options );
+    final response = await _dio.get( path, options: options);
+    return response.data;
+  }
+  
+  @override
+  Future postWithoutAuth({required String path, Map<String, dynamic>? data,  Options? options}) async {
+
+    final opts = Options(
+      headers: {
+        'apikey'        :Environments.apiKey,
+        'Authorization' :"Bearer ${Environments.apiKey}",
+        'Content-Type'  :"application/json; charset=utf-8"
+      }
+    );
+
+    final response = await _dio.post( path, data: data, options: opts );
     return response.data;
   }
   

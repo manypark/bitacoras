@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bitacoras/shared/shared.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/views/views.dart';
+
 class AuthScreen extends StatelessWidget {
 
   static const path = '/auth-screen';

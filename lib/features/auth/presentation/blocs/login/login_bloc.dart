@@ -37,6 +37,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
     add( PostLoginError( errorMessage: err ) );
   }
 
+  Future<void> resetUser() async {
+    add( PostLoginSuccess( userLogin: userError ) );
+  }
+
+  ////////////////////////////////// Handlers //////////////////////////////////
+
   void _postLoginHandler( PostLoginSuccess event, Emitter<LoginState> emit) {
     emit(state.copyWith( userLogin: event.userLogin, errorMessage: ErrorMessage(code: 0, error_code: '', msg: '') ) );
   }
@@ -44,6 +50,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
   void _errorHandler( PostLoginError event, Emitter<LoginState> emit) {
     emit(state.copyWith( errorMessage: event.errorMessage, userLogin: userError ) );
   }
+
+  ////////////////////////////////// Hydrated bloc //////////////////////////////////
   
   @override
   LoginState? fromJson(Map<String, dynamic> json) {
