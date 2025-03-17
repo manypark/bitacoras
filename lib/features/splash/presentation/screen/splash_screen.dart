@@ -1,8 +1,7 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:bitacoras/shared/widgets/stack_loader.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/presentation.dart';
 
@@ -40,9 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const StackLoader(
-      animate : true,
-      child   : SizedBox.expand(),
+    return const Center(
+      child: CircularProgressIndicator.adaptive(),
     );
   }
 }

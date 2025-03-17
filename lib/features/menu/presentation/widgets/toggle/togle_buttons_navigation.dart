@@ -11,14 +11,14 @@ class ToggleButtonNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final color = AppTheme().getThemedark();
+    final color = AppTheme().getThemeDark();
 
     return BlocBuilder<MenuBloc, MenuState>(
       builder: (context, state) {
 
         final menuState = state;
 
-          return ToggleButtons(
+        return ToggleButtons(
           onPressed: (int index) async {
               await context.read<MenuBloc>().selectedIndex(index);
           },

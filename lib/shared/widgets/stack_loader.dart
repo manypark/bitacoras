@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:lottie/lottie.dart';
-
 class StackLoader extends StatelessWidget {
 
   final bool animate;
@@ -29,7 +27,7 @@ class StackLoader extends StatelessWidget {
           ),
 
           Center(
-            child: Lottie.asset('assets/lotties/loading.json'),
+            child: CircularProgressIndicator(),
           )
 
         ]
