@@ -7,6 +7,9 @@ class AppTheme {
     colorSchemeSeed : Colors.black26,
     brightness      : Brightness.light,
     scaffoldBackgroundColor: Colors.grey.shade200,
+    appBarTheme     : AppBarTheme(
+      backgroundColor: Colors.grey.shade200
+    ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Colors.black,
       hintStyle: const TextStyle( color: Colors.black )

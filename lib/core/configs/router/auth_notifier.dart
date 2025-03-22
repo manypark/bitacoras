@@ -17,8 +17,6 @@ class GoRouterNotifier extends ChangeNotifier {
     // Se suscribe al stream del bloc para escuchar cambios en el estado
     _subscription = loginBloc.stream.listen((state) {
 
-      print(state);
-
       final newStatus = ( state.userLogin != null && state.userLogin!.id.isNotEmpty )
           ? AuthStatus.authenticated
           : AuthStatus.unauthenticated;

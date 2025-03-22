@@ -16,10 +16,7 @@ class AuthScreen extends StatelessWidget {
 
     return StackLoader(
       animate : context.watch<FormLoginBloc>().state.isLoading,
-      child   : Scaffold(
-        appBar: AppBar(),
-        body  : AuthView(),
-      ),
+      child   : Scaffold( body : SafeArea(child: AuthView()) ),
     );
   }
   

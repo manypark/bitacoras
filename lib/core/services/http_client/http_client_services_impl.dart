@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import 'http_client_interceptor.dart';
 import 'http_client_services.dart';
+import 'http_client_interceptor.dart';
 import 'package:bitacoras/core/utils/utils.dart';
 
 class HttpClientServiceImpl extends HttpClientService {
