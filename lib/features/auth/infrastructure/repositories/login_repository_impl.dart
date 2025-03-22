@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:bitacoras/core/utils/error_message.dart';
 import 'package:bitacoras/features/auth/domain/domain.dart';
 import 'package:bitacoras/features/auth/infrastructure/mappers/mappers.dart';
