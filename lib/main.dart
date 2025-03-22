@@ -8,6 +8,7 @@ import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 
 void main() async {
 
@@ -35,6 +36,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<LoginBloc>(), ),
         BlocProvider(create: (context) => getIt<FormLoginBloc>(), ),
         BlocProvider(create: (context) => getIt<MenuBloc>(), ),
+        BlocProvider(create: (context) => getIt<TasksBloc>(), ),
       ],
       child     : const MainApp(),
     );

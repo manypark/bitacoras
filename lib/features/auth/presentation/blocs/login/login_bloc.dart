@@ -28,7 +28,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
       return false;
     }
 
-    add( PostLoginSuccess( userLogin: responseLogin.user ) );
+    add(
+      PostLoginSuccess( 
+        userLogin : responseLogin.user,
+        accesToken: responseLogin.accessToken
+      )
+    );
 
     return true;
   }
@@ -38,17 +43,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
   }
 
   Future<void> resetUser() async {
-    add( PostLoginSuccess( userLogin: userError ) );
+    add(
+      PostLoginSuccess( 
+        userLogin : userError,
+        accesToken: '',
+      )
+    );
   }
 
   ////////////////////////////////// Handlers //////////////////////////////////
 
   void _postLoginHandler( PostLoginSuccess event, Emitter<LoginState> emit) {
-    emit(state.copyWith( userLogin: event.userLogin, errorMessage: ErrorMessage(code: 0, error_code: '', msg: '') ) );
+    emit(
+      state.copyWith( 
+        userLogin   : event.userLogin, 
+        errorMessage: ErrorMessage(code: 0, error_code: '', msg: ''),
+        accesToken  : event.accesToken
+      )
+    );
   }
 
   void _errorHandler( PostLoginError event, Emitter<LoginState> emit) {
-    emit(state.copyWith( errorMessage: event.errorMessage, userLogin: userError ) );
+    emit(state.copyWith( errorMessage: event.errorMessage, userLogin: userError, accesToken: '' ) );
   }
 
   ////////////////////////////////// Hydrated bloc //////////////////////////////////

@@ -9,11 +9,15 @@ sealed class LoginEvent extends Equatable {
 class PostLoginSuccess extends LoginEvent {
 
   final User? userLogin;
+  final String accesToken;
   
-  const PostLoginSuccess({required this.userLogin});
+  const PostLoginSuccess({
+    required this.userLogin,
+    required this.accesToken,
+  });
 
   @override
-  List<Object?> get props => [userLogin];
+  List<Object?> get props => [userLogin, accesToken];
   
 }
 

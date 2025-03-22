@@ -27,8 +27,8 @@ class TasksDto {
 
   factory TasksDto.fromMap(Map<String, dynamic> map) {
     return TasksDto(
-      taskId      : map['taskId'],
-      companyId   : map['companyId'],
+      taskId      : map['task_id'],
+      companyId   : map['company_id'],
       title       : map['title'],
       status      : map['status'],
       description : map['description'],

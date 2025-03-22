@@ -1,14 +1,11 @@
 import 'package:dio/dio.dart';
 
-// import 'package:bitacoras/core/utils/utils.dart';
-
 class HttpClientInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // options.headers['apikey']         = Environments.apiKey;
-    // options.headers['Authorization']  = "Bearer ${Environments.apiKey}";
-    // options.headers["Content-Type"]   = "application/json; charset=utf-8";
+    // options.headers['Authorization']  = "Bearer ${loginBloc.state.accesToken}";
     super.onRequest(options, handler);
   }
 

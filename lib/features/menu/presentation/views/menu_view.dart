@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/shared.dart';
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/tasks/presentation/presentation.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/menu/menu_bloc.dart';
 
 const List<Widget> pages = [
-  Center(
-    child: Text('Tareas'),
-  ),
+  TasksScreen(),
   Center(
     child: Text('Bitacoras'),
   ),
@@ -68,10 +67,12 @@ class MenuView extends StatelessWidget {
                 child : Row(
                   mainAxisAlignment : MainAxisAlignment.spaceAround,
                   children          : [
+
                     IconButton(
                       icon      : Icon(
                         Icons.task, 
-                        color: (indexState == 0) ? Colors.blue : Colors.grey
+                        color : (indexState == 0) ? Colors.blue : Colors.grey,
+                        size  : 36,
                       ),
                       onPressed : () async {
                         await context.read<MenuBloc>().selectedIndex(0);
@@ -83,7 +84,8 @@ class MenuView extends StatelessWidget {
                     IconButton(
                       icon      : Icon(
                         Icons.list_alt, 
-                        color: (indexState == 1) ? Colors.blue : Colors.grey
+                        color : (indexState == 1) ? Colors.blue : Colors.grey,
+                        size  : 36,
                       ),
                       onPressed : () async {
                         await context.read<MenuBloc>().selectedIndex(1);
