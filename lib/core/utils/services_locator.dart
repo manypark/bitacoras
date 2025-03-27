@@ -4,10 +4,10 @@ import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 
-GetIt getIt = GetIt.instance;
+final getIt = GetIt.instance;
 
 void serviceLocatorInit() {
-  getIt.registerLazySingleton<LoginBloc>(() => LoginBloc());
+  getIt.registerLazySingleton<LoginBloc>( () => LoginBloc() );
   getIt.registerSingleton( FormLoginBloc() );
   getIt.registerSingleton( MenuBloc() );
   getIt.registerSingleton( TasksBloc() );

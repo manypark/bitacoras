@@ -1,4 +1,3 @@
-import 'dart:isolate';
 import 'package:dio/dio.dart';
 
 import 'package:bitacoras/core/services/services.dart';
@@ -19,11 +18,9 @@ class TasksDatasourceImpl implements TasksDatasource {
   Future<(ErrorMessage?, ListTasksDto)> getTasksList() async {
     try {
 
-      final isolateResponse = await Isolate.run( () async {
-        return await httpClient.get( path: '/rest/v1/Tasks?select=task_id,company_id,title,description,status' );
-      });
+      final response = await httpClient.get( path: '/rest/v1/Tasks?select=task_id,company_id,title,description,status' );
       
-      return (null, ListTasksDto.fromList(isolateResponse) );
+      return (null, ListTasksDto.fromList(response) );
       
     } on DioException catch (e) {
 
