@@ -2,19 +2,18 @@ import 'package:dio/dio.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 
 class HttpClientInterceptor extends Interceptor {
+
+  final loginBloc = getIt<LoginBloc>();
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
 
     if( options.path != '/auth/v1/token?grant_type=password' ) {
-
-      final loginBloc = getIt<LoginBloc>(); 
-
       options.headers['apikey']         = Environments.apiKey;
       options.headers['Authorization']  = "Bearer ${loginBloc.state.accesToken}";
-
     }
 
     super.onRequest(options, handler);
@@ -25,14 +24,77 @@ class HttpClientInterceptor extends Interceptor {
 
     if (err.response?.statusCode == 401) {
       try {
-        // TODO refresh token
-        print('-.- refresh token');
+
+        final token = await refreshToken();
+        loginBloc.updateAccesTokenRefresh(token);
+        
+        final retryResponse = await retry(err.requestOptions);
+        handler.resolve(retryResponse);
+
       } catch (e) {
         handler.next(err);
       }
     } else {
       handler.next(err);
     }
+  }
+
+  Future<dynamic> retry( RequestOptions requestOptions ) async {
+
+     final dio = Dio(
+      BaseOptions(
+        baseUrl       : Environments.pathUrl,
+        connectTimeout: const Duration( minutes: 2 ),
+        receiveTimeout: const Duration( minutes: 2 ),
+        responseType  : ResponseType.json,
+        method        : requestOptions.method,
+      )
+    );
+
+    final response = await dio.request(
+      requestOptions.path,
+      queryParameters: requestOptions.queryParameters,
+      data    : requestOptions.data,
+      options : Options(
+        headers: {
+          'apikey'        : Environments.apiKey,
+          'Authorization' : "Bearer ${loginBloc.state.accesToken}",
+          'Content-Type'  : "application/json; charset=utf-8"
+        }
+      )
+    );
+
+    return response;
+  }
+
+  Future<String> refreshToken() async {
+
+    final dio = Dio(
+      BaseOptions(
+        baseUrl       : Environments.pathUrl,
+        connectTimeout: const Duration( minutes: 2 ),
+        receiveTimeout: const Duration( minutes: 2 ),
+        responseType  : ResponseType.json
+      )
+    );
+
+    final response = await dio.post(
+      '/auth/v1/token?grant_type=refresh_token',
+      options: Options(
+        headers: {
+          'apikey'        : Environments.apiKey,
+          'Authorization' : "Bearer ${loginBloc.state.accesToken}",
+          'Content-Type'  : "application/json; charset=utf-8"
+        }
+      ),
+      data: {
+        "refresh_token" : Environments.refreshToken
+      }
+    );
+
+    final accestoken = LogInDto.fromMap(response.data).accessToken;
+
+    return accestoken;
   }
   
 }

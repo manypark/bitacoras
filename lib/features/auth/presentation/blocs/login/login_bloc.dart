@@ -17,6 +17,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
     hydrate();
     on<PostLoginSuccess>( _postLoginHandler );
     on<PostLoginError>( _errorHandler );
+    on<UpdateRefreshToken>( _updateRefreshToken );
   }
 
   Future<bool> postLogin( String email, String password ) async {
@@ -36,6 +37,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
     );
 
     return true;
+  }
+
+  void updateAccesTokenRefresh( String token ) {
+    add( UpdateRefreshToken( accesToken: token ) );
   }
 
   void onErrorPost( ErrorMessage? err ) {
@@ -65,6 +70,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
 
   void _errorHandler( PostLoginError event, Emitter<LoginState> emit) {
     emit(state.copyWith( errorMessage: event.errorMessage, userLogin: userError, accesToken: '' ) );
+  }
+
+  void _updateRefreshToken( UpdateRefreshToken event, Emitter<LoginState> emit) {
+    emit(state.copyWith( accesToken: event.accesToken ) );
   }
 
   ////////////////////////////////// Hydrated bloc //////////////////////////////////
