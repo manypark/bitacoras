@@ -22,8 +22,15 @@ class TasksView extends StatelessWidget {
 
           final tasks = snapshot.data ?? [];
 
+          final hasError = context.read<TasksBloc>().state.hasError;
+          final msgError = context.read<TasksBloc>().state.messageError;
+
+          if( hasError ) {
+            return Center( child: Text(msgError) );
+          }
+
           if (tasks.isEmpty) {
-            return Center( child: Text('Lista vacia'),);
+            return Center( child: Text('Lista vacía'),);
           }
 
           return ListTasksWidget(tasks: tasks);

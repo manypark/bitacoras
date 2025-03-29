@@ -26,7 +26,7 @@ class TasksDatasourceImpl implements TasksDatasource {
 
       final int code         = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? 500);
       final String errorCode = e.response?.data['hint'] ?? (e.response?.data['error_code'] ?? 'Error');
-      final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Algun Error');
+      final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Error no controlado');
       
       return ( ErrorMessage( code  : code, error_code: errorCode, msg  : msg ), errTasks);
     }
