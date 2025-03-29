@@ -12,43 +12,48 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: LayoutConstants.paddingXL,
-          vertical: LayoutConstants.paddingM,
-        ),
-        child: Column(
-          spacing: LayoutConstants.spaceXL,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            
-            // Logo
-            LogoLogin(),
-    
-            SizedBox(height: LayoutConstants.spaceM),
-    
-            // Title
-            TitleLogin(),
-    
-            Form(
-                key: context.watch<FormLoginBloc>().state.globalKeyFormLogin,
-                child: Column(
-                  spacing: LayoutConstants.spaceL,
-                  children: [
-                    //Input: email
-                    InputEmail(),
-    
-                    //Input: password
-                    InputPassword(),
-                  ],
-                )),
-    
-            // Acept terms and conditions text
-            CheckBoxTermsAndConditions(),
-    
-            // Button login
-            ButtonLogin()
-          ],
+      child: Center(
+        child: SizedBox(
+          width: 600,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: LayoutConstants.paddingXL,
+              vertical  : LayoutConstants.paddingM,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing : LayoutConstants.spaceXL,
+              children: [
+                
+                // Logo
+                LogoLogin(),
+              
+                SizedBox(height: LayoutConstants.spaceM),
+              
+                // Title
+                TitleLogin(),
+              
+                Form(
+                    key: context.watch<FormLoginBloc>().state.globalKeyFormLogin,
+                    child: Column(
+                      spacing: LayoutConstants.spaceL,
+                      children: [
+                        //Input: email
+                        InputEmail(),
+              
+                        //Input: password
+                        InputPassword(),
+                      ],
+                    )),
+              
+                // Acept terms and conditions text
+                CheckBoxTermsAndConditions(),
+              
+                // Button login
+                ButtonLogin()
+              ],
+            ),
+          ),
         ),
       ),
     );

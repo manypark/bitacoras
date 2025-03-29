@@ -9,7 +9,7 @@ import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
+class LoginBloc extends Bloc<LoginEvent, LoginState> with HydratedMixin {
 
   final _loginUseCase = LoginUserCase();
 
@@ -17,6 +17,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
     hydrate();
     on<PostLoginSuccess>( _postLoginHandler );
     on<PostLoginError>( _errorHandler );
+    on<UpdateRefreshToken>( _updateRefreshToken );
   }
 
   Future<bool> postLogin( String email, String password ) async {
@@ -28,9 +29,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
       return false;
     }
 
-    add( PostLoginSuccess( userLogin: responseLogin.user ) );
+    add(
+      PostLoginSuccess( 
+        userLogin : responseLogin.user,
+        accesToken: responseLogin.accessToken
+      )
+    );
 
     return true;
+  }
+
+  void updateAccesTokenRefresh( String token ) {
+    add( UpdateRefreshToken( accesToken: token ) );
   }
 
   void onErrorPost( ErrorMessage? err ) {
@@ -38,17 +48,32 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
   }
 
   Future<void> resetUser() async {
-    add( PostLoginSuccess( userLogin: userError ) );
+    add(
+      PostLoginSuccess( 
+        userLogin : userError,
+        accesToken: '',
+      )
+    );
   }
 
   ////////////////////////////////// Handlers //////////////////////////////////
 
   void _postLoginHandler( PostLoginSuccess event, Emitter<LoginState> emit) {
-    emit(state.copyWith( userLogin: event.userLogin, errorMessage: ErrorMessage(code: 0, error_code: '', msg: '') ) );
+    emit(
+      state.copyWith( 
+        userLogin   : event.userLogin, 
+        errorMessage: ErrorMessage(code: 0, error_code: '', msg: ''),
+        accesToken  : event.accesToken
+      )
+    );
   }
 
   void _errorHandler( PostLoginError event, Emitter<LoginState> emit) {
-    emit(state.copyWith( errorMessage: event.errorMessage, userLogin: userError ) );
+    emit(state.copyWith( errorMessage: event.errorMessage, userLogin: userError, accesToken: '' ) );
+  }
+
+  void _updateRefreshToken( UpdateRefreshToken event, Emitter<LoginState> emit) {
+    emit(state.copyWith( accesToken: event.accesToken ) );
   }
 
   ////////////////////////////////// Hydrated bloc //////////////////////////////////

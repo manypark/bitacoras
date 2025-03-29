@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 
 void main() async {
 
@@ -20,8 +22,13 @@ void main() async {
   );
 
   serviceLocatorInit();
+  
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(const BlocsProviders());
+  });
 
-  runApp(const BlocsProviders());
 }
 
 class BlocsProviders extends StatelessWidget {
@@ -35,6 +42,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<LoginBloc>(), ),
         BlocProvider(create: (context) => getIt<FormLoginBloc>(), ),
         BlocProvider(create: (context) => getIt<MenuBloc>(), ),
+        BlocProvider(create: (context) => getIt<TasksBloc>(), ),
       ],
       child     : const MainApp(),
     );

@@ -7,6 +7,9 @@ class AppTheme {
     colorSchemeSeed : Colors.black26,
     brightness      : Brightness.light,
     scaffoldBackgroundColor: Colors.grey.shade200,
+    appBarTheme     : AppBarTheme(
+      backgroundColor: Colors.grey.shade200
+    ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Colors.black,
       hintStyle: const TextStyle( color: Colors.black )
@@ -17,13 +20,20 @@ class AppTheme {
       titleMedium : TextStyle( color : Colors.black38, fontSize: 22 ),
       titleSmall  : TextStyle( color : Colors.black38, fontSize: 18),
     ),
-    canvasColor: Colors.white
+    canvasColor: Colors.white,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.blueAccent
+    ),
   );
 
   ThemeData getThemeDark() => ThemeData(
     useMaterial3    : true,
     colorSchemeSeed : Colors.purple.shade900,
     brightness      : Brightness.dark,
+    scaffoldBackgroundColor: Colors.grey.shade800,
+    appBarTheme     : AppBarTheme(
+      backgroundColor: Colors.grey.shade800
+    ),
     inputDecorationTheme: const InputDecorationTheme(
       hintStyle: TextStyle( color: Colors.white ),
     ),
@@ -33,7 +43,10 @@ class AppTheme {
       titleMedium : TextStyle( color : Colors.white, fontSize: 22 ),
       titleSmall  : TextStyle( color : Colors.white, fontSize: 18 ),
     ),
-    canvasColor: Colors.red
+    canvasColor: Colors.red,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.blueAccent
+    ),
   );
 
 } 
