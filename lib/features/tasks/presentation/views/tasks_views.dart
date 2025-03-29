@@ -10,6 +10,7 @@ class TasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return FutureBuilder(
       future  : context.read<TasksBloc>().loadListTasks(),
       builder : (context, snapshot) {
@@ -18,25 +19,15 @@ class TasksView extends StatelessWidget {
 
         if( snapshot.hasError ) return Center( child: Text('Error: ${snapshot.error.toString()}'),);
 
-        if( snapshot.hasData ) {
+        final hasError  = context.watch<TasksBloc>().state.hasError;
+        final msgError  = context.watch<TasksBloc>().state.messageError;
+        final listTasks = context.watch<TasksBloc>().state.listTasks;
 
-          final tasks = snapshot.data ?? [];
+        if( hasError && listTasks.isEmpty ) return Center( child: Text(msgError) );
 
-          final hasError = context.read<TasksBloc>().state.hasError;
-          final msgError = context.read<TasksBloc>().state.messageError;
+        if (listTasks.isEmpty) return Center( child: Text('Lista vacía'),);
 
-          if( hasError ) {
-            return Center( child: Text(msgError) );
-          }
-
-          if (tasks.isEmpty) {
-            return Center( child: Text('Lista vacía'),);
-          }
-
-          return ListTasksWidget(tasks: tasks);
-        }
-
-        return Container();
+        return ListTasksWidget( tasks:listTasks );
 
       },
     );

@@ -9,7 +9,7 @@ import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState>  with HydratedMixin {
+class LoginBloc extends Bloc<LoginEvent, LoginState> with HydratedMixin {
 
   final _loginUseCase = LoginUserCase();
 

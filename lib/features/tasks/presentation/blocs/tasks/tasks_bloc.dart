@@ -1,17 +1,18 @@
-import 'package:bitacoras/shared/shared.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bitacoras/shared/shared.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:bitacoras/features/tasks/domain/domain.dart';
 
 part 'tasks_event.dart';
 part 'tasks_state.dart';
 
-class TasksBloc extends Bloc<TasksEvent, TasksState> {
+class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
 
   final _listTasks = TasksUseCase();
 
   TasksBloc() : super(TasksState()) {
+    hydrate();
     on<LoadListTasks>( _loadListTasksHandler );
     on<FailListTasks>( _failListTasksHandler );
   }
@@ -22,11 +23,12 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
     final ( err, responseListTasks ) = await _listTasks();
 
-    add( LoadListTasks(listTasks: responseListTasks.listTasks) );
-
     if( err != null ) {
       failLoadListTasks( err.msg, true);
+      return [];
     }
+
+    add( LoadListTasks(listTasks: responseListTasks.listTasks) );
 
     return responseListTasks.listTasks;
 
@@ -52,6 +54,16 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
         messageError: event.messageErr
       )
     );
+  }
+  
+  @override
+  TasksState? fromJson(Map<String, dynamic> json) {
+    return TasksState.fromMap(json);
+  }
+  
+  @override
+  Map<String, dynamic>? toJson(TasksState state) {
+    return TasksState.toMap( state );
   }
 
 }

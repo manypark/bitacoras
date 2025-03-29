@@ -15,7 +15,7 @@ class TasksScreen extends StatelessWidget {
         title   : Text('Tareas del día'),
         actions : [
           IconButton(
-            onPressed : (){}, 
+            onPressed : (){},
             icon      : Icon( Icons.person_3 ),
           )
         ],

@@ -23,4 +23,19 @@ class TasksState extends ErrorClass {
   @override
   List<Object> get props => [listTasks, hasError, messageError];
 
+
+  static Map<String, dynamic> toMap( TasksState state ) {
+    return <String, dynamic>{
+      'listTasks': state.listTasks.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory TasksState.fromMap(Map<String, dynamic> map) {
+    return TasksState(
+      listTasks: List<TasksEntity>.from( (
+          map['listTasks']
+        ).map<TasksEntity>( (x) => TasksEntity.fromMap(x) ),
+      ),
+    );
+  }
 }

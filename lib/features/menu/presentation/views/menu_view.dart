@@ -62,7 +62,7 @@ class MenuView extends StatelessWidget {
                       topLeft : Radius.elliptical(180, 30),
                       topRight: Radius.elliptical(180, 30),
                     ),
-                    color       : AppTheme().getThemeLight().canvasColor,
+                    color       : Colors.white,
                   ),
                 child : Row(
                   mainAxisAlignment : MainAxisAlignment.spaceAround,

@@ -22,7 +22,7 @@ void main() async {
   );
 
   serviceLocatorInit();
-
+  
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((_) {
