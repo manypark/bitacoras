@@ -8,20 +8,23 @@ class TasksState extends ErrorClass {
     this.listTasks = const [],
     super.hasError,
     super.messageError,
+    super.isLoading,
   });
 
   TasksState copyWith({
     bool? hasError,
+    bool? isLoading,
     String? messageError,
     List<TasksEntity>? listTasks,
   }) => TasksState(
     listTasks   : listTasks ?? this.listTasks,
     hasError    : hasError ?? this.hasError,
     messageError: messageError ?? this.messageError,
+    isLoading   : isLoading ?? this.isLoading,
   );
 
   @override
-  List<Object> get props => [listTasks, hasError, messageError];
+  List<Object> get props => [listTasks, hasError, messageError, isLoading];
 
 
   static Map<String, dynamic> toMap( TasksState state ) {

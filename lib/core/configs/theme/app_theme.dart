@@ -24,6 +24,18 @@ class AppTheme {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.blueAccent
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateColor.resolveWith((states) {
+          
+          if ( states.contains(WidgetState.disabled) ) {
+            return Colors.blueGrey.shade300;
+          }
+
+          return Colors.blueAccent;
+        },),
+      )
+    ),
   );
 
   ThemeData getThemeDark() => ThemeData(
@@ -46,6 +58,18 @@ class AppTheme {
     canvasColor: Colors.red,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.blueAccent
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateColor.resolveWith((states) {
+          
+          if ( states.contains(WidgetState.disabled) ) {
+            return Colors.blueGrey.shade300;
+          }
+
+          return Colors.blueAccent;
+        },),
+      )
     ),
   );
 

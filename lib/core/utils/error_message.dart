@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 class ErrorMessage {
 
-  int code;
+  String code;
   String error_code;
   String msg;
 
@@ -21,9 +21,9 @@ class ErrorMessage {
 
   factory ErrorMessage.fromMap(Map<String, dynamic> map) {
     return ErrorMessage(
-      code: map['code'] as int,
-      error_code: map['error_code'] as String,
-      msg: map['msg'] as String,
+      code      : map['code'],
+      error_code: map['error_code'],
+      msg       : map['msg'],
     );
   }
 

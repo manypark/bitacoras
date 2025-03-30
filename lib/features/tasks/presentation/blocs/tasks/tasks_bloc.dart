@@ -15,11 +15,13 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     hydrate();
     on<LoadListTasks>( _loadListTasksHandler );
     on<FailListTasks>( _failListTasksHandler );
+    on<LoadingListTasks>( _loadingListTasksHandler );
   }
 
   Future<List<TasksEntity>> loadListTasks() async {
 
     failLoadListTasks( '', false );
+    add( LoadingListTasks( isLoading: true ) );
 
     final ( err, responseListTasks ) = await _listTasks();
 
@@ -28,7 +30,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
       return [];
     }
 
-    add( LoadListTasks(listTasks: responseListTasks.listTasks) );
+    add( LoadListTasks(listTasks:responseListTasks.listTasks) );
+    add( LoadingListTasks( isLoading:false ) );
 
     return responseListTasks.listTasks;
 
@@ -54,6 +57,10 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
         messageError: event.messageErr
       )
     );
+  }
+
+  void _loadingListTasksHandler( LoadingListTasks event, Emitter<TasksState> emit ) {
+    emit(state.copyWith( isLoading: event.isLoading ) );
   }
   
   @override

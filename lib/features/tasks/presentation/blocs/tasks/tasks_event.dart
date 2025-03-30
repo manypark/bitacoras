@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'tasks_bloc.dart';
 
 sealed class TasksEvent extends Equatable {
@@ -11,11 +10,25 @@ class LoadListTasks extends TasksEvent {
 
   final List<TasksEntity> listTasks;
 
-  const LoadListTasks({ required this.listTasks });
+  const LoadListTasks({ 
+    this.listTasks = const [],
+  });
   
   @override
   List<Object> get props => [listTasks];
 
+}
+
+class LoadingListTasks extends TasksEvent {
+
+  final bool isLoading;
+
+  const LoadingListTasks({
+    this.isLoading = false,
+  });
+
+  @override
+  List<Object> get props => [isLoading];
 }
 
 class FailListTasks extends TasksEvent {
