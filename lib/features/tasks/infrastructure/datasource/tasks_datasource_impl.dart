@@ -24,7 +24,7 @@ class TasksDatasourceImpl implements TasksDatasource {
       
     } on DioException catch (e) {
 
-      final int code         = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? 500);
+      final String code         = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? '500');
       final String errorCode = e.response?.data['hint'] ?? (e.response?.data['error_code'] ?? 'Error');
       final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Error no controlado');
       
