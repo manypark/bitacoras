@@ -17,9 +17,12 @@ class ListTasksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final bool isLoading = context.watch<TasksBloc>().state.isLoading;
+
     return SizedBox(
       width : double.infinity,
-      height:  MediaQuery.sizeOf(context).height * 0.8,
+      height: MediaQuery.sizeOf(context).height * 0.8,
       child : Stack(
         children: [
       
@@ -72,14 +75,28 @@ class ListTasksWidget extends StatelessWidget {
           ),
       
           Positioned(
-            bottom: 0,
+            bottom: MediaQuery.sizeOf(context).height * 0.06,
             right : LayoutConstants.paddingL,
-            child : FloatingActionButton.extended(
-              onPressed : () => context.read<TasksBloc>().loadListTasks(),
-              icon      : const Icon(Icons.refresh, color: Colors.white,),
-              label     : Text(
-                'Actualizar tareas', 
-                style: GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.white )
+            child : ElevatedButton(
+              onPressed : isLoading ? null : () => context.read<TasksBloc>().loadListTasks(),
+              child     : AnimatedSize(
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: Row(
+                  children: [
+                
+                    const Icon(Icons.refresh, color: Colors.white,),
+                
+                    if(!isLoading)
+                    SizedBox( width: LayoutConstants.spaceS ),
+                
+                    if(!isLoading)
+                    Text(
+                      'Actualizar tareas',
+                      style: GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.white )
+                    )
+                  ],
+                ),
               ),
             ),
           ),
