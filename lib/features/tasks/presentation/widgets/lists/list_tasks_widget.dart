@@ -85,7 +85,13 @@ class ListTasksWidget extends StatelessWidget {
                 child: Row(
                   children: [
                 
-                    const Icon(Icons.refresh, color: Colors.white,),
+                    AnimatedRotation(
+                      turns   : isLoading ? 1 : 0,
+                      duration: Duration(seconds: 1),
+                      curve   : Curves.linear,
+                      child   : const Icon(Icons.refresh, color: Colors.white),
+                    ),
+
                 
                     if(!isLoading)
                     SizedBox( width: LayoutConstants.spaceS ),

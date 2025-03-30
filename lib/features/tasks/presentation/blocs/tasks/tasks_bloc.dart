@@ -23,8 +23,6 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     failLoadListTasks( '', false );
     add( LoadingListTasks( isLoading: true ) );
 
-    await Future.delayed( const Duration( seconds: 2 ) );
-
     final ( err, responseListTasks ) = await _listTasks();
 
     if( err != null ) {
