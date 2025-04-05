@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/configs/configs.dart';
@@ -14,6 +15,8 @@ import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeDateFormatting('es_ES', null);
 
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb

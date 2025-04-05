@@ -12,6 +12,7 @@ class ListTasksMapper {
           title       : e.title,
           description : e.description,
           status      : e.status,
+          createdAt   : e.createdAt,
         )
       ).toList(),
     );

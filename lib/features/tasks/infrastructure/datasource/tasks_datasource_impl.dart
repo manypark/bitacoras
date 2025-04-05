@@ -18,13 +18,13 @@ class TasksDatasourceImpl implements TasksDatasource {
   Future<(ErrorMessage?, ListTasksDto)> getTasksList() async {
     try {
 
-      final response = await httpClient.get( path: '/rest/v1/Tasks?select=task_id,company_id,title,description,status' );
+      final response = await httpClient.get( path: '/rest/v1/Tasks?select=task_id,company_id,title,description,status,created_at' );
       
       return (null, ListTasksDto.fromList(response) );
       
     } on DioException catch (e) {
 
-      final String code         = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? '500');
+      final String code      = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? '500');
       final String errorCode = e.response?.data['hint'] ?? (e.response?.data['error_code'] ?? 'Error');
       final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Error no controlado');
       

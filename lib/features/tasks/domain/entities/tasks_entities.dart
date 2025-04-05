@@ -15,6 +15,7 @@ class TasksEntity {
     final String title;
     final String description;
     final String status;
+    final String createdAt;
 
     TasksEntity({
         required this.taskId,
@@ -22,6 +23,7 @@ class TasksEntity {
         required this.title,
         required this.description,
         required this.status,
+        required this.createdAt,
     });
 
 
@@ -32,6 +34,7 @@ class TasksEntity {
       'title'       : title,
       'description' : description,
       'status'      : status,
+      'created_at'  : createdAt,
     };
   }
 
@@ -42,6 +45,7 @@ class TasksEntity {
       title       : map['title'],
       description : map['description'],
       status      : map['status'],
+      createdAt   : map['created_at'],
     );
   }
 

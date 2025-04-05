@@ -16,6 +16,7 @@ class TasksDto {
     final String title;
     final String description;
     final String status;
+    final String createdAt;
 
     TasksDto({
         required this.taskId,
@@ -23,6 +24,7 @@ class TasksDto {
         required this.title,
         required this.description,
         required this.status,
+        required this.createdAt,
     });
 
   factory TasksDto.fromMap(Map<String, dynamic> map) {
@@ -32,6 +34,7 @@ class TasksDto {
       title       : map['title'],
       status      : map['status'],
       description : map['description'],
+      createdAt   : map['created_at'],
     );
   }
 
