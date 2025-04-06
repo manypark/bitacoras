@@ -22,7 +22,8 @@ class AppTheme {
     ),
     canvasColor: Colors.white,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: Colors.blueAccent
+      backgroundColor: Colors.blueAccent,
+      foregroundColor: Colors.white
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -57,7 +58,8 @@ class AppTheme {
     ),
     canvasColor: Colors.red,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: Colors.blueAccent
+      backgroundColor: Colors.blueAccent,
+      foregroundColor: Colors.white
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

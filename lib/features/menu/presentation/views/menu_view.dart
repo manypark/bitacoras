@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/shared.dart';
-import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/features/tasks/presentation/presentation.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/menu/menu_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 const List<Widget> pages = [
   TasksScreen(),
@@ -45,7 +45,7 @@ class MenuView extends StatelessWidget {
               bottom: MediaQuery.of(context).size.height * 0.089,
               left  : MediaQuery.of(context).size.width / 2 - 30,
               child : FloatingActionButton(
-                onPressed       : () {},
+                onPressed       : () => context.push('/logs'),
                 backgroundColor : Colors.blueAccent,
                 child           : const Icon(Icons.camera_alt_rounded, color: Colors.white,),
               ),

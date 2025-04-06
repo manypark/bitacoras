@@ -1,7 +1,8 @@
-import 'package:bitacoras/core/configs/configs.dart';
-import 'package:bitacoras/core/utils/utils.dart';
-import 'package:bitacoras/features/tasks/domain/domain.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bitacoras/core/utils/utils.dart';
+import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/tasks/domain/domain.dart';
 
 class TasksListContainer extends StatelessWidget {
 
@@ -59,7 +60,7 @@ class TasksListContainer extends StatelessWidget {
                         borderRadius: BorderRadius.circular(LayoutConstants.spaceM),
                         side: BorderSide(
                           color: Colors.black,
-                          width: 1.2,
+                          width: 1,
                         ),
                       )
                     ),
