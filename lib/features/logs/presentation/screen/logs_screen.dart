@@ -17,12 +17,6 @@ class LogsScreen extends StatelessWidget {
         title: Text('Bitacora libre', style: GlobalFonts.paragraphBodyTitleRegular ),
       ),
       body: const LogsView(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-        },
-        child:  Icon( Icons.add ),
-      ),
     );
   }
 
