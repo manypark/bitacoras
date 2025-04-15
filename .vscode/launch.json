@@ -7,7 +7,6 @@
             "type": "dart",
             "args": [
                 "--dart-define-from-file=env/dev.json",
-                "--no-enable-impeller"
             ]
         },
         {

@@ -108,7 +108,10 @@ class LogsView extends StatelessWidget {
                         
                               SizedBox( height: 8 ),
                           
-                              Text('Toma una fotografía desde tu camara', style: GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.grey.shade600 ) ,),
+                              Text(
+                                'Toma una fotografía desde tu camara', 
+                                style: GlobalFonts.paragraphBodyMediumRegular.copyWith( color: Colors.grey.shade600 )
+                              ),
                             ],
                           ),
                         ),

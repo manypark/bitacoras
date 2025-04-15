@@ -15,9 +15,9 @@ class ListTasksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: MediaQuery.sizeOf(context).height * 0.8,
-      child: Stack(
+      width : double.infinity,
+      height: MediaQuery.sizeOf(context).height * 0.75,
+      child : Stack(
         children: [
           
           SingleChildScrollView(

@@ -12,8 +12,9 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title   : Text('Tareas del día'),
-        actions : [
+        title       : Text('Tareas del día'),
+        centerTitle : false,
+        actions     : [
           IconButton(
             onPressed : (){},
             icon      : Icon( Icons.person_3 ),
