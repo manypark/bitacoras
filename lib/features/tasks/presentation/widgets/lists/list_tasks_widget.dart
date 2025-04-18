@@ -5,6 +5,7 @@ import 'package:bitacoras/features/tasks/presentation/widgets/containers/contain
 import 'package:bitacoras/features/tasks/presentation/widgets/buttons/buttons.dart';
 
 class ListTasksWidget extends StatelessWidget {
+  
   final List<TasksEntity> tasks;
 
   const ListTasksWidget({
