@@ -1,6 +1,8 @@
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SaveFormButton extends StatelessWidget {
   
@@ -19,7 +21,9 @@ class SaveFormButton extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<TaksLogFormBloc>().submitTaksLog();
+          },
           child: Text(
             'Guardar Bitacora',
             style: GlobalFonts.paragraphBodyMediumRegular.copyWith(color: Colors.white),

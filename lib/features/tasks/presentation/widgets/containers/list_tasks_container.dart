@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/features/tasks/domain/domain.dart';
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
+import 'package:go_router/go_router.dart';
 
 class TasksListContainer extends StatelessWidget {
 
@@ -52,7 +55,10 @@ class TasksListContainer extends StatelessWidget {
                 Spacer(),
     
                 IconButton(
-                  onPressed : (){},
+                  onPressed : () {
+                    context.read<TaksLogFormBloc>().selectIdTask(task.taskId);
+                    context.push('/logs');
+                  },
                   icon      : Icon( Icons.add ),
                   style     : ButtonStyle(
                     shape: WidgetStatePropertyAll(

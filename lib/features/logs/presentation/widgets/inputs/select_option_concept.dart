@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
 
 class SelectOptionConcept extends StatelessWidget {
 
@@ -30,8 +32,11 @@ class SelectOptionConcept extends StatelessWidget {
               child: Text(option, style: GlobalFonts.paragraphBodyMediumRegular),
             )
           ).toList(),
-          onChanged: (value) {},
+          onChanged: (value) {
+            context.read<TaksLogFormBloc>().selectOptionTaskLog( value ?? '' );
+          },
           validator: (value) {
+
             if (value == null) {
               return 'Por favor selecciona una opción';
             }
