@@ -12,11 +12,16 @@ class LogsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Bitacora libre', style: GlobalFonts.paragraphBodyTitleRegular ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Bitacora libre', style: GlobalFonts.paragraphBodyTitleRegular ),
+        ),
+        body: const LogsView(),
       ),
-      body: const LogsView(),
     );
   }
 

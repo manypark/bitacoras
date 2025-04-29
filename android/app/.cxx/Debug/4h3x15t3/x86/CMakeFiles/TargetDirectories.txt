@@ -1,0 +1,2 @@
+/Users/manu/Documents/bitacoras/android/app/.cxx/Debug/4h3x15t3/x86/CMakeFiles/edit_cache.dir
+/Users/manu/Documents/bitacoras/android/app/.cxx/Debug/4h3x15t3/x86/CMakeFiles/rebuild_cache.dir
