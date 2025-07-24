@@ -6,10 +6,16 @@ import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 
 class HttpClientInterceptor extends Interceptor {
 
-  // @override
-  // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-  //   super.onRequest(options, handler);
-  // }
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+
+    if( options.path != '/auth/singIn' ) {
+      final loginBloc = getIt<LoginBloc>();
+      options.headers['Authorization']  = "Bearer ${loginBloc.state.accesToken}";
+    }
+
+    super.onRequest(options, handler);
+  }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {

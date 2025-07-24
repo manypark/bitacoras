@@ -8,14 +8,14 @@ sealed class TasksEvent extends Equatable {
 
 class LoadListTasks extends TasksEvent {
 
-  final List<TasksEntity> listTasks;
+  final TasksEntity tasks;
 
   const LoadListTasks({ 
-    this.listTasks = const [],
+    this.tasks = const TasksEntity( status: false, message: '', data: [] ),
   });
   
   @override
-  List<Object> get props => [listTasks];
+  List<Object> get props => [tasks];
 
 }
 

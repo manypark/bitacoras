@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:bitacoras/features/tasks/domain/domain.dart';
-import 'package:bitacoras/features/tasks/presentation/widgets/containers/containers.dart';
+import 'package:bitacoras/core/utils/constants/layout_constans.dart';
 import 'package:bitacoras/features/tasks/presentation/widgets/buttons/buttons.dart';
+import 'package:bitacoras/features/tasks/presentation/widgets/containers/containers.dart';
 
 class ListTasksWidget extends StatelessWidget {
-  final List<TasksEntity> tasks;
+
+  final TasksEntity tasks;
 
   const ListTasksWidget({
     super.key,
@@ -23,7 +25,13 @@ class ListTasksWidget extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: [
-                ...tasks.map( (task) => TasksListContainer( task: task ) ),
+                ...tasks.data?.map( (task) => TasksListContainer( task: task ) ) ?? [],
+                SizedBox( height:LayoutConstants.spaceL ),
+                SizedBox( height:LayoutConstants.spaceL ),
+                SizedBox( height:LayoutConstants.spaceL ),
+                SizedBox( height:LayoutConstants.spaceL ),
+                SizedBox( height:LayoutConstants.spaceL ),
+                SizedBox( height:LayoutConstants.spaceL ),
               ],
             ),
           ),

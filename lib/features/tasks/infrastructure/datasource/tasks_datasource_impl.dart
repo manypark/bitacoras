@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:bitacoras/core/services/services.dart';
 import 'package:bitacoras/core/utils/error_message.dart';
 import 'package:bitacoras/features/tasks/domain/domain.dart';
+import 'package:bitacoras/features/tasks/infrastructure/dtos/dtos.dart';
 import 'package:bitacoras/features/tasks/config/constants/error_entity.dart';
-import 'package:bitacoras/features/tasks/infrastructure/dtos/tasks_dto.dart';
 
 class TasksDatasourceImpl implements TasksDatasource {
 
@@ -15,20 +15,23 @@ class TasksDatasourceImpl implements TasksDatasource {
   }): httpClient = httpClient ?? HttpClientServiceImpl();
 
   @override
-  Future<(ErrorMessage?, ListTasksDto)> getTasksList() async {
+  Future<(ErrorMessage?, TasksDto)> getTasksList( GetTasksRequestDto getTasksReqDto ) async {
     try {
 
-      final response = await httpClient.get( path: '/rest/v1/Tasks?select=task_id,company_id,title,description,status,created_at' );
+      final endDate         = getTasksReqDto.endDate;
+      final initDate        = getTasksReqDto.initDate;
+      final idUserAssigned  = getTasksReqDto.idUserAssigned;
+
+      final response = await httpClient.get( path: '/tasks/by-user?idUserAssigned=$idUserAssigned&startDate=$initDate&endDate=$endDate' );
       
-      return (null, ListTasksDto.fromList(response) );
+      return (null, TasksDto.fromMap(response) );
       
     } on DioException catch (e) {
 
-      final String code      = e.response?.data['statusCode'] ?? (e.response?.data['code'] ?? '500');
-      final String errorCode = e.response?.data['hint'] ?? (e.response?.data['error_code'] ?? 'Error');
-      final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Error no controlado');
+      final String code = e.response?.data['status'] ?? e.response?.data['statusCode'] ?? '500';
+      final String msg  = e.response?.data['message'] ?? 'Error no controlado';
       
-      return ( ErrorMessage( code  : code, error_code: errorCode, msg  : msg ), errTasks);
+      return ( ErrorMessage( code  : code, error_code: '500', msg  : msg ), errTasks);
     }
     
   }

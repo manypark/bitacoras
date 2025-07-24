@@ -3,6 +3,7 @@ import 'package:bitacoras/shared/shared.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:bitacoras/features/tasks/domain/domain.dart';
+import 'package:bitacoras/features/tasks/infrastructure/infrastructure.dart';
 
 part 'tasks_event.dart';
 part 'tasks_state.dart';
@@ -18,22 +19,31 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     on<LoadingListTasks>( _loadingListTasksHandler );
   }
 
-  Future<List<TasksEntity>> loadListTasks() async {
+  Future<TasksEntity> loadListTasks( GetTasksRequestDto getTasksReqDto ) async {
 
     failLoadListTasks( '', false );
     add( LoadingListTasks( isLoading: true ) );
 
-    final ( err, responseListTasks ) = await _listTasks();
+    final ( err, tasksResponse ) = await _listTasks( getTasksReqDto );
 
     if( err != null ) {
       failLoadListTasks( err.msg, true);
-      return [];
+      return TasksEntity(status: false, message: '', data: []);
     }
 
-    add( LoadListTasks(listTasks:responseListTasks.listTasks) );
+    add( 
+      LoadListTasks( 
+        tasks : TasksEntity(
+            status  : tasksResponse.status, 
+            message : tasksResponse.message, 
+            data    : tasksResponse.data,
+          )
+      )
+    );
+    
     add( LoadingListTasks( isLoading:false ) );
 
-    return responseListTasks.listTasks;
+    return tasksResponse;
 
   }
 
@@ -47,7 +57,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
   }
 
   void _loadListTasksHandler( LoadListTasks event, Emitter<TasksState> emit ) {
-    emit(state.copyWith( listTasks: event.listTasks ) );
+    emit( state.copyWith( tasks: event.tasks ) );
   }
 
   void _failListTasksHandler( FailListTasks event, Emitter<TasksState> emit ) {

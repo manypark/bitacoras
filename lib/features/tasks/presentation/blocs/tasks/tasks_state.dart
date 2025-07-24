@@ -2,10 +2,10 @@ part of 'tasks_bloc.dart';
 
 class TasksState extends ErrorClass {
   
-  final List<TasksEntity> listTasks;
+  final TasksEntity tasks;
 
   const TasksState({
-    this.listTasks = const [],
+    this.tasks = const TasksEntity(status: false, message: '', data: []),
     super.hasError,
     super.messageError,
     super.isLoading,
@@ -15,30 +15,42 @@ class TasksState extends ErrorClass {
     bool? hasError,
     bool? isLoading,
     String? messageError,
-    List<TasksEntity>? listTasks,
-  }) => TasksState(
-    listTasks   : listTasks ?? this.listTasks,
-    hasError    : hasError ?? this.hasError,
-    messageError: messageError ?? this.messageError,
-    isLoading   : isLoading ?? this.isLoading,
-  );
+    TasksEntity? tasks,
+  }) =>
+      TasksState(
+        tasks: tasks ?? this.tasks,
+        hasError: hasError ?? this.hasError,
+        messageError: messageError ?? this.messageError,
+        isLoading: isLoading ?? this.isLoading,
+      );
 
   @override
-  List<Object> get props => [listTasks, hasError, messageError, isLoading];
+  List<Object> get props => [tasks, hasError, messageError, isLoading];
 
-
-  static Map<String, dynamic> toMap( TasksState state ) {
+  static Map<String, dynamic> toMap(TasksState state) {
     return <String, dynamic>{
-      'listTasks': state.listTasks.map((x) => x.toMap()).toList(),
+      'tasks': {
+        'status': state.tasks.status,
+        'message': state.tasks.message,
+        'data': state.tasks.data?.map((x) => x.toJson()).toList() ?? [],
+      },
+      'hasError': state.hasError,
+      'messageError': state.messageError,
+      'isLoading': state.isLoading,
     };
   }
 
   factory TasksState.fromMap(Map<String, dynamic> map) {
     return TasksState(
-      listTasks: List<TasksEntity>.from( (
-          map['listTasks']
-        ).map<TasksEntity>( (x) => TasksEntity.fromMap(x) ),
+      tasks: TasksEntity(
+        status: map['tasks']['status'] as bool,
+        message: map['tasks']['message'] as String,
+        data: List<TasksResponseEntity>.from( (map['tasks']['data'] as List<dynamic>).map((x) => TasksResponseEntity.fromJson(x) ),
+        ),
       ),
+      hasError: map['hasError'] as bool? ?? false,
+      messageError: map['messageError'] as String? ?? '',
+      isLoading: map['isLoading'] as bool? ?? false,
     );
   }
 }

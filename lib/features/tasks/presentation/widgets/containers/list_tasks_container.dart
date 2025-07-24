@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class TasksListContainer extends StatelessWidget {
 
-  final TasksEntity task;
+  final TasksResponseEntity task;
 
   const TasksListContainer({ 
     super.key,
@@ -36,16 +36,42 @@ class TasksListContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children          : [
     
+            SizedBox( height:LayoutConstants.spaceL ),
+    
+            Text(
+              task.title,
+              style: GlobalFonts.paragraphBodyLargeBold,
+            ),
+    
+            SizedBox( height:LayoutConstants.spaceL ),
+            
+            Text(task.description),
+
+            SizedBox( height:LayoutConstants.spaceL ),
+            
+            Text( formatDateDayMonthAndYear( DateTime.parse( task.createdAt.toIso8601String() ) ), style: GlobalFonts.paragraphBodySmallUnderline, ),
+
+            SizedBox( height:LayoutConstants.spaceL ),
+
             Row(
               children: [
     
-                Chip(
-                  label: Text(
-                    task.status,
-                    style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.red.shade300)
+                if(task.logsCount > 0 ) Chip(
+                  label           : Text( 
+                    'Bitacoras: ${task.logsCount}',
+                    style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.green.shade300),
                   ),
-                  backgroundColor: Colors.red.shade100,
-                  side: BorderSide.none,
+                  backgroundColor : Colors.green.shade100,
+                  side            : BorderSide.none,
+                ),
+
+                if(task.logsCount == 0 ) Chip(
+                  label           : Text( 
+                    'Sin Bitacoras',
+                    style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.red.shade300),
+                  ),
+                  backgroundColor : Colors.red.shade100,
+                  side            : BorderSide.none,
                 ),
     
                 Spacer(),
@@ -66,23 +92,7 @@ class TasksListContainer extends StatelessWidget {
                   ),
                 )
               ],
-            ),
-    
-            SizedBox( height:LayoutConstants.spaceL ),
-    
-            Text(
-              task.title,
-              style: GlobalFonts.paragraphBodyLargeBold,
-            ),
-    
-            SizedBox( height:LayoutConstants.spaceL ),
-            
-            Text(task.description),
-
-            SizedBox( height:LayoutConstants.spaceL ),
-            
-            Text( formatDateDayMonthAndYear( DateTime.parse(task.createdAt) ), style: GlobalFonts.paragraphBodySmallUnderline, ),
-            
+            ),            
           ],
         ),
     );

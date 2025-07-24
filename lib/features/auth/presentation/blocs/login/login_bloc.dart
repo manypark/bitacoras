@@ -31,8 +31,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with HydratedMixin {
 
     add(
       PostLoginSuccess( 
-        userLogin : responseLogin.userEntity,
-        accesToken: responseLogin.userEntity?.token ?? ''
+        userLogin : responseLogin.data,
+        accesToken: responseLogin.data?.token ?? ''
       )
     );
 

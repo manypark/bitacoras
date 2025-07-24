@@ -10,8 +10,8 @@ class TasksUseCase {
     TasksRepository? repository
   }): repository = repository ?? TasksRepositoryImpl();
 
-  Future<(ErrorMessage?, ListTasksEntity)> call() async {
-    return await repository.getTasksList();
+  Future<( ErrorMessage?, TasksEntity )> call( GetTasksRequestDto getTasksReqDto ) async {
+    return await repository.getTasksList(getTasksReqDto);
   }
   
 }
