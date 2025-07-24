@@ -11,4 +11,5 @@ void serviceLocatorInit() {
   getIt.registerSingleton( FormLoginBloc() );
   getIt.registerSingleton( MenuBloc() );
   getIt.registerSingleton( TasksBloc() );
+  getIt.registerSingleton( RangeDatesBloc() );
 }

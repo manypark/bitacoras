@@ -28,7 +28,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
 
     if( err != null ) {
       failLoadListTasks( err.msg, true);
-      return TasksEntity(status: false, message: '', data: []);
+      return TasksEntity(status: false, message: err.msg, data: []);
     }
 
     add( 
@@ -64,7 +64,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     emit(
       state.copyWith( 
         hasError    : event.hasError,
-        messageError: event.messageErr
+        messageError: event.messageErr,
       )
     );
   }

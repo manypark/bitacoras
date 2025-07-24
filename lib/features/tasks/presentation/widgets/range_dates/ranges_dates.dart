@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,39 +11,42 @@ import 'package:bitacoras/features/tasks/infrastructure/infrastructure.dart';
 
 class RangeDatesWidget extends StatelessWidget {
 
-  const RangeDatesWidget({super.key});
+  const RangeDatesWidget({ super.key });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding : EdgeInsets.all(LayoutConstants.paddingL),
-      child   : Row(
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(LayoutConstants.paddingL),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color       : Colors.white,
-                border      : Border.all( width: 0.5, ),
+      return MultiBlocProvider(
+        providers : [
+          BlocProvider<LoginBloc>( create: (_) => LoginBloc() ),
+          BlocProvider<RangeDatesBloc>( create: (_) => RangeDatesBloc() ),
+        ],
+        child     : Padding(
+          padding : EdgeInsets.all(LayoutConstants.paddingL),
+          child   : Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(LayoutConstants.paddingL),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color       : Colors.white,
+                    border      : Border.all( width: 0.5, ),
+                  ),
+                  child: Row(
+                    children: [
+        
+                      Text( '${DateFormat('yyyy-MM-dd').format( context.watch<RangeDatesBloc>().state.startDate )} -  ', style: GlobalFonts.paragraphBodyMediumRegular,),
+        
+                      Text( DateFormat('yyyy-MM-dd').format( context.watch<RangeDatesBloc>().state.endDate ), style: GlobalFonts.paragraphBodyMediumRegular, ),
+        
+                    ],
+                  ),
+                ),
               ),
-              child: Row(
-                children: [
-
-                  Text( '2025-07-01  -  ', style: GlobalFonts.paragraphBodyMediumRegular,),
-
-                  Text( '2025-07-23', style: GlobalFonts.paragraphBodyMediumRegular, ),
-
-                ],
-              ),
-            ),
-          ),
-
-          SizedBox(width: LayoutConstants.spaceL),
-
-          BlocBuilder<LoginBloc, LoginState>( builder: (context, state) {
-
-              return FloatingActionButton(
+        
+              SizedBox(width: LayoutConstants.spaceL),
+        
+              FloatingActionButton(
                 backgroundColor: Colors.blueAccent,
                 child: const Icon(
                   Icons.calendar_month,
@@ -50,35 +54,37 @@ class RangeDatesWidget extends StatelessWidget {
                 ),
                 onPressed: () async {
                   final DateTimeRange? picked = await showDateRangePicker(
-                    context: context,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                    initialEntryMode: DatePickerEntryMode.calendarOnly,
-                    cancelText: 'Cancelar',
-                    confirmText: 'Filtrar',
-                    helpText: 'Selecciona el rango de fechas',
-                    fieldEndLabelText: 'Fecha fin',
-                    fieldStartLabelText: 'Fecha inicio',
-                    initialDateRange: DateTimeRange(
-                      start : DateTime.now(),
-                      end   : DateTime.now().add(const Duration(days: 7)),
+                    context             : context,
+                    firstDate           : DateTime(2000),
+                    lastDate            : DateTime(2100),
+                    initialEntryMode    : DatePickerEntryMode.calendarOnly,
+                    cancelText          : 'Cancelar',
+                    confirmText         : 'Filtrar',
+                    helpText            : 'Selecciona el rango de fechas',
+                    fieldEndLabelText   : 'Fecha fin',
+                    fieldStartLabelText : 'Fecha inicio',
+                    initialDateRange    : DateTimeRange(
+                      start : context.read<RangeDatesBloc>().state.startDate,
+                      end   : context.read<RangeDatesBloc>().state.endDate,
                     ),
                   );
-
+      
                   if( picked != null ) {
+      
+                    context.read<RangeDatesBloc>().onUpdateStartAdnEndDate( picked.start, picked.end );
+      
                     context.read<TasksBloc>().loadListTasks(
                       GetTasksRequestDto(
-                        idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 26, 
-                        initDate      : picked.start.toString().split(' ')[0].toString(),
-                        endDate       : picked.end.toString().split(' ')[0].toString(),
+                        idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0, 
+                        initDate      : DateFormat('yyyy-MM-dd').format( picked.start ),
+                        endDate       : DateFormat('yyyy-MM-dd').format( picked.end ),
                       )
                     );
                   }
                 },
-              );
-            },
-          ),
-        ],
+              ),
+          ],
+        ),
       ),
     );
   }

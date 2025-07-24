@@ -18,6 +18,7 @@ class UpdateTasksButton extends StatelessWidget {
       right: LayoutConstants.paddingL,
       child: BlocBuilder<TasksBloc, TasksState>(
         builder: (context, state) {
+          
           final isLoading = state.isLoading;
 
           return BlocBuilder<LoginBloc, LoginState>(
