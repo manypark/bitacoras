@@ -23,12 +23,12 @@ class HttpClientInterceptor extends Interceptor {
     if (err.response?.statusCode == 401) {
       try {
         
-        final loginBloc = getIt<LoginBloc>();
-        final token = await refreshToken();
-        loginBloc.updateAccesTokenRefresh(token);
+        // final loginBloc = getIt<LoginBloc>();
+        // final token = await refreshToken();
+        // loginBloc.updateAccesTokenRefresh(token);
         
-        final retryResponse = await retry(err.requestOptions);
-        handler.resolve(retryResponse);
+        // final retryResponse = await retry(err.requestOptions);
+        // handler.resolve(retryResponse);
 
       } catch (e) {
         handler.next(err);

@@ -33,7 +33,7 @@ class LoginDatasourceImpl implements LoginDataSource {
 
     } on DioException catch (e) {
 
-      final String code         = e.response?.data['status'] ?? (e.response?.data['code'] ?? 500);
+      final String code      = e.response?.data['status'] ?? (e.response?.data['code'] ?? 500);
       final String errorCode = e.response?.data['hint'] ?? (e.response?.data['error_code'] ?? 'Error');
       final String msg       = e.response?.data['message'] ?? (e.response?.data['msg'] ?? 'Algun Error');
       

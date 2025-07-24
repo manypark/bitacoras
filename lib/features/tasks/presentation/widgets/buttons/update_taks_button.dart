@@ -14,7 +14,7 @@ class UpdateTasksButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: MediaQuery.sizeOf(context).height * 0.06,
+      bottom: MediaQuery.sizeOf(context).height * 0.14,
       right: LayoutConstants.paddingL,
       child: BlocBuilder<TasksBloc, TasksState>(
         builder: (context, state) {
