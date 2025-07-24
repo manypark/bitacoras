@@ -11,7 +11,7 @@ class LoginUserCase {
     LoginRepository? repository
   }): repository = repository ?? LoginRepositoryImpl();
 
-  Future<(ErrorMessage?, LogInEntitie)> call( String email, String password ) async {
+  Future<(ErrorMessage?, LogInEntity)> call( String email, String password ) async {
     return await repository.postLogin(email, password);
   }
   

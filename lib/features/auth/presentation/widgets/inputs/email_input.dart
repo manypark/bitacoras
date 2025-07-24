@@ -22,6 +22,7 @@ class InputEmail extends StatelessWidget {
           style: GlobalFonts.paragraphBodyMediumBold,
         ),
         InputGlobal(
+          initialValue  : 'jose@gmail.com',
           textInputType : TextInputType.emailAddress,
           hintText      : hintTextEmail,
           onChanged     : (value) {

@@ -12,7 +12,7 @@ class LoginRepositoryImpl implements LoginRepository {
   }): datasource = datasource ?? LoginDatasourceImpl();
 
   @override
-  Future<(ErrorMessage?, LogInEntitie)> postLogin(String email, String password) async {
+  Future<(ErrorMessage?, LogInEntity)> postLogin(String email, String password) async {
     final (errorMessage, loginDto ) = await datasource.postLogin(email, password);
     return (errorMessage, LoginMapper.dtoToEntity(loginDto) );
   }

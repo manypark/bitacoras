@@ -27,8 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Programar redirección después del build
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final state = loginBloc.state.userLogin?.id ?? '';
-      if (state != '') {
+      final state = loginBloc.state.userLogin?.idUser ?? 0;
+      if (state != 0 ) {
         context.read<MenuBloc>().loadMenuList();
         context.go('/home');
       } else {

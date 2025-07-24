@@ -1,21 +1,15 @@
 import 'user_entity.dart';
+import 'package:bitacoras/shared/entities/entities.dart';
 
-class LogInEntitie {
+class LogInEntity extends GeneralEntity<UserEntity> {
 
-    final String accessToken;
-    final String tokenType;
-    final int expiresIn;
-    final int expiresAt;
-    final String refreshToken;
-    final User? user;
+    final UserEntity? userEntity;
 
-    LogInEntitie({
-        this.user,
-        required this.accessToken,
-        required this.tokenType,
-        required this.expiresIn,
-        required this.expiresAt,
-        required this.refreshToken,
+    LogInEntity({
+        this.userEntity, 
+        required super.status, 
+        required super.message, 
+        required super.data,
     });
 
 }

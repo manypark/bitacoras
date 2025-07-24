@@ -7,8 +7,7 @@ import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 final getIt = GetIt.instance;
 
 void serviceLocatorInit() {
-  // getIt.registerLazySingleton<LoginBloc>( () => LoginBloc() );
-  getIt.registerSingleton( LoginBloc() );
+  getIt.registerLazySingleton<LoginBloc>( () => LoginBloc() );
   getIt.registerSingleton( FormLoginBloc() );
   getIt.registerSingleton( MenuBloc() );
   getIt.registerSingleton( TasksBloc() );

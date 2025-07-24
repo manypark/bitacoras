@@ -1,31 +1,37 @@
-import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
 import 'package:bitacoras/features/auth/domain/entities/login_entity.dart';
-import 'package:bitacoras/features/auth/domain/entities/user_metadata_entity.dart';
+import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
 import 'package:bitacoras/features/auth/infrastructure/dtos/login_dto.dart';
-import 'package:bitacoras/features/auth/domain/entities/app_metadata_entity.dart';
 
 class LoginMapper {
 
-  static LogInEntitie dtoToEntity ( LogInDto data ) => LogInEntitie(
-    accessToken : data.accessToken, 
-    tokenType   : data.tokenType,
-    expiresIn   : data.expiresAt,
-    expiresAt   : data.expiresIn,
-    refreshToken: data.refreshToken,
-    user        : User(
-      id: data.user?.id ?? '', 
-      aud: data.user?.aud ?? '', 
-      role: data.user?.role ?? '', 
-      email: data.user?.email ?? '', 
-      emailConfirmedAt: data.user?.emailConfirmedAt ?? '',
-      phone: data.user?.phone ?? '', 
-      confirmedAt: data.user?.confirmedAt ?? '', 
-      lastSignInAt: data.user?.lastSignInAt ?? '', 
-      appMetadata: AppMetadata(provider: '', providers: []),
-      userMetadata: UserMetadata(emailVerified: false), 
-      createdAt: data.user?.createdAt ?? '', 
-      updatedAt: data.user?.updatedAt ?? '', 
-      isAnonymous: data.user?.isAnonymous ?? false
+  static LogInEntity dtoToEntity ( LogInDto data ) => LogInEntity(
+    status  : data.status,
+    message : data.message, 
+    data    : UserEntity(
+      token     : data.data?.token ?? '',
+      idUser    : data.data?.idUser ?? 0,
+      firstName : data.data?.firstName ?? '',
+      lastName  : data.data?.lastName ?? '',
+      email     : data.data?.email ?? '',
+      active    : data.data?.active ?? false,
+      avatarUrl : data.data?.avatarUrl ?? '',
+      lastLogin : data.data?.lastLogin ?? DateTime.now(),
+      createdAt : data.data?.createdAt ?? DateTime.now(),
+      updatedAt : data.data?.updatedAt ?? DateTime.now(),
+      menuList  : data.data?.menuList.map(( menuList ) {
+        return MenuList(
+          idMenu: menuList.idMenu,
+          name  : menuList.name,
+          route : menuList.route,
+          icon  : menuList.icon,
+        );
+      }).toList() ?? [],
+      rolesList : data.data?.rolesList.map((roleList) {
+        return RolesList(
+          idRoles : roleList.idRoles, 
+          name    : roleList.name,
+        );
+      },).toList() ?? [],
     )
   );
   

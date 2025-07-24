@@ -1,31 +1,19 @@
 import 'user_dto.dart';
+import 'package:bitacoras/shared/dto/dtos.dart';
 
-class LogInDto {
-
-    final String accessToken;
-    final String tokenType;
-    final int expiresIn;
-    final int expiresAt;
-    final String refreshToken;
-    final UserDto? user;
+class LogInDto extends GeneralDtoResponse<UserDto> {
 
     LogInDto({
-        this.user,
-        required this.accessToken,
-        required this.tokenType,
-        required this.expiresIn,
-        required this.expiresAt,
-        required this.refreshToken,
+        required super.status, 
+        required super.message, 
+        required super.data,
     });
 
-  factory LogInDto.fromMap(Map<String, dynamic> map) {
+  factory LogInDto.fromMap( Map<String, dynamic> map ) {
     return LogInDto(
-      accessToken: map['access_token'] as String,
-      tokenType: map['token_type'] as String,
-      expiresIn: map['expires_in'] as int,
-      expiresAt: map['expires_at'] as int,
-      refreshToken: map['refresh_token'] as String,
-      user: map['user'] != null ? UserDto.fromMap(map['user']) : null,
+      status  : map['status'], 
+      message : map['message'], 
+      data    : map['data'] != null ? UserDto.fromJson(map['data']) : null,
     );
   }
 

@@ -10,14 +10,15 @@ class GoRouterNotifier extends ChangeNotifier {
   late final StreamSubscription<LoginState> _subscription;
   AuthStatus _authStatus;
 
-  GoRouterNotifier({required this.loginBloc}): _authStatus = (loginBloc.state.userLogin != null && loginBloc.state.userLogin?.id != '')
+  GoRouterNotifier({required this.loginBloc}): 
+  _authStatus = (loginBloc.state.userLogin != null && (loginBloc.state.userLogin?.idUser != 0) )
             ? AuthStatus.authenticated
             : AuthStatus.unauthenticated {
 
     // Se suscribe al stream del bloc para escuchar cambios en el estado
     _subscription = loginBloc.stream.listen((state) {
 
-      final newStatus = ( state.userLogin != null && state.userLogin!.id.isNotEmpty )
+      final newStatus = ( state.userLogin != null && (state.userLogin!.idUser != 0) )
           ? AuthStatus.authenticated
           : AuthStatus.unauthenticated;
       if (newStatus != _authStatus) {

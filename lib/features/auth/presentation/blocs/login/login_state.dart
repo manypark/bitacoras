@@ -2,7 +2,7 @@ part of 'login_bloc.dart';
 
 class LoginState extends Equatable {
 
-  final User? userLogin;
+  final UserEntity? userLogin;
   final String accesToken;
   final ErrorMessage? errorMessage;
 
@@ -16,7 +16,7 @@ class LoginState extends Equatable {
   List<Object?> get props => [userLogin, errorMessage, accesToken];
 
   LoginState copyWith({
-    User? userLogin,
+    UserEntity? userLogin,
     String? accesToken,
     ErrorMessage? errorMessage,
   }) => LoginState(
@@ -27,7 +27,7 @@ class LoginState extends Equatable {
 
   factory LoginState.fromMap(Map<String, dynamic> map) {
     return LoginState(
-      userLogin   : map['userLogin'] != null ? User.fromMap(map['userLogin'] as Map<String,dynamic>) : null,
+      userLogin   : map['userLogin'] != null ? UserEntity.fromJson(map['userLogin'] as Map<String,dynamic>) : null,
       errorMessage: map['errorMessage'] != null ? ErrorMessage.fromMap(map['errorMessage'] as Map<String,dynamic>) : null,
       accesToken  : map['accesToken'] ?? '',
     );

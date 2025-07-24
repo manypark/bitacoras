@@ -1,71 +1,113 @@
-import 'app_metadata_entity.dart';
-import 'user_metadata_entity.dart';
+class UserEntity {
 
-class User {
-  
-    final String id;
-    final String aud;
-    final String role;
+    final String token;
+    final int idUser;
+    final String firstName;
+    final String lastName;
     final String email;
-    final String emailConfirmedAt;
-    final String phone;
-    final String confirmedAt;
-    final String lastSignInAt;
-    final AppMetadata appMetadata;
-    final UserMetadata userMetadata;
-    final String createdAt;
-    final String updatedAt;
-    final bool isAnonymous;
+    final bool active;
+    final String avatarUrl;
+    final DateTime lastLogin;
+    final DateTime createdAt;
+    final DateTime updatedAt;
+    final List<MenuList> menuList;
+    final List<RolesList> rolesList;
 
-    User({
-        required this.id,
-        required this.aud,
-        required this.role,
+    UserEntity({
+        required this.token,
+        required this.idUser,
+        required this.firstName,
+        required this.lastName,
         required this.email,
-        required this.emailConfirmedAt,
-        required this.phone,
-        required this.confirmedAt,
-        required this.lastSignInAt,
-        required this.appMetadata,
-        required this.userMetadata,
+        required this.active,
+        required this.avatarUrl,
+        required this.lastLogin,
         required this.createdAt,
         required this.updatedAt,
-        required this.isAnonymous,
+        required this.menuList,
+        required this.rolesList,
     });
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      id: map['id'] as String,
-      aud: map['aud'] as String,
-      role: map['role'] as String,
-      email: map['email'] as String,
-      emailConfirmedAt: map['emailConfirmedAt'] as String,
-      phone: map['phone'] as String,
-      confirmedAt: map['confirmedAt'] as String,
-      lastSignInAt: map['lastSignInAt'] as String,
-      appMetadata: AppMetadata.fromMap(map['appMetadata'] as Map<String,dynamic>),
-      userMetadata: UserMetadata.fromMap(map['userMetadata'] as Map<String,dynamic>),
-      createdAt: map['createdAt'] as String,
-      updatedAt: map['updatedAt'] as String,
-      isAnonymous: map['isAnonymous'] as bool,
+    factory UserEntity.fromJson(Map<String, dynamic> json) => UserEntity(
+        token: json["token"],
+        idUser: json["idUser"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        email: json["email"],
+        active: json["active"],
+        avatarUrl: json["avatarUrl"],
+        lastLogin: DateTime.parse(json["lastLogin"]),
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        menuList: List<MenuList>.from(json["menuList"].map((x) => MenuList.fromJson(x))),
+        rolesList: List<RolesList>.from(json["rolesList"].map((x) => RolesList.fromJson(x))),
     );
-  }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'aud': aud,
-      'role': role,
-      'email': email,
-      'emailConfirmedAt': emailConfirmedAt,
-      'phone': phone,
-      'confirmedAt': confirmedAt,
-      'lastSignInAt': lastSignInAt,
-      'appMetadata': appMetadata.toMap(),
-      'userMetadata': userMetadata.toMap(),
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
-      'isAnonymous': isAnonymous,
+    Map<String, dynamic> toMap() => {
+        "token": token,
+        "idUser": idUser,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "active": active,
+        "avatarUrl": avatarUrl,
+        "lastLogin": lastLogin.toIso8601String(),
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "menuList": List<dynamic>.from(menuList.map((x) => x.toMap())),
+        "rolesList": List<dynamic>.from(rolesList.map((x) => x.toMap())),
     };
-  }
+
+}
+
+class MenuList {
+  
+    final int idMenu;
+    final String name;
+    final String route;
+    final String icon;
+
+    MenuList({
+      required this.idMenu,
+      required this.name,
+      required this.route,
+      required this.icon,
+    });
+
+    factory MenuList.fromJson(Map<String, dynamic> json) => MenuList(
+      idMenu: json["idMenu"],
+      name  : json["name"],
+      route : json["route"],
+      icon  : json["icon"],
+    );
+
+    Map<String, dynamic> toMap() => {
+        "idMenu": idMenu,
+        "name": name,
+        "route": route,
+        "icon": icon,
+    };
+
+}
+
+class RolesList {
+  
+  final int idRoles;
+  final String name;
+
+  RolesList({
+    required this.idRoles,
+    required this.name,
+  });
+
+  factory RolesList.fromJson(Map<String, dynamic> json) => RolesList(
+    idRoles : json["idRoles"],
+    name    : json["name"],
+  );
+
+  Map<String, dynamic> toMap() => {
+        "idRoles": idRoles,
+        "name": name,
+    };
+
 }

@@ -6,20 +6,10 @@ import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 
 class HttpClientInterceptor extends Interceptor {
 
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-
-
-    if( options.path != '/auth/v1/token?grant_type=password' ) {
-
-      final loginBloc = getIt<LoginBloc>();
-      options.headers['apikey']         = Environments.apiKey;
-      options.headers['Authorization']  = "Bearer ${loginBloc.state.accesToken}";
-
-    }
-
-    super.onRequest(options, handler);
-  }
+  // @override
+  // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  //   super.onRequest(options, handler);
+  // }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
@@ -62,7 +52,6 @@ class HttpClientInterceptor extends Interceptor {
       data    : requestOptions.data,
       options : Options(
         headers: {
-          'apikey'        : Environments.apiKey,
           'Authorization' : "Bearer ${loginBloc.state.accesToken}",
           'Content-Type'  : "application/json; charset=utf-8"
         }
@@ -89,17 +78,13 @@ class HttpClientInterceptor extends Interceptor {
       '/auth/v1/token?grant_type=refresh_token',
       options: Options(
         headers: {
-          'apikey'        : Environments.apiKey,
           'Authorization' : "Bearer ${loginBloc.state.accesToken}",
           'Content-Type'  : "application/json; charset=utf-8"
         }
       ),
-      data: {
-        "refresh_token" : Environments.refreshToken
-      }
     );
 
-    final accestoken = LogInDto.fromMap(response.data).accessToken;
+    final accestoken = LogInDto.fromMap(response.data).data?.token ?? '';
 
     return accestoken;
   }

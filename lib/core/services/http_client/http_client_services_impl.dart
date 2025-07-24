@@ -51,8 +51,6 @@ class HttpClientServiceImpl extends HttpClientService {
 
     final opts = Options(
       headers: {
-        'apikey'        :Environments.apiKey,
-        'Authorization' :"Bearer ${Environments.apiKey}",
         'Content-Type'  :"application/json; charset=utf-8"
       }
     );

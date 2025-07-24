@@ -9,7 +9,7 @@ sealed class LoginEvent extends Equatable {
 
 class PostLoginSuccess extends LoginEvent {
 
-  final User? userLogin;
+  final UserEntity? userLogin;
   final String accesToken;
   
   const PostLoginSuccess({
