@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
-import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
 
 class HttpClientInterceptor extends Interceptor {
 
@@ -11,6 +10,7 @@ class HttpClientInterceptor extends Interceptor {
 
     if( options.path != '/auth/singIn' ) {
       final loginBloc = getIt<LoginBloc>();
+      loginBloc.state.accesToken;
       options.headers['Authorization']  = "Bearer ${loginBloc.state.accesToken}";
     }
 
@@ -23,12 +23,12 @@ class HttpClientInterceptor extends Interceptor {
     if (err.response?.statusCode == 401) {
       try {
         
-        // final loginBloc = getIt<LoginBloc>();
-        // final token = await refreshToken();
-        // loginBloc.updateAccesTokenRefresh(token);
+        final loginBloc = getIt<LoginBloc>();
+        final token = await refreshToken();
+        loginBloc.updateAccesTokenRefresh(token);
         
-        // final retryResponse = await retry(err.requestOptions);
-        // handler.resolve(retryResponse);
+        final retryResponse = await retryLastRequest(err.requestOptions);
+        handler.resolve(retryResponse);
 
       } catch (e) {
         handler.next(err);
@@ -38,7 +38,7 @@ class HttpClientInterceptor extends Interceptor {
     }
   }
 
-  Future<dynamic> retry( RequestOptions requestOptions ) async {
+  Future<dynamic> retryLastRequest( RequestOptions requestOptions ) async {
 
     final loginBloc = getIt<LoginBloc>();
 
@@ -80,17 +80,11 @@ class HttpClientInterceptor extends Interceptor {
       )
     );
 
-    final response = await dio.post(
-      '/auth/v1/token?grant_type=refresh_token',
-      options: Options(
-        headers: {
-          'Authorization' : "Bearer ${loginBloc.state.accesToken}",
-          'Content-Type'  : "application/json; charset=utf-8"
-        }
-      ),
+    final response = await dio.post( '/auth/refreshToken',
+      data: { "token": loginBloc.state.accesToken },
     );
 
-    final accestoken = LogInDto.fromMap(response.data).data?.token ?? '';
+    final accestoken = response.data['data']['token'];
 
     return accestoken;
   }

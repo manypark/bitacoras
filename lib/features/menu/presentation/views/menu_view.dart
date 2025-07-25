@@ -44,6 +44,7 @@ class MenuView extends StatelessWidget {
               bottom: MediaQuery.of(context).size.height * 0.089,
               left  : MediaQuery.of(context).size.width / 2 - 30,
               child : FloatingActionButton(
+                heroTag: 'TakeFreeLog',
                 onPressed       : () {},
                 backgroundColor : Colors.blueAccent,
                 child           : const Icon(Icons.camera_alt_rounded, color: Colors.white,),

@@ -28,6 +28,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
 
     if( err != null ) {
       failLoadListTasks( err.msg, true);
+      add( LoadingListTasks( isLoading:false ) );
       return TasksEntity(status: false, message: err.msg, data: []);
     }
 

@@ -28,10 +28,10 @@ class TasksDatasourceImpl implements TasksDatasource {
       
     } on DioException catch (e) {
 
-      final String code = e.response?.data['status'] ?? e.response?.data['statusCode'] ?? '500';
-      final String msg  = e.response?.data['message'] ?? 'Error no controlado';
+      final dynamic code = e.response?.data['status']?? e.response?.data['statusCode'] ?? '500';
+      final dynamic msg  = e.response?.data['message'] ?? 'Error no controlado';
       
-      return ( ErrorMessage( code  : code, error_code: '500', msg  : msg ), errTasks);
+      return ( ErrorMessage( code  : code.toString(), error_code: '500', msg  : msg.toString() ), errTasks);
     }
     
   }

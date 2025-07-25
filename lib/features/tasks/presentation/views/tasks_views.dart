@@ -35,9 +35,9 @@ class TasksView extends StatelessWidget {
             ),
             builder: (context, snapshot) {
           
-              if (snapshot.connectionState == ConnectionState.waiting || context.read<TasksBloc>().state.isLoading ) return Center(child: CircularProgressIndicator.adaptive());
+              if ( snapshot.connectionState == ConnectionState.waiting ) return Center(child: CircularProgressIndicator.adaptive());
           
-              if (snapshot.hasError) return Center( child: Text('Error: ${snapshot.error.toString()}') );
+              if ( snapshot.hasError ) return Center( child: Text('Error: ${snapshot.error.toString()}') );
           
               final hasError  = context.watch<TasksBloc>().state.hasError;
               final msgError  = context.watch<TasksBloc>().state.messageError;

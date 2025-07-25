@@ -15,6 +15,7 @@ class RangeDatesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
       return MultiBlocProvider(
         providers : [
           BlocProvider<LoginBloc>( create: (_) => LoginBloc() ),
@@ -35,9 +36,15 @@ class RangeDatesWidget extends StatelessWidget {
                   child: Row(
                     children: [
         
-                      Text( '${DateFormat('yyyy-MM-dd').format( context.watch<RangeDatesBloc>().state.startDate )} -  ', style: GlobalFonts.paragraphBodyMediumRegular,),
+                      Text( 
+                        '${DateFormat('yyyy-MM-dd').format( context.watch<RangeDatesBloc>().state.startDate )} -  ', 
+                        style: GlobalFonts.paragraphBodyMediumRegular,
+                      ),
         
-                      Text( DateFormat('yyyy-MM-dd').format( context.watch<RangeDatesBloc>().state.endDate ), style: GlobalFonts.paragraphBodyMediumRegular, ),
+                      Text( 
+                        DateFormat('yyyy-MM-dd').format( context.watch<RangeDatesBloc>().state.endDate ), 
+                        style: GlobalFonts.paragraphBodyMediumRegular,
+                      ),
         
                     ],
                   ),
@@ -47,6 +54,7 @@ class RangeDatesWidget extends StatelessWidget {
               SizedBox(width: LayoutConstants.spaceL),
         
               FloatingActionButton(
+                heroTag: 'RangeDates',
                 backgroundColor: Colors.blueAccent,
                 child: const Icon(
                   Icons.calendar_month,
