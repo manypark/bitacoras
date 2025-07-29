@@ -6,10 +6,12 @@ part 'range_dates_state.dart';
 
 class RangeDatesBloc extends Bloc<RangeDatesEvent, RangeDatesState> {
 
-  RangeDatesBloc() : super(RangeDatesState(
-    startDate : DateTime.now(),
-    endDate   : DateTime.now(),
-  )) {
+  RangeDatesBloc() : super(
+    RangeDatesState(
+      startDate : DateTime.now(),
+      endDate   : DateTime.now(),
+    )
+  ) {
     on<UpdateStartDateAndEndDate>( _updateStartAdnEndDate );
   }
 

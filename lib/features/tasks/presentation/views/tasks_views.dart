@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,44 +15,40 @@ class TasksView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers : [
-        BlocProvider<LoginBloc>( create: (_) => LoginBloc() ),
-        BlocProvider<TasksBloc>( create: (_) => TasksBloc() ),
-        BlocProvider<RangeDatesBloc>( create: (_) => RangeDatesBloc() ),
-      ],
-      child     : Column(
-        children: [
-
-          RangeDatesWidget(),
-          
-          FutureBuilder(
-            future: context.read<TasksBloc>().loadListTasks( 
-              GetTasksRequestDto(
-                idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
-                initDate      : context.read<RangeDatesBloc>().state.startDate.toIso8601String().split('T')[0],
-                endDate       : context.read<RangeDatesBloc>().state.endDate.toIso8601String().split('T')[0],
-              )
-            ),
-            builder: (context, snapshot) {
-          
-              if ( snapshot.connectionState == ConnectionState.waiting ) return Center(child: CircularProgressIndicator.adaptive());
-          
-              if ( snapshot.hasError ) return Center( child: Text('Error: ${snapshot.error.toString()}') );
-          
-              final hasError  = context.watch<TasksBloc>().state.hasError;
-              final msgError  = context.watch<TasksBloc>().state.messageError;
-              final listTasks = context.watch<TasksBloc>().state.tasks;
-          
-              if ( hasError && (listTasks.data?.isEmpty ?? false) ) return Center(child: Text(msgError));
-          
-              if ( listTasks.data?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyLargeBold,) ) );
-          
-              return ListTasksWidget(tasks: listTasks);
-            },
+    return Column(
+      children: [
+    
+        RangeDatesWidget(),
+        
+        FutureBuilder(
+          future: context.read<TasksBloc>().loadListTasks( 
+            GetTasksRequestDto(
+              idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
+              initDate      : DateFormat('yyyy-MM-dd').format( context.read<RangeDatesBloc>().state.startDate ),
+              endDate       : DateFormat('yyyy-MM-dd').format( context.read<RangeDatesBloc>().state.endDate ),
+            )
           ),
-        ],
-      ),
+          builder: (context, snapshot) {
+        
+            if ( 
+              snapshot.connectionState == ConnectionState.waiting ||
+              context.watch<TasksBloc>().state.isLoading
+            ) { return Center(child: CircularProgressIndicator.adaptive()); }
+        
+            if ( snapshot.hasError ) return Center( child: Text('Error: ${snapshot.error.toString()}') );
+        
+            final hasError  = context.watch<TasksBloc>().state.hasError;
+            final msgError  = context.watch<TasksBloc>().state.messageError;
+            final listTasks = context.watch<TasksBloc>().state.tasks;
+        
+            if ( hasError && (listTasks.data?.isEmpty ?? false) ) return Center(child: Text(msgError));
+        
+            if ( listTasks.data?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyLargeBold,) ) );
+        
+            return ListTasksWidget(tasks: listTasks);
+          },
+        ),
+      ],
     );
   }
 }
