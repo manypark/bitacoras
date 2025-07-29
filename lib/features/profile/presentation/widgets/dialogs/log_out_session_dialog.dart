@@ -1,13 +1,11 @@
-import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
-import 'package:bitacoras/features/tasks/presentation/blocs/tasks/tasks_bloc.dart';
-import 'package:bitacoras/features/tasks/presentation/presentation.dart';
-import 'package:bitacoras/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/core/utils/constants/layout_constans.dart';
+import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/tasks/presentation/presentation.dart';
 
 class LogOutSessionDialog extends StatelessWidget {
 
@@ -36,10 +34,10 @@ class LogOutSessionDialog extends StatelessWidget {
             children          : [
 
               Column(
-                spacing : LayoutConstants.spaceL,
+                spacing : LayoutConstants.spaceXL,
                 children: [
-                  Text(title.toUpperCase(), style: GlobalFonts.paragraphBodyLargeRegular,),
-                  Text(desription, style: GlobalFonts.paragraphBodyMediumRegular),
+                  Text( title.toUpperCase(), style: GlobalFonts.paragraphBodyLargeRegular, textAlign: TextAlign.center, ),
+                  Text( desription, style: GlobalFonts.paragraphBodyMediumRegular, textAlign: TextAlign.center, ),
                 ],
               ),
 

@@ -1,9 +1,10 @@
-import 'package:bitacoras/features/profile/presentation/widgets/dialogs/dialogs.dart';
-import 'package:bitacoras/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/core/utils/constants/constans.dart';
+import 'package:bitacoras/features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:bitacoras/features/profile/presentation/widgets/dialogs/dialogs.dart';
 
 class ProfileView extends StatelessWidget {
 
@@ -11,11 +12,49 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final userInfo = context.read<LoginBloc>().state.userLogin;
+
     return Padding(
       padding : const EdgeInsets.all( LayoutConstants.spaceXL ),
       child   : Column(
         spacing : LayoutConstants.spaceL,
         children: [
+
+          ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular( 10 ),
+            child       : SizedBox(
+              width : double.infinity,
+              height: 200,
+              child : (userInfo?.avatarUrl != '' ) ?
+              Image.network( 
+                userInfo!.avatarUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => Icon( Icons.person, size: 64, color: Colors.blueGrey.shade700, ), 
+              ) : 
+              Icon( Icons.person, size: 64, color: Colors.blueGrey.shade700, ),
+            ),
+          ),
+          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Expanded(child: Text( '${userInfo?.firstName ?? 'N/A'} ${userInfo?.lastName ?? 'N/A'}', style: GlobalFonts.paragraphBodyLargeSemiBold , )),
+
+              if( userInfo?.rolesList.isNotEmpty ?? false )
+              ...userInfo!.rolesList.map((e) => Chip(
+                  color : WidgetStatePropertyAll(Colors.redAccent),
+                  side  : BorderSide.none,
+                  label : Text( e.name.toUpperCase(), style: GlobalFonts.paragraphBodySmallBold.copyWith( color: Colors.white ), )
+                )
+              ),
+
+            ],
+          ),
+                    
+
+          SizedBox( height: LayoutConstants.marginXL ),
       
           InkWell(
             borderRadius: BorderRadius.circular(10),
@@ -30,7 +69,7 @@ class ProfileView extends StatelessWidget {
                   side  : BorderSide.none,
                   label : Icon( Icons.person, color: Colors.purple.shade500, ),
                 ),
-                Text('Información', style: GlobalFonts.paragraphBodyLargeRegular ,)
+                Text('Editar Información', style: GlobalFonts.paragraphBodyLargeRegular ,)
               ],
             ),
           ),
@@ -48,7 +87,7 @@ class ProfileView extends StatelessWidget {
 
                   return LogOutSessionDialog(
                     title     : '¿Seguro que quieres salir?',
-                    desription: 'Se perderan tus bitacoras que no has enviado',
+                    desription: 'Se perderan tus bitacoras que no has enviado.',
                   );
                 },
               );

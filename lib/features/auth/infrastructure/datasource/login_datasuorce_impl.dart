@@ -23,7 +23,7 @@ class LoginDatasourceImpl implements LoginDataSource {
         return await httpClient.postWithoutAuth(
           path: '/auth/singIn',
           data: {
-            "email"   : "manu@live.com",
+            "email"   : "jose@gmail.com",
             "password": "asd123A"
           }
         );
