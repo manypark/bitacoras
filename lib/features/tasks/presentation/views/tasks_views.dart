@@ -39,13 +39,13 @@ class TasksView extends StatelessWidget {
         
             final hasError  = context.watch<TasksBloc>().state.hasError;
             final msgError  = context.watch<TasksBloc>().state.messageError;
-            final listTasks = context.watch<TasksBloc>().state.tasks;
+            final listTasks = context.watch<TasksBloc>().state.tasks.data;
         
-            if ( hasError && (listTasks.data?.isEmpty ?? false) ) return Center(child: Text(msgError));
+            if ( hasError && (listTasks?.isEmpty ?? false ) ) return Center(child: Text(msgError));
         
-            if ( listTasks.data?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyLargeBold,) ) );
+            if ( listTasks?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyLargeBold,) ) );
         
-            return ListTasksWidget(tasks: listTasks);
+            return ListTasksWidget(tasks: listTasks!);
           },
         ),
       ],

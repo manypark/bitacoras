@@ -5,15 +5,17 @@ import 'package:bitacoras/features/auth/config/routes/routes.dart';
 import 'package:bitacoras/features/home/config/routes/routes.dart';
 import 'package:bitacoras/features/tasks/config/routes/routes.dart';
 import 'package:bitacoras/features/menu/config/routes/menu_route.dart';
+import 'package:bitacoras/features/profile/config/routes/profile_route.dart';
 
   final appRouter = GoRouter(
 
     initialLocation : '/splash',
     routes          : [
-      splashRoute,
-      menuRoute,
+      routeSplash,
+      routeMenu,
       routeLogin,
       routeHome,
       routeTasks,
+      routeProfile,
     ],
   );

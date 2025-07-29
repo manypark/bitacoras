@@ -45,3 +45,16 @@ class FailListTasks extends TasksEvent {
   List<Object> get props => [hasError, messageErr];
   
 }
+
+class ResetTasks extends TasksEvent {
+  
+  final TasksEntity tasks; 
+
+  const ResetTasks({ 
+    this.tasks = const TasksEntity( status: false, message: '', data: [] ),
+  });
+  
+  @override
+  List<Object> get props => [tasks];
+
+}

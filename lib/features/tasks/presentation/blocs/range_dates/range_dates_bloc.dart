@@ -19,6 +19,7 @@ class RangeDatesBloc extends Bloc<RangeDatesEvent, RangeDatesState> {
     add( UpdateStartDateAndEndDate(startDate: startDate, endDate: endDate) );
   }
 
+// ############################# Update dates handler #############################
   void _updateStartAdnEndDate( UpdateStartDateAndEndDate event, Emitter<RangeDatesState> emit ) {
     emit( state.copyWith( startDate: event.startDate, endDate: event.endDate ) );
   }

@@ -14,87 +14,79 @@ class TasksListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding : EdgeInsets.all(LayoutConstants.paddingL),
-      width   : double.infinity,
-      margin  : EdgeInsets.symmetric(
-        horizontal: LayoutConstants.paddingL,
-        vertical  : LayoutConstants.paddingL
-      ),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color       : Colors.white,
-          boxShadow   : [
-            BoxShadow(
-              blurRadius: 5,
-              color: Colors.black12,
-              offset: Offset(0, 5)
-            )
-          ]
-      ),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children          : [
-    
-            SizedBox( height:LayoutConstants.spaceL ),
-    
-            Text(
-              task.title,
-              style: GlobalFonts.paragraphBodyLargeBold,
-            ),
-    
-            SizedBox( height:LayoutConstants.spaceL ),
-            
-            Text(task.description),
-
-            SizedBox( height:LayoutConstants.spaceL ),
-            
-            Text( formatDateDayMonthAndYear( DateTime.parse( task.createdAt.toIso8601String() ) ), style: GlobalFonts.paragraphBodySmallUnderline, ),
-
-            SizedBox( height:LayoutConstants.spaceL ),
-
-            Row(
-              children: [
-    
-                if(task.logsCount > 0 ) Chip(
-                  label           : Text( 
-                    'Bitacoras: ${task.logsCount}',
-                    style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.green.shade300),
-                  ),
-                  backgroundColor : Colors.green.shade100,
-                  side            : BorderSide.none,
+      child   : Material(
+        elevation   : 6,
+        shadowColor : Colors.black45,
+        borderRadius: BorderRadius.circular(20),
+        child       : Padding(
+          padding : EdgeInsets.all(LayoutConstants.paddingL),
+          child   : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children          : [
+              
+                SizedBox( height:LayoutConstants.spaceL ),
+              
+                Text(
+                  task.title,
+                  style: GlobalFonts.paragraphBodyLargeBold,
                 ),
-
-                if(task.logsCount == 0 ) Chip(
-                  label           : Text( 
-                    'Sin Bitacoras',
-                    style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.red.shade300),
-                  ),
-                  backgroundColor : Colors.red.shade100,
-                  side            : BorderSide.none,
-                ),
-    
-                Spacer(),
-    
-                IconButton(
-                  onPressed : (){},
-                  icon      : Icon( Icons.add ),
-                  style     : ButtonStyle(
-                    shape: WidgetStatePropertyAll(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(LayoutConstants.spaceM),
-                        side: BorderSide(
-                          color: Colors.black,
-                          width: 1.2,
-                        ),
-                      )
+              
+                SizedBox( height:LayoutConstants.spaceL ),
+                
+                Text(task.description),
+          
+                SizedBox( height:LayoutConstants.spaceL ),
+                
+                Text( formatDateDayMonthAndYear( DateTime.parse( task.createdAt.toIso8601String() ) ), style: GlobalFonts.paragraphBodySmallUnderline, ),
+          
+                SizedBox( height:LayoutConstants.spaceL ),
+          
+                Row(
+                  children: [
+              
+                    if(task.logsCount > 0 ) Chip(
+                      label           : Text( 
+                        'Bitacoras: ${task.logsCount}',
+                        style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.green.shade300),
+                      ),
+                      backgroundColor : Colors.green.shade100,
+                      side            : BorderSide.none,
                     ),
-                  ),
-                )
+          
+                    if(task.logsCount == 0 ) Chip(
+                      label           : Text( 
+                        'Sin Bitacoras',
+                        style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.red.shade300),
+                      ),
+                      backgroundColor : Colors.red.shade100,
+                      side            : BorderSide.none,
+                    ),
+              
+                    Spacer(),
+              
+                    IconButton(
+                      onPressed : (){},
+                      icon      : Icon( Icons.add ),
+                      style     : ButtonStyle(
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(LayoutConstants.spaceM),
+                            side: BorderSide(
+                              color: Colors.black,
+                              width: 1.2,
+                            ),
+                          )
+                        ),
+                      ),
+                    )
+                  ],
+                ),            
               ],
-            ),            
-          ],
+            ),
         ),
+      ),
     );
   }
 }

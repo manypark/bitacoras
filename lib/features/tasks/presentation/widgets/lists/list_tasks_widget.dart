@@ -5,7 +5,7 @@ import 'package:bitacoras/features/tasks/presentation/widgets/buttons/containers
 
 class ListTasksWidget extends StatelessWidget {
 
-  final TasksEntity tasks;
+  final List<TasksResponseEntity> tasks;
 
   const ListTasksWidget({
     super.key,
@@ -25,7 +25,7 @@ class ListTasksWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children          : [
 
-                ...tasks.data?.map( (task) => TasksListContainer( task: task ) ) ?? [],
+                ...tasks.map( (task) => TasksListContainer( task: task ) ),
 
                 SizedBox( height:LayoutConstants.spaceL * 6 ),
                 

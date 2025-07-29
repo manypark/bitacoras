@@ -35,6 +35,7 @@ class CustomDialog extends StatelessWidget {
             spacing           : LayoutConstants.spaceXL,
             children          : [
 
+              if(pathImage != '')
               SvgPicture.asset(
                 pathImage,
                 width : MediaQuery.sizeOf(context).width * 0.4,

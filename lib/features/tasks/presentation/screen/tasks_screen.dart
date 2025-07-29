@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:bitacoras/features/tasks/presentation/views/views.dart';
 
@@ -15,7 +16,7 @@ class TasksScreen extends StatelessWidget {
         title   : Text('Tareas del día'),
         actions : [
           IconButton(
-            onPressed : (){},
+            onPressed : () => context.push('/profile'),
             icon      : Icon( Icons.person_3 ),
           )
         ],

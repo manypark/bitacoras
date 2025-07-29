@@ -17,6 +17,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     on<LoadListTasks>( _loadListTasksHandler );
     on<FailListTasks>( _failListTasksHandler );
     on<LoadingListTasks>( _loadingListTasksHandler );
+    on<ResetTasks>( _resetTasksHandler );
   }
 
   Future<TasksEntity> loadListTasks( GetTasksRequestDto getTasksReqDto ) async {
@@ -57,8 +58,18 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     );
   }
 
+  void resetTasks() {
+    add( ResetTasks() );
+  }
+
+// ################################ Handlers ################################
+
   void _loadListTasksHandler( LoadListTasks event, Emitter<TasksState> emit ) {
     emit( state.copyWith( tasks: event.tasks ) );
+  }
+
+  void _resetTasksHandler( ResetTasks event, Emitter<TasksState> emit ) {
+    emit( state );
   }
 
   void _failListTasksHandler( FailListTasks event, Emitter<TasksState> emit ) {

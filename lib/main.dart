@@ -48,7 +48,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<TasksBloc>(), ),
         BlocProvider(create: (context) => getIt<RangeDatesBloc>(), ),
       ],
-      child     : const MainApp(),
+      child : const MainApp(),
     );
   }
 }
