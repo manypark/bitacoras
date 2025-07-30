@@ -27,15 +27,15 @@ class ProfileView extends StatelessWidget {
 
           SizedBox( height: LayoutConstants.marginXL ),
 
-          EditInfoProfileButton(),
+          NotificationsButton(),
       
           Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 500 ) ),
 
-          LogOutButton(),
+          ChangeThemeButton(),
 
           Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 700 ) ),
 
-          ChangeThemeButton(),
+          LogOutButton(),
         ],
       ),
     );

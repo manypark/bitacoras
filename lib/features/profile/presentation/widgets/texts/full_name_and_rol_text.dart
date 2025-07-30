@@ -5,13 +5,13 @@ import 'package:bitacoras/core/configs/theme/fonts/fonts_global.dart';
 import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
 
 class FullNameAndRollText extends StatelessWidget {
+
+  final UserEntity? userInfo;
   
   const FullNameAndRollText({
     super.key,
     required this.userInfo,
   });
-
-  final UserEntity? userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,22 @@ class FullNameAndRollText extends StatelessWidget {
       children: [
         
         Expanded(
-          child: Text( 
-            '${userInfo?.firstName ?? 'N/A'} ${userInfo?.lastName ?? 'N/A'}', 
-            style: GlobalFonts.paragraphBodyLargeSemiBold,
-          ).fadeIn( animate: true, delay: Duration( milliseconds: 200 ) )
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children          : [
+
+              Text(
+                '${userInfo?.firstName ?? 'N/A'} ${userInfo?.lastName ?? 'N/A'}', 
+                style: GlobalFonts.paragraphBodyLargeSemiBold,
+              ).fadeIn( animate: true, delay: Duration( milliseconds: 200 ) ),
+
+              Text(
+                userInfo?.email ?? '',
+                style: GlobalFonts.paragraphBodyLargeRegular.copyWith( color: Colors.grey ),
+              ).fadeIn( animate: true, delay: Duration( milliseconds: 200 ) ),
+
+            ],
+          )
         ),
     
         if( userInfo?.rolesList.isNotEmpty ?? false )

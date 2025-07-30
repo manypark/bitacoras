@@ -3,9 +3,9 @@ import 'package:animate_do/animate_do.dart';
 
 import 'package:bitacoras/core/core.dart';
 
-class EditInfoProfileButton extends StatelessWidget {
+class NotificationsButton extends StatelessWidget {
 
-  const EditInfoProfileButton({ super.key });
+  const NotificationsButton({ super.key });
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class EditInfoProfileButton extends StatelessWidget {
           Chip(
             backgroundColor: Colors.purple.shade100,
             side  : BorderSide.none,
-            label : Icon( Icons.person, color: Colors.purple.shade500, ),
+            label : Icon( Icons.notifications_on_sharp, color: Colors.purple.shade500, ),
           ),
-          Text('Editar Información', style: GlobalFonts.paragraphBodyLargeRegular ,)
+          Text('Notificaciones', style: GlobalFonts.paragraphBodyLargeRegular ,)
         ],
       ),
     ).fadeIn( animate: true, delay: Duration( milliseconds: 400 ) );
