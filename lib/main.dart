@@ -8,10 +8,11 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
-import 'features/profile/presentation/cubits/theme_cubit/theme_cubit.dart';
+import 'features/logs/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
+import 'features/profile/presentation/cubits/theme_cubit/theme_cubit.dart';
 
 void main() async {
 
@@ -49,6 +50,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<TasksBloc>(), ),
         BlocProvider(create: (context) => getIt<RangeDatesBloc>(), ),
         BlocProvider(create: (context) => getIt<ThemeCubit>(), ),
+        BlocProvider(create: (context) => getIt<TaksLogFormBloc>(), ),
       ],
       child : const MainApp(),
     );
