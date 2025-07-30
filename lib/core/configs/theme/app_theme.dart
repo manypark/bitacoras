@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class AppTheme {
 
   ThemeData getThemeLight() => ThemeData(
-    useMaterial3    : true,
     colorSchemeSeed : Colors.black26,
     brightness      : Brightness.light,
     scaffoldBackgroundColor: Colors.grey.shade200,
@@ -39,7 +38,6 @@ class AppTheme {
   );
 
   ThemeData getThemeDark() => ThemeData(
-    useMaterial3    : true,
     colorSchemeSeed : Colors.purple.shade900,
     brightness      : Brightness.dark,
     scaffoldBackgroundColor: Colors.grey.shade800,

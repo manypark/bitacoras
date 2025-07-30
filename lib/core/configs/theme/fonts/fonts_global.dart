@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+
 class GlobalFonts {
 
   static TextStyle paragraphBodyTitleRegular = GoogleFonts.outfit(
@@ -28,7 +28,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyLargeBold = GoogleFonts.outfit(
     fontSize: 18,
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
@@ -36,7 +35,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyLargeSemiBold = GoogleFonts.outfit(
     fontSize: 18,
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
@@ -44,7 +42,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyLargeRegular = GoogleFonts.outfit(
     fontSize: 18,
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
@@ -52,7 +49,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyLargeItalic = GoogleFonts.outfit(
     fontSize: 18,
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
@@ -60,7 +56,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyLargeUnderline = GoogleFonts.outfit(
     fontSize: 18,
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
@@ -68,7 +63,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyLargeStrikeThrougt = GoogleFonts.outfit(
     fontSize: 18,
     letterSpacing: 0,
-    // height: 28,
     color: Colors.black,
     decoration: TextDecoration.lineThrough,
   );
@@ -77,7 +71,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyMediumBold = GoogleFonts.outfit(
     fontSize: 16,
     letterSpacing: 0,
-    // height: 24,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
@@ -85,7 +78,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyMediumSemiBold = GoogleFonts.outfit(
     fontSize: 16,
     letterSpacing: 0,
-    // height: 24,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
@@ -93,7 +85,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyMediumRegular = GoogleFonts.outfit(
     fontSize: 16,
     letterSpacing: 0,
-    // height: 24,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
@@ -101,7 +92,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyMediumItalic = GoogleFonts.outfit(
     fontSize: 16,
     letterSpacing: 0,
-    // height: 24,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
@@ -109,7 +99,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyMediumUnderline = GoogleFonts.outfit(
     fontSize: 16,
     letterSpacing: 0,
-    // height: 24,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
@@ -117,7 +106,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyMediumStrikeThrougt = GoogleFonts.outfit(
     fontSize: 16,
     letterSpacing: 0,
-    // height: 24,
     color: Colors.black,
     decoration: TextDecoration.lineThrough,
   );
@@ -126,7 +114,6 @@ class GlobalFonts {
   static TextStyle paragraphBodySmallBold = GoogleFonts.outfit(
     fontSize: 14,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
@@ -134,7 +121,6 @@ class GlobalFonts {
   static TextStyle paragraphBodySmallSemiBold = GoogleFonts.outfit(
     fontSize: 14,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
@@ -142,7 +128,6 @@ class GlobalFonts {
   static TextStyle paragraphBodySmallRegular = GoogleFonts.outfit(
     fontSize: 14,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
@@ -150,7 +135,6 @@ class GlobalFonts {
   static TextStyle paragraphBodySmallItalic = GoogleFonts.outfit(
     fontSize: 14,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
@@ -158,7 +142,6 @@ class GlobalFonts {
   static TextStyle paragraphBodySmallUnderline = GoogleFonts.outfit(
     fontSize: 14,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
@@ -166,7 +149,6 @@ class GlobalFonts {
   static TextStyle paragraphBodySmallStrikeThrougt = GoogleFonts.outfit(
     fontSize: 14,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     decoration: TextDecoration.lineThrough,
   );
@@ -175,7 +157,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyXsSmallBold = GoogleFonts.outfit(
     fontSize: 12,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.bold,
   );
@@ -183,7 +164,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyXsSmallSemiBold = GoogleFonts.outfit(
     fontSize: 12,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.w600,
   );
@@ -191,7 +171,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyXsSmallRegular = GoogleFonts.outfit(
     fontSize: 12,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontWeight: FontWeight.normal,
   );
@@ -199,7 +178,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyXsSmallItalic = GoogleFonts.outfit(
     fontSize: 12,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     fontStyle: FontStyle.italic,
   );
@@ -207,7 +185,6 @@ class GlobalFonts {
   static TextStyle paragraphBodyXsSmallUnderLine = GoogleFonts.outfit(
     fontSize: 12,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     decoration: TextDecoration.underline,
   );
@@ -215,10 +192,8 @@ class GlobalFonts {
   static TextStyle paragraphBodyXsSmallStrikeThrougt = GoogleFonts.outfit(
     fontSize: 12,
     letterSpacing: 0,
-    // height: 20,
     color: Colors.black,
     decoration: TextDecoration.lineThrough,
   );
 
 }
-// coverage:ignore-end

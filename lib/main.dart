@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
+import 'features/profile/presentation/cubits/theme_cubit/theme_cubit.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
@@ -47,6 +48,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<MenuBloc>(), ),
         BlocProvider(create: (context) => getIt<TasksBloc>(), ),
         BlocProvider(create: (context) => getIt<RangeDatesBloc>(), ),
+        BlocProvider(create: (context) => getIt<ThemeCubit>(), ),
       ],
       child : const MainApp(),
     );
@@ -64,7 +66,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title       : 'Bitacoras',
       routerConfig: appRouter,
-      theme       : AppTheme().getThemeLight(),
+      theme       : context.watch<ThemeCubit>().state.isDark ? AppTheme().getThemeDark() : AppTheme().getThemeLight(),
     );
   }
 }

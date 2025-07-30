@@ -17,7 +17,7 @@ class TasksScreen extends StatelessWidget {
         actions : [
           IconButton(
             onPressed : () => context.push('/profile'),
-            icon      : Icon( Icons.person_3 ),
+            icon      : Icon( Icons.person, size: 36, ),
           )
         ],
       ),
