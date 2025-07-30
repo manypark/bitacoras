@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bitacoras/features/tasks/domain/domain.dart';
 import 'package:bitacoras/core/utils/constants/layout_constans.dart';
-import 'package:bitacoras/features/tasks/presentation/widgets/buttons/containers/containers.dart';
+import 'package:bitacoras/features/tasks/presentation/widgets/containers/containers.dart';
 
 class ListTasksWidget extends StatelessWidget {
 
