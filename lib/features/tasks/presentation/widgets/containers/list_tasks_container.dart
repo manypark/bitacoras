@@ -73,6 +73,7 @@ class TasksListContainer extends StatelessWidget {
                     IconButton(
                       onPressed : () {
                         context.read<TaksLogFormBloc>().selectIdTask(task.idTasks);
+                        context.read<TaksLogFormBloc>().selectNameTask(task.title);
                         context.push('/logs');
                       },
                       icon      : Icon( Icons.add ),

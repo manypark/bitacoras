@@ -12,6 +12,7 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     on<SelectOptionTaskLog>( _onSelectOptionTaskLog );
     on<SelectIdTask>( _onSelectIdTask );
     on<GetCurrentLocation>( _onSetCurrentLocation );
+    on<SelectNameTask>( _onSelectNameTask );
   }
 
   void selectOptionTaskLog( String valueOption ) {
@@ -22,10 +23,22 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     add( SelectIdTask(idTask: idTask) );
   }
 
+  void selectNameTask( String nameTask ) {
+    add( SelectNameTask( nameTask: nameTask ) );
+  }
+
   void setLCurrentLocation( double latitud, double longitud  ) {
     add( GetCurrentLocation(latitud: latitud, longitud: longitud) );
   }
 
+  void submitTaksLog() async {
+    final (lat, long) = await GetLocationImpl().getLocation();
+    setLCurrentLocation(lat, long);
+  }
+
+// ==============================
+// Hanlders Functions
+// ==============================
   void _onSelectOptionTaskLog( SelectOptionTaskLog event, Emitter<TaksLogFormState> emit ) {
     emit( state.copyWith(optionConceptTaskLog: event.optionTaskLog ) );
   }
@@ -38,10 +51,8 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     emit( state.copyWith( latitud: event.latitud, longitud: event.longitud ) );
   }
 
-  void submitTaksLog() async {
-    final (lat, long) = await GetLocationImpl().getLocation();
-    setLCurrentLocation(lat, long);
-    state;
+  void _onSelectNameTask( SelectNameTask event, Emitter<TaksLogFormState> emit ) {
+    emit( state.copyWith( nameTask: event.nameTask ) );
   }
 
 }

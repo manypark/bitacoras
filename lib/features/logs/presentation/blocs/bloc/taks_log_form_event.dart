@@ -29,6 +29,16 @@ class SelectIdTask extends TaksLogFormEvent {
   List<Object> get props => [ idTask ];
 }
 
+class SelectNameTask extends TaksLogFormEvent {
+  
+  final String nameTask;
+
+  const SelectNameTask({ required this.nameTask });
+
+  @override
+  List<Object> get props => [ nameTask ];
+}
+
 class GetCurrentLocation extends TaksLogFormEvent {
 
   final double latitud;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:bitacoras/core/configs/configs.dart';
@@ -43,6 +44,6 @@ class ContainerSelectImage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).fadeIn( delay: Duration( milliseconds: 300 ) );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
 
@@ -22,6 +23,6 @@ class InputDescriptionTaskLogs extends StatelessWidget {
         ),
       ),
       onFieldSubmitted: (value) {},
-    );
+    ).fadeIn( delay: Duration( milliseconds: 200 ) );
   }
 }
