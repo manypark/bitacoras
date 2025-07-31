@@ -38,6 +38,6 @@ class LogOutButton extends StatelessWidget {
           Text('Cerrar sesión', style: GlobalFonts.paragraphBodyLargeRegular ,)
         ],
       ),
-    ).fadeIn( animate: true, delay: Duration( milliseconds: 600 ) );
+    ).fadeIn( animate: true, delay: Duration( milliseconds: 700 ) );
   }
 }

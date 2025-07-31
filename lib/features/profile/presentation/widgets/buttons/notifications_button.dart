@@ -23,6 +23,6 @@ class NotificationsButton extends StatelessWidget {
           Text('Notificaciones', style: GlobalFonts.paragraphBodyLargeRegular ,)
         ],
       ),
-    ).fadeIn( animate: true, delay: Duration( milliseconds: 400 ) );
+    ).fadeIn( animate: true, delay: Duration( milliseconds: 300 ) );
   }
 }

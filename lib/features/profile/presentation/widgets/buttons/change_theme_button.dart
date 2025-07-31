@@ -35,6 +35,6 @@ class ChangeThemeButton extends StatelessWidget {
         ),
         
       ],
-    ).fadeIn( animate: true, delay: Duration( milliseconds: 800 ) );
+    ).fadeIn( animate: true, delay: Duration( milliseconds: 500 ) );
   }
 }

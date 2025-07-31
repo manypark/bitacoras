@@ -1,8 +1,11 @@
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
+import 'package:bitacoras/shared/plugins/plugins.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ContainerSelectImage extends StatelessWidget {
 
@@ -18,8 +21,12 @@ class ContainerSelectImage extends StatelessWidget {
         dashPattern : [5, 3],
       ),
       child       : InkWell(
-        onTap: () {
-          
+        onTap: () async {
+
+          final imagePath = await SelectImageImpl().getImageFromCamera();
+
+          // ignore: use_build_context_synchronously
+          context.read<TaksLogFormBloc>().selectPathImage(imagePath);
         },
         child: Container(
           width       : double.infinity,

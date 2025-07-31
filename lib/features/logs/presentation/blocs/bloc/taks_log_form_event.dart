@@ -39,6 +39,16 @@ class SelectNameTask extends TaksLogFormEvent {
   List<Object> get props => [ nameTask ];
 }
 
+class SelectImagePath extends TaksLogFormEvent {
+  
+  final String pathImage;
+
+  const SelectImagePath({ required this.pathImage });
+
+  @override
+  List<Object> get props => [ pathImage ];
+}
+
 class GetCurrentLocation extends TaksLogFormEvent {
 
   final double latitud;

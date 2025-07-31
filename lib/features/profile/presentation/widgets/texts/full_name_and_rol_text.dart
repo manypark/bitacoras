@@ -43,7 +43,7 @@ class FullNameAndRollText extends StatelessWidget {
             color : WidgetStatePropertyAll(Colors.redAccent),
             side  : BorderSide.none,
             label : Text( e.name.toUpperCase(), style: GlobalFonts.paragraphBodySmallBold.copyWith( color: Colors.white ), )
-          ).fadeIn( animate: true, delay: Duration( milliseconds: 300 ) )
+          ).fadeIn( animate: true, delay: Duration( milliseconds: 200 ) )
         ),        
       ],
     );

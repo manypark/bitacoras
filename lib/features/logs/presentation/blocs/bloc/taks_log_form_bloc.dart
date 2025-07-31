@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; 
 
-import 'package:bitacoras/shared/utils/geolocation/geolocator_impl.dart';
+import 'package:bitacoras/shared/plugins/geolocation/geolocator_impl.dart';
 
 part 'taks_log_form_event.dart';
 part 'taks_log_form_state.dart';
@@ -9,10 +9,11 @@ part 'taks_log_form_state.dart';
 class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
 
   TaksLogFormBloc() : super( TaksLogFormInitial() ) {
-    on<SelectOptionTaskLog>( _onSelectOptionTaskLog );
     on<SelectIdTask>( _onSelectIdTask );
-    on<GetCurrentLocation>( _onSetCurrentLocation );
     on<SelectNameTask>( _onSelectNameTask );
+    on<SelectImagePath>( _onSelectPathImage );
+    on<GetCurrentLocation>( _onSetCurrentLocation );
+    on<SelectOptionTaskLog>( _onSelectOptionTaskLog );
   }
 
   void selectOptionTaskLog( String valueOption ) {
@@ -29,6 +30,10 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
 
   void setLCurrentLocation( double latitud, double longitud  ) {
     add( GetCurrentLocation(latitud: latitud, longitud: longitud) );
+  }
+
+  void selectPathImage( String pathImage  ) {
+    add( SelectImagePath( pathImage: pathImage ) );
   }
 
   void submitTaksLog() async {
@@ -53,6 +58,10 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
 
   void _onSelectNameTask( SelectNameTask event, Emitter<TaksLogFormState> emit ) {
     emit( state.copyWith( nameTask: event.nameTask ) );
+  }
+
+  void _onSelectPathImage( SelectImagePath event, Emitter<TaksLogFormState> emit ) {
+    emit( state.copyWith( pathImage: event.pathImage ) );
   }
 
 }

@@ -29,11 +29,11 @@ class ProfileView extends StatelessWidget {
 
           NotificationsButton(),
       
-          Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 500 ) ),
+          Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 400 ) ),
 
           ChangeThemeButton(),
 
-          Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 700 ) ),
+          Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 600 ) ),
 
           LogOutButton(),
         ],
