@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/utils/constants/constans.dart';
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/logs/presentation/widgets/widgets.dart';
 
 class LogsView extends StatelessWidget {
@@ -35,7 +37,11 @@ class LogsView extends StatelessWidget {
 
                       const SizedBox(height: LayoutConstants.spaceXL),
 
+                      if( context.watch<TaksLogFormBloc>().state.pathImage.isEmpty )
                       const ContainerSelectImage(),
+
+                      if( context.watch<TaksLogFormBloc>().state.pathImage.isNotEmpty )
+                      SelectedImage(height: height),
 
                       Spacer(),
 
