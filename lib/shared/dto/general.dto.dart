@@ -5,7 +5,7 @@ class GeneralDtoResponse<T> {
   final String message;
   final T? data;
 
-  GeneralDtoResponse({
+  const GeneralDtoResponse({
     required this.status,
     required this.message,
     required this.data,

@@ -1,1 +1,2 @@
-export 'tasks_logs_repository_impl.dart';
+export 'logs_repository_impl.dart';
+export 'concept_repository_impl.dart';

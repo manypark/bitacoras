@@ -1,1 +1,2 @@
-export 'task_log_mapper.dart';
+export 'log_mapper.dart';
+export 'concept_mapper.dart';

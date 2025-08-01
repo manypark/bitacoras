@@ -4,13 +4,13 @@ import 'package:bitacoras/features/logs/infrastructure/infrastructure.dart';
 
 class TaskLogUsecase {
 
-  final TasksLogsRepository repository;
+  final LogsRepository repository;
 
   TaskLogUsecase({
-    TasksLogsRepository? repository,
-  }): repository = repository ?? TasksLogsRepositoryImpl();
+    LogsRepository? repository,
+  }): repository = repository ?? LogsRepositoryImpl();
 
-  Future<(ErrorMessage?, TaskLogsResponseEntity)> call( TaskLogsRequestDto dataForm ) async {
+  Future<(ErrorMessage?, LogEntity)> call( LogsRequestDto dataForm ) async {
     return await repository.postTaskLog(dataForm);
   }
   

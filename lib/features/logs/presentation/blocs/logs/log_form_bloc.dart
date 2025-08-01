@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/plugins/geolocation/geolocator_impl.dart';
 
-part 'taks_log_form_event.dart';
-part 'taks_log_form_state.dart';
+part 'log_form_event.dart';
+part 'log_form_state.dart';
 
 class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
 

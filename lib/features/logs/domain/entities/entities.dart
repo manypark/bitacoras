@@ -1,2 +1,2 @@
-export 'tasks_logs_entity.dart';
-export 'tasks_log_response_entity.dart';
+export 'logs_entity.dart';
+export 'concepts_entity.dart';

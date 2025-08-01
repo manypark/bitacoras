@@ -1,5 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'taks_log_form_bloc.dart';
+part of 'log_form_bloc.dart';
 
 sealed class TaksLogFormEvent extends Equatable {
   const TaksLogFormEvent();

@@ -1,4 +1,4 @@
-part of 'taks_log_form_bloc.dart';
+part of 'log_form_bloc.dart';
 
 class TaksLogFormState extends Equatable {
 

@@ -1,6 +1,6 @@
-import 'package:bitacoras/shared/entities/entities.dart';
+import 'package:bitacoras/shared/dto/general.dto.dart';
 
-class TasksDto  extends GeneralEntity<List<TasksResponseDto>> {
+class TasksDto extends GeneralDtoResponse<List<TasksResponseDto>> {
 
   TasksDto({
     required super.status, 
