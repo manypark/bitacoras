@@ -19,7 +19,10 @@ class SaveFormButton extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: ElevatedButton(
-          onPressed : () => context.read<TaksLogFormBloc>().submitTaksLog(),
+          onPressed : () async {
+            final savedLog = await context.read<TaksLogFormBloc>().submitTaksLog();
+            
+          },
           child     : Text(
             'Guardar Bitacora',
             style: GlobalFonts.paragraphBodyMediumRegular.copyWith(color: Colors.white),

@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:path/path.dart' as path;
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; 
+import 'package:path_provider/path_provider.dart';
 
 import 'package:bitacoras/shared/plugins/geolocation/geolocator_impl.dart';
 
@@ -33,17 +37,32 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     add( GetCurrentLocation(latitud: latitud, longitud: longitud) );
   }
 
-  void selectPathImage( String pathImage  ) {
-    add( SelectImagePath( pathImage: pathImage ) );
+  void selectPathImage( String pathImage  ) async {
+
+    String imageSavePermanently = '';
+
+    if( pathImage != '' ) {
+      imageSavePermanently = await saveImagePermanently( File(pathImage) );
+    }
+
+    add( SelectImagePath( pathImage: imageSavePermanently ) );
   }
 
   void writeDescriptionLog( String description  ) {
     add( WriteDescriptionLog( description: description ) );
   }
 
-  void submitTaksLog() async {
+  Future<TaksLogFormState> submitTaksLog() async {
     final (lat, long) = await GetLocationImpl().getLocation();
     await setLCurrentLocation(lat, long);
+    return state;
+  }
+
+  Future<String> saveImagePermanently( File image ) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final name = path.basename(image.path);
+    final savedImage = await image.copy('${directory.path}/$name');
+    return savedImage.path; // Esta es la ruta que sí puedes guardar de forma segura
   }
 
 // ==============================
