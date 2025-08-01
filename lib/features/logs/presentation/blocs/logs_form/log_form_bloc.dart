@@ -65,6 +65,15 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     return savedImage.path; // Esta es la ruta que sí puedes guardar de forma segura
   }
 
+  void resetLogForm() {
+    selectOptionTaskLog(0);
+    selectIdTask(0);
+    selectNameTask('');
+    setLCurrentLocation(0.0, 0.0);
+    selectPathImage('');
+    writeDescriptionLog('');
+  }
+
 // ==============================
 // Hanlders Functions
 // ==============================

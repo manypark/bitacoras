@@ -17,4 +17,5 @@ void serviceLocatorInit() {
   getIt.registerSingleton( ThemeCubit() );
   getIt.registerSingleton( TaksLogFormBloc() );
   getIt.registerSingleton( ConceptsBloc() );
+  getIt.registerSingleton( LogsListBloc() );
 }

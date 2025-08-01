@@ -52,6 +52,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<ThemeCubit>(), ),
         BlocProvider(create: (context) => getIt<TaksLogFormBloc>(), ),
         BlocProvider(create: (context) => getIt<ConceptsBloc>(), ),
+        BlocProvider(create: (context) => getIt<LogsListBloc>(), ),
       ],
       child : const MainApp(),
     );
