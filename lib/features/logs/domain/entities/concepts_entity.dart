@@ -28,4 +28,10 @@ class ConceptsResponseEntity {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+    "idConcept"   : idConcept,
+    "description" : description,
+    "active"      : active,
+  };
+
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,7 @@ class ButtonLogin extends StatelessWidget {
         }
 
         context.read<MenuBloc>().loadMenuList();
+        context.read<ConceptsBloc>().loadConceptList();
         if (response) context.go('/home');
       },
     );

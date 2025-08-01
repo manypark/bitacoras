@@ -34,7 +34,10 @@ class ConceptsBloc extends Bloc<ConceptsEvent, ConceptsState> with HydratedMixin
   void _onLoadConceptList( LoadConceptsList event, Emitter<ConceptsState> emit ) {
     emit( state.copyWith( concepts: event.conceptEntity) );
   }
-  
+
+// ==============================
+// Hydratation functions
+// ==============================
   @override
   ConceptsState? fromJson(Map<String, dynamic> json) {
     return ConceptsState.fromMap(json);

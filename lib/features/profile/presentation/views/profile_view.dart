@@ -15,28 +15,30 @@ class ProfileView extends StatelessWidget {
 
     final userInfo = context.read<LoginBloc>().state.userLogin;
 
-    return Padding(
-      padding : const EdgeInsets.all( LayoutConstants.spaceXL ),
-      child   : Column(
-        spacing : LayoutConstants.spaceL,
-        children: [
-          
-          ImageProfileContainer( avatarUrl: userInfo?.avatarUrl ?? '' ),
-          
-          FullNameAndRollText(userInfo: userInfo),
-
-          SizedBox( height: LayoutConstants.marginXL ),
-
-          NotificationsButton(),
+    return SingleChildScrollView(
+      child: Padding(
+        padding : const EdgeInsets.all( LayoutConstants.spaceXL ),
+        child   : Column(
+          spacing : LayoutConstants.spaceL,
+          children: [
+            
+            ImageProfileContainer( avatarUrl: userInfo?.avatarUrl ?? '' ),
+            
+            FullNameAndRollText(userInfo: userInfo),
       
-          Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 400 ) ),
-
-          ChangeThemeButton(),
-
-          Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 600 ) ),
-
-          LogOutButton(),
-        ],
+            SizedBox( height: LayoutConstants.marginXL ),
+      
+            NotificationsButton(),
+        
+            Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 400 ) ),
+      
+            ChangeThemeButton(),
+      
+            Divider( color: Colors.black ).fadeIn( animate: true, delay: Duration( milliseconds: 600 ) ),
+      
+            LogOutButton(),
+          ],
+        ),
       ),
     );
   }

@@ -11,11 +11,13 @@ class SelectOptionConcept extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final optionsList = context.read<ConceptsBloc>().state.concepts.data ?? [];
     
     return DropdownButtonHideUnderline(
       child: ButtonTheme(
         alignedDropdown: true,
-        child: DropdownButtonFormField<String>(
+        child: DropdownButtonFormField<int>(
           style: GlobalFonts.paragraphBodyMediumRegular.copyWith(color: Colors.grey.shade600),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 22, horizontal: 22),
@@ -28,13 +30,14 @@ class SelectOptionConcept extends StatelessWidget {
             ),
           ),
           icon  : Icon(Icons.keyboard_arrow_down_rounded),
-          items : ['Salida de patio', 'Salida de gasolinera', 'Caseta', 'Llegada a descargar'].map((option) => DropdownMenuItem(
-              value: option,
-              child: Text(option, style: GlobalFonts.paragraphBodyMediumRegular),
+          // items : ['Salida de patio', 'Salida de gasolinera', 'Caseta', 'Llegada a descargar'].map((option) => DropdownMenuItem(
+          items : optionsList.map((option) => DropdownMenuItem(
+              value: option.idConcept,
+              child: Text(option.description, style: GlobalFonts.paragraphBodyMediumRegular),
             )
           ).toList(),
           onChanged: (value) {
-            context.read<TaksLogFormBloc>().selectOptionTaskLog( value ?? '' );
+            context.read<TaksLogFormBloc>().selectOptionTaskLog( value ?? 0 );
           },
           validator: (value) {
 

@@ -8,7 +8,7 @@ sealed class TaksLogFormEvent extends Equatable {
 
 class SelectOptionTaskLog extends TaksLogFormEvent {
   
-  final String optionTaskLog;
+  final int optionTaskLog;
 
   const SelectOptionTaskLog({
     required this.optionTaskLog,
@@ -46,6 +46,16 @@ class SelectImagePath extends TaksLogFormEvent {
 
   @override
   List<Object> get props => [ pathImage ];
+}
+
+class WriteDescriptionLog extends TaksLogFormEvent {
+  
+  final String description;
+
+  const WriteDescriptionLog({ required this.description });
+
+  @override
+  List<Object> get props => [ description ];
 }
 
 class GetCurrentLocation extends TaksLogFormEvent {

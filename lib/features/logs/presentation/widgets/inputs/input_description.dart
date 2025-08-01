@@ -1,7 +1,9 @@
+import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InputDescriptionTaskLogs extends StatelessWidget {
 
@@ -22,7 +24,9 @@ class InputDescriptionTaskLogs extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      onFieldSubmitted: (value) {},
+      onChanged: (value) {
+        context.read<TaksLogFormBloc>().writeDescriptionLog( value );
+      },
     ).fadeIn( delay: Duration( milliseconds: 200 ) );
   }
 }

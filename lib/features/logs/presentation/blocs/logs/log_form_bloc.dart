@@ -14,10 +14,11 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     on<SelectImagePath>( _onSelectPathImage );
     on<GetCurrentLocation>( _onSetCurrentLocation );
     on<SelectOptionTaskLog>( _onSelectOptionTaskLog );
+    on<WriteDescriptionLog>( _onWriteDescriptionLog );
   }
 
-  void selectOptionTaskLog( String valueOption ) {
-    add( SelectOptionTaskLog(optionTaskLog: valueOption) );
+  void selectOptionTaskLog( int idValueOption ) {
+    add( SelectOptionTaskLog( optionTaskLog : idValueOption ) );
   }
 
   void selectIdTask( int idTask ) {
@@ -28,7 +29,7 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     add( SelectNameTask( nameTask: nameTask ) );
   }
 
-  void setLCurrentLocation( double latitud, double longitud  ) {
+  Future setLCurrentLocation( double latitud, double longitud  ) async {
     add( GetCurrentLocation(latitud: latitud, longitud: longitud) );
   }
 
@@ -36,16 +37,20 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     add( SelectImagePath( pathImage: pathImage ) );
   }
 
+  void writeDescriptionLog( String description  ) {
+    add( WriteDescriptionLog( description: description ) );
+  }
+
   void submitTaksLog() async {
     final (lat, long) = await GetLocationImpl().getLocation();
-    setLCurrentLocation(lat, long);
+    await setLCurrentLocation(lat, long);
   }
 
 // ==============================
 // Hanlders Functions
 // ==============================
   void _onSelectOptionTaskLog( SelectOptionTaskLog event, Emitter<TaksLogFormState> emit ) {
-    emit( state.copyWith(optionConceptTaskLog: event.optionTaskLog ) );
+    emit( state.copyWith(idOptionConcept: event.optionTaskLog ) );
   }
 
   void _onSelectIdTask( SelectIdTask event, Emitter<TaksLogFormState> emit ) {
@@ -62,6 +67,10 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
 
   void _onSelectPathImage( SelectImagePath event, Emitter<TaksLogFormState> emit ) {
     emit( state.copyWith( pathImage: event.pathImage ) );
+  }
+
+  void _onWriteDescriptionLog( WriteDescriptionLog event, Emitter<TaksLogFormState> emit ) {
+    emit( state.copyWith( description: event.description ) );
   }
 
 }

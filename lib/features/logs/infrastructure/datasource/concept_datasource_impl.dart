@@ -14,7 +14,7 @@ class ConceptsDatasourceImpl implements ConceptDatasource {
   @override
   Future<(ErrorMessage?, ConceptDto)> getConcepts() async {
     try {
-       final response = await httpClient.get( path: '/concepts' );
+      final response = await httpClient.get( path: '/concepts' );
       
       return (null, ConceptDto.fromMap(response) );
     } catch (e) {

@@ -34,20 +34,18 @@ class AuthView extends StatelessWidget {
                 TitleLogin(),
               
                 Form(
-                    key: context.watch<FormLoginBloc>().state.globalKeyFormLogin,
-                    child: Column(
-                      spacing: LayoutConstants.spaceL,
-                      children: [
-                        //Input: email
-                        InputEmail(),
-              
-                        //Input: password
-                        InputPassword(),
-                      ],
-                    )),
-              
-                // Acept terms and conditions text
-                CheckBoxTermsAndConditions(),
+                  key   : context.watch<FormLoginBloc>().state.globalKeyFormLogin,
+                  child : Column(
+                    spacing : LayoutConstants.spaceL,
+                    children: [
+                      //Input: email
+                      InputEmail(),
+            
+                      //Input: password
+                      InputPassword(),
+                    ],
+                  )
+                ),
               
                 // Button login
                 ButtonLogin()

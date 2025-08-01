@@ -2,7 +2,7 @@ part of 'log_form_bloc.dart';
 
 class TaksLogFormState extends Equatable {
 
-  final String optionConceptTaskLog;
+  final int idOptionConcept;
   final String description;
   final String pathImage;
   final String nameTask;
@@ -11,7 +11,7 @@ class TaksLogFormState extends Equatable {
   final double longitud;
 
   const TaksLogFormState({
-    this.optionConceptTaskLog = '',
+    this.idOptionConcept = 0,
     this.description = '',
     this.pathImage = '',
     this.nameTask = '',
@@ -21,7 +21,7 @@ class TaksLogFormState extends Equatable {
   });
 
   TaksLogFormState copyWith({
-    String? optionConceptTaskLog,
+    int? idOptionConcept,
     String? description,
     String? pathImage,
     double? latitud,
@@ -29,7 +29,7 @@ class TaksLogFormState extends Equatable {
     String? nameTask,
     int? idTask,
   }) => TaksLogFormState(
-    optionConceptTaskLog: optionConceptTaskLog ?? this.optionConceptTaskLog,
+    idOptionConcept: idOptionConcept ?? this.idOptionConcept,
     description         : description ?? this.description,
     pathImage           : pathImage ?? this.pathImage,
     idTask              : idTask ?? this.idTask,
@@ -39,7 +39,7 @@ class TaksLogFormState extends Equatable {
   );
 
   @override
-  List<Object> get props => [optionConceptTaskLog, description, pathImage, idTask, latitud, longitud, nameTask];
+  List<Object> get props => [idOptionConcept, description, pathImage, idTask, latitud, longitud, nameTask];
 
 }
 

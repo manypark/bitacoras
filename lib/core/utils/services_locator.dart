@@ -16,4 +16,5 @@ void serviceLocatorInit() {
   getIt.registerSingleton( RangeDatesBloc() );
   getIt.registerSingleton( ThemeCubit() );
   getIt.registerSingleton( TaksLogFormBloc() );
+  getIt.registerSingleton( ConceptsBloc() );
 }

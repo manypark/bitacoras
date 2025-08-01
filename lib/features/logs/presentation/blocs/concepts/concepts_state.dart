@@ -18,17 +18,25 @@ class ConceptsState extends Equatable {
   List<Object> get props => [concepts];
 
   static Map<String, dynamic> toMap( ConceptsState state ) {
+
+    final concepts = state.concepts.data?.map( (e) => e.toJson() ).toList() ?? [];
+
     return <String, dynamic>{
-      'concepts':state.concepts,
+      'concepts' : {
+        'status'  : state.concepts.status,
+        'message' : state.concepts.message,
+        'data'    : concepts
+      }
     };
   }
 
-  factory ConceptsState.fromMap(Map<String, dynamic> map) {
+  factory ConceptsState.fromMap(Map<String, dynamic> map)  {
+
     return ConceptsState(
       concepts: ConceptsEntity(
-        status  : map['status'],
-        message : map['message'],
-        data    : List<ConceptsResponseEntity>.from( (map['data'] as List<dynamic>).map((x) => ConceptsResponseEntity.fromMap(x) )),
+        status  : map['concepts']['status'],
+        message : map['concepts']['message'],
+        data    : List<ConceptsResponseEntity>.from( (map['concepts']['data'] as List<dynamic>).map((x) => ConceptsResponseEntity.fromMap(x) )),
       ),
     );
   }
