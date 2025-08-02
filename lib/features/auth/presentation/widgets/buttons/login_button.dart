@@ -1,5 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

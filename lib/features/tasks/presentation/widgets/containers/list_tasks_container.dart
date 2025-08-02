@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/features/tasks/domain/domain.dart';
-import 'package:bitacoras/features/logs/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
 
 class TasksListContainer extends StatelessWidget {
 
