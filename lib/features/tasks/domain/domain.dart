@@ -1,3 +1,4 @@
+export 'models/models.dart';
 export 'usecase/usecase.dart';
 export 'entities/entities.dart';
 export 'datasource/datasource.dart';

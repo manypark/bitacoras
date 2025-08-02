@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/range_dates/ranges_dates.dart';
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/features/tasks/domain/models/models.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/widgets/widgets.dart';
-import 'package:bitacoras/features/tasks/infrastructure/dtos/requests/get_tasks_dto.dart';
 
 class TasksView extends StatelessWidget {
 
@@ -22,7 +22,7 @@ class TasksView extends StatelessWidget {
         
         FutureBuilder(
           future: context.read<TasksBloc>().loadListTasks( 
-            GetTasksRequestDto(
+            GetTasksModel(
               idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
               initDate      : DateFormat('yyyy-MM-dd').format( context.read<RangeDatesBloc>().state.startDate ),
               endDate       : DateFormat('yyyy-MM-dd').format( context.read<RangeDatesBloc>().state.endDate ),

@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/shared.dart';
+import 'package:bitacoras/features/tasks/domain/models/models.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
-import '../../../tasks/infrastructure/dtos/requests/get_tasks_dto.dart';
 import 'package:bitacoras/features/tasks/presentation/presentation.dart';
+import 'package:bitacoras/features/logs_list/presentation/screen/screen.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/menu/menu_bloc.dart';
 
 const List<Widget> pages = [
   TasksScreen(),
-  Center(
-    child: Text('Bitacoras'),
-  ),
+  LogsListScreen(),
 ];
 
 class MenuView extends StatelessWidget {
@@ -49,7 +48,7 @@ class MenuView extends StatelessWidget {
             child : FloatingActionButton(
               heroTag   : 'UpdateTasks',
               onPressed : context.watch<TasksBloc>().state.isLoading ? null : () => context.read<TasksBloc>().loadListTasks(
-                GetTasksRequestDto(
+                GetTasksModel(
                   idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
                   initDate      : DateFormat('yyyy-MM-dd').format( startDate ),
                   endDate       : DateFormat('yyyy-MM-dd').format( endDate ),
@@ -68,47 +67,47 @@ class MenuView extends StatelessWidget {
           Align(
             alignment : Alignment.bottomCenter, 
             child     : ClipPath(
-            clipper   : CustomNavBarClipper(),
-            child     : Container(
-              height    : 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only( 
-                    topLeft : Radius.elliptical(180, 30),
-                    topRight: Radius.elliptical(180, 30),
+              clipper   : CustomNavBarClipper(),
+              child     : Container(
+                height    : 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only( 
+                      topLeft : Radius.elliptical(180, 30),
+                      topRight: Radius.elliptical(180, 30),
+                    ),
+                    color       : Colors.white,
                   ),
-                  color       : Colors.white,
+                child : Row(
+                  mainAxisAlignment : MainAxisAlignment.spaceAround,
+                  children          : [
+          
+                    IconButton(
+                      icon      : Icon(
+                        Icons.task, 
+                        color : (indexState == 0) ? Colors.blue : Colors.grey,
+                        size  : 36,
+                      ),
+                      onPressed : () async {
+                        await context.read<MenuBloc>().selectedIndex(0);
+                      },
+                    ),
+          
+                    const SizedBox(width: 20), // Espacio para el botón central
+          
+                    IconButton(
+                      icon      : Icon(
+                        Icons.list_alt, 
+                        color : (indexState == 1) ? Colors.blue : Colors.grey,
+                        size  : 36,
+                      ),
+                      onPressed : () async {
+                        await context.read<MenuBloc>().selectedIndex(1);
+                      },
+                    ),
+                  ],
                 ),
-              child : Row(
-                mainAxisAlignment : MainAxisAlignment.spaceAround,
-                children          : [
-        
-                  IconButton(
-                    icon      : Icon(
-                      Icons.task, 
-                      color : (indexState == 0) ? Colors.blue : Colors.grey,
-                      size  : 36,
-                    ),
-                    onPressed : () async {
-                      await context.read<MenuBloc>().selectedIndex(0);
-                    },
-                  ),
-        
-                  const SizedBox(width: 20), // Espacio para el botón central
-        
-                  IconButton(
-                    icon      : Icon(
-                      Icons.list_alt, 
-                      color : (indexState == 1) ? Colors.blue : Colors.grey,
-                      size  : 36,
-                    ),
-                    onPressed : () async {
-                      await context.read<MenuBloc>().selectedIndex(1);
-                    },
-                  ),
-                ],
               ),
             ),
-                      ),
           ),
         ],
       );

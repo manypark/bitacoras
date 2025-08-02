@@ -3,11 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bitacoras/features/tasks/domain/models/models.dart';
 import 'package:bitacoras/core/utils/constants/layout_constans.dart';
 import 'package:bitacoras/core/configs/theme/fonts/fonts_global.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
-import 'package:bitacoras/features/tasks/infrastructure/infrastructure.dart';
 
 class RangeDatesWidget extends StatelessWidget {
 
@@ -82,7 +82,7 @@ class RangeDatesWidget extends StatelessWidget {
                     context.read<RangeDatesBloc>().onUpdateStartAdnEndDate( picked.start, picked.end );
       
                     context.read<TasksBloc>().loadListTasks(
-                      GetTasksRequestDto(
+                      GetTasksModel(
                         idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0, 
                         initDate      : DateFormat('yyyy-MM-dd').format( picked.start ),
                         endDate       : DateFormat('yyyy-MM-dd').format( picked.end ),
