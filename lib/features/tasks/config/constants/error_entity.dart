@@ -1,6 +1,6 @@
-import 'package:bitacoras/features/tasks/infrastructure/dtos/dtos.dart';
+import 'package:bitacoras/features/tasks/domain/domain.dart';
 
-final errTasks = TasksDto(
+final errTasks = TasksEntity(
     status  : false, 
     message : '', 
     data    : []

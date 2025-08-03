@@ -3,6 +3,7 @@ import 'package:bitacoras/shared/shared.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:bitacoras/features/tasks/domain/domain.dart';
+import 'package:bitacoras/features/tasks/infrastructure/dtos/dtos.dart';
 
 part 'tasks_event.dart';
 part 'tasks_state.dart';
@@ -21,12 +22,12 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> with HydratedMixin {
     on<LoadingListTasks>( _loadingListTasksHandler );
   }
 
-  Future<TasksEntity> loadListTasks( GetTasksModel getTasksReqDto ) async {
+  Future<TasksEntity> loadListTasks( GetTasksModel getTasksReqModel ) async {
 
     failLoadListTasks( '', false );
     add( LoadingListTasks( isLoading: true ) );
 
-    final ( err, tasksResponse ) = await tasksUseCase( getTasksReqDto );
+    final ( err, tasksResponse ) = await tasksUseCase( getTasksReqModel );
 
     if( err != null ) {
       failLoadListTasks( err.msg, true);

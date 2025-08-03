@@ -32,7 +32,15 @@ class TasksState extends ErrorClass {
       'tasks': {
         'status': state.tasks.status,
         'message': state.tasks.message,
-        'data': state.tasks.data?.map((x) => x.toJson()).toList() ?? [],
+        'data': state.tasks.data?.map( (x) => {
+          "createdAt"   : x.createdAt.toIso8601String(),
+          "updatedAt"   : x.updatedAt.toIso8601String(),
+          "idTasks"     : x.idTasks,
+          "title"       : x.title,
+          "description" : x.description,
+          "active"      : x.active,
+          "logsCount"   : x.logsCount,
+        }).toList() ?? [],
       },
       'hasError': state.hasError,
       'messageError': state.messageError,
@@ -45,7 +53,9 @@ class TasksState extends ErrorClass {
       tasks: TasksEntity(
         status: map['tasks']['status'] as bool,
         message: map['tasks']['message'] as String,
-        data: List<TasksResponseEntity>.from( (map['tasks']['data'] as List<dynamic>).map((x) => TasksResponseEntity.fromJson(x) ),
+        data: List<TasksResponseEntity>.from( (map['tasks']['data'] as List<dynamic>).map((x) =>
+            TasksResponseDto.fromJson(x).toEntity()
+          ),
         ),
       ),
       hasError: map['hasError'] as bool? ?? false,

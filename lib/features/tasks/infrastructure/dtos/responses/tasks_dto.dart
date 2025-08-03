@@ -1,4 +1,5 @@
 import 'package:bitacoras/shared/dto/general.dto.dart';
+import 'package:bitacoras/features/tasks/domain/domain.dart';
 
 class TasksDto extends GeneralDtoResponse<List<TasksResponseDto>> {
 
@@ -57,5 +58,15 @@ class TasksDto extends GeneralDtoResponse<List<TasksResponseDto>> {
         "active"      : active,
         "logsCount"   : logsCount,
     };
+
+    TasksResponseEntity toEntity() => TasksResponseEntity(
+      createdAt   : DateTime.parse(createdAt.toIso8601String()),
+      updatedAt   : DateTime.parse(updatedAt.toIso8601String()),
+      idTasks     : idTasks,
+      title       : title,
+      description : description,
+      active      : active,
+      logsCount   : logsCount,
+    );
 
   }

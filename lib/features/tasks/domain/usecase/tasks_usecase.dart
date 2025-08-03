@@ -7,8 +7,8 @@ class TasksUseCase {
 
   const TasksUseCase({ required this.repository, });
 
-  Future<( ErrorMessage?, TasksEntity )> call( GetTasksModel getTasksReqDto ) async {
-    return await repository.getTasksList(getTasksReqDto);
+  Future<( ErrorMessage?, TasksEntity )> call( GetTasksModel getTasksReqModel ) async {
+    return await repository.getTasksList(getTasksReqModel);
   }
   
 }
