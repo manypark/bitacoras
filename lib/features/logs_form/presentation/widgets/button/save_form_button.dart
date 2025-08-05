@@ -36,6 +36,7 @@ class SaveFormButton extends StatelessWidget {
                 idUser      : context.read<LoginBloc>().state.userLogin?.idUser ?? 0, 
                 idTasks     : savedLog.idTask, 
                 idConcept   : savedLog.idOptionConcept,
+                conceptText : savedLog.conceptText
               )
             );
 

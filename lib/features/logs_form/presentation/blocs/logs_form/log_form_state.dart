@@ -9,6 +9,7 @@ class TaksLogFormState extends Equatable {
   final int idTask;
   final double latitud;
   final double longitud;
+  final String conceptText;
 
   const TaksLogFormState({
     this.idOptionConcept = 0,
@@ -18,6 +19,7 @@ class TaksLogFormState extends Equatable {
     this.idTask = 0,
     this.latitud = 0.0,
     this.longitud = 0.0,
+    this.conceptText = '',
   });
 
   TaksLogFormState copyWith({
@@ -28,6 +30,7 @@ class TaksLogFormState extends Equatable {
     double? longitud,
     String? nameTask,
     int? idTask,
+    String? conceptText,
   }) => TaksLogFormState(
     idOptionConcept: idOptionConcept ?? this.idOptionConcept,
     description         : description ?? this.description,
@@ -36,10 +39,11 @@ class TaksLogFormState extends Equatable {
     latitud             : latitud ?? this.latitud,
     longitud            : longitud ?? this.longitud,
     nameTask            : nameTask ?? this.nameTask,
+    conceptText            : conceptText ?? this.conceptText,
   );
 
   @override
-  List<Object> get props => [idOptionConcept, description, pathImage, idTask, latitud, longitud, nameTask];
+  List<Object> get props => [idOptionConcept, description, pathImage, idTask, latitud, longitud, nameTask, conceptText];
 
 }
 

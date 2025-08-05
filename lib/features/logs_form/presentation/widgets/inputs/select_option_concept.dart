@@ -37,7 +37,10 @@ class SelectOptionConcept extends StatelessWidget {
             )
           ).toList(),
           onChanged: (value) {
-            context.read<TaksLogFormBloc>().selectOptionTaskLog( value ?? 0 );
+            context.read<TaksLogFormBloc>().selectOptionTaskLog( 
+              value ?? 0, 
+              optionsList.where((opt) => opt.idConcept == value!).first.description
+            );
           },
           validator: (value) {
 

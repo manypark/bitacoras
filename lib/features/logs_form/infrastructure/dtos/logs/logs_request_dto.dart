@@ -7,6 +7,7 @@ class LogsRequestDto {
     final int idUser;
     final int idTasks;
     final int idConcept;
+    final String conceptText;
 
     LogsRequestDto({
       required this.description,
@@ -16,6 +17,7 @@ class LogsRequestDto {
       required this.idUser,
       required this.idTasks,
       required this.idConcept,
+      required this.conceptText,
     });
 
 

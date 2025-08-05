@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/presentation.dart';
+import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
 
 class SplashScreen extends StatefulWidget {
 
@@ -30,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final state = loginBloc.state.userLogin?.idUser ?? 0;
       if (state != 0 ) {
         context.read<MenuBloc>().loadMenuList();
+        context.read<ConceptsBloc>().loadConceptList();
         context.go('/home');
       } else {
         context.go('/auth');

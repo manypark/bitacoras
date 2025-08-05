@@ -21,8 +21,11 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
     on<WriteDescriptionLog>( _onWriteDescriptionLog );
   }
 
-  void selectOptionTaskLog( int idValueOption ) {
-    add( SelectOptionTaskLog( optionTaskLog : idValueOption ) );
+  void selectOptionTaskLog( int idValueOption, String conceptText ) {
+    add( SelectOptionTaskLog( 
+      optionTaskLog : idValueOption,
+      conceptText   : conceptText,
+    ) );
   }
 
   void selectIdTask( int idTask ) {
@@ -66,7 +69,7 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
   }
 
   void resetLogForm() {
-    selectOptionTaskLog(0);
+    selectOptionTaskLog(0, '');
     selectIdTask(0);
     selectNameTask('');
     setLCurrentLocation(0.0, 0.0);
@@ -78,7 +81,7 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
 // Hanlders Functions
 // ==============================
   void _onSelectOptionTaskLog( SelectOptionTaskLog event, Emitter<TaksLogFormState> emit ) {
-    emit( state.copyWith(idOptionConcept: event.optionTaskLog ) );
+    emit( state.copyWith(idOptionConcept: event.optionTaskLog, conceptText: event.conceptText ) );
   }
 
   void _onSelectIdTask( SelectIdTask event, Emitter<TaksLogFormState> emit ) {

@@ -9,13 +9,15 @@ sealed class TaksLogFormEvent extends Equatable {
 class SelectOptionTaskLog extends TaksLogFormEvent {
   
   final int optionTaskLog;
+  final String conceptText;
 
   const SelectOptionTaskLog({
     required this.optionTaskLog,
+    required this.conceptText,
   });
 
   @override
-  List<Object> get props => [ optionTaskLog ];
+  List<Object> get props => [ optionTaskLog, conceptText ];
 }
 
 class SelectIdTask extends TaksLogFormEvent {

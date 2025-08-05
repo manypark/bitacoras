@@ -32,9 +32,19 @@ class TasksListContainer extends StatelessWidget {
               
                 SizedBox( height:LayoutConstants.spaceL ),
               
-                Text(
-                  task.title,
-                  style: GlobalFonts.paragraphBodyLargeBold,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      task.title,
+                      style: GlobalFonts.paragraphBodyLargeBold,
+                    ),
+
+                    CircleAvatar(
+                      backgroundColor : Colors.blueAccent,
+                      child           : Text('${task.idTasks}', style: GlobalFonts.paragraphBodySmallSemiBold.copyWith( color: Colors.white) ,),
+                    ),
+                  ],
                 ),
               
                 SizedBox( height:LayoutConstants.spaceL ),
