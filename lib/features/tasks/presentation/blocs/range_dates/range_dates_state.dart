@@ -20,5 +20,19 @@ class RangeDatesState extends Equatable {
     startDate : startDate ?? this.startDate,
     endDate   : endDate ?? this.endDate,
   );
-}
 
+  static Map<String, dynamic> toMap( RangeDatesState state ) {
+    return {
+      'startDate' : state.startDate.toIso8601String(),
+      'endDate'   : state.endDate.toIso8601String(),
+    };
+  }
+
+  factory RangeDatesState.fromMap( Map<String, dynamic> map ) {
+    return RangeDatesState(
+      startDate : DateTime.parse( map['startDate'] ),
+      endDate   : DateTime.parse( map['endDate'] ),
+    );
+  }
+
+}

@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'range_dates_event.dart';
 part 'range_dates_state.dart';
 
-class RangeDatesBloc extends Bloc<RangeDatesEvent, RangeDatesState> {
+class RangeDatesBloc extends Bloc<RangeDatesEvent, RangeDatesState> with HydratedMixin {
 
   RangeDatesBloc() : super(
     RangeDatesState(
@@ -12,6 +12,7 @@ class RangeDatesBloc extends Bloc<RangeDatesEvent, RangeDatesState> {
       endDate   : DateTime.now(),
     )
   ) {
+    hydrate();
     on<UpdateStartDateAndEndDate>( _updateStartAdnEndDate );
   }
 
@@ -22,6 +23,16 @@ class RangeDatesBloc extends Bloc<RangeDatesEvent, RangeDatesState> {
 // ############################# Update dates handler #############################
   void _updateStartAdnEndDate( UpdateStartDateAndEndDate event, Emitter<RangeDatesState> emit ) {
     emit( state.copyWith( startDate: event.startDate, endDate: event.endDate ) );
+  }
+  
+  @override
+  RangeDatesState? fromJson(Map<String, dynamic> json) {
+    return RangeDatesState.fromMap( json );
+  }
+  
+  @override
+  Map<String, dynamic>? toJson(RangeDatesState state) {
+    return RangeDatesState.toMap( state );
   }
 
 }
