@@ -11,6 +11,8 @@ String formatDateDayMonthAndYear(DateTime date) => '${DateFormat.d('es').format(
 
 String formatDateDayAndMonth(DateTime date) => '${DateFormat.d('es').format(date)} de ${DateFormat.MMMM('es').format(date)}';
 
+String formatDayMonthHour(DateTime date) => '${DateFormat.d('es').format(date)} ${DateFormat.MMMM('es').format(date)}, ${DateFormat.Hm('es').format(date) }';
+
 String formatDateMonthAndYear(DateTime date) => '${DateFormat.MMMM('es').format(date)} ${DateFormat.y('es').format(date)}'.toCapitalizeFirstLetter();
 
 String dateTimeParse({required DateTime date}) => DateFormat("dd/MM/yyyy HH:mm:ss", "es-MX").format(date).toString();

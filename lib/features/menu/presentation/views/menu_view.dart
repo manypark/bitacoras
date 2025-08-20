@@ -1,10 +1,7 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/shared.dart';
-import 'package:bitacoras/features/tasks/domain/models/models.dart';
-import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/presentation.dart';
 import 'package:bitacoras/features/logs_list/presentation/screen/screen.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/menu/menu_bloc.dart';
@@ -24,8 +21,8 @@ class MenuView extends StatelessWidget {
       final menuPositionState = context.watch<MenuBloc>().state.menuList;
       final indexState = menuPositionState.firstWhere((menu) => menu.position == true).index;
 
-      final startDate = context.watch<RangeDatesBloc>().state.startDate;
-      final endDate   = context.watch<RangeDatesBloc>().state.endDate;
+      // final startDate = context.watch<RangeDatesBloc>().state.startDate;
+      // final endDate   = context.watch<RangeDatesBloc>().state.endDate;
 
       return Stack(
         clipBehavior: Clip.none,
@@ -42,27 +39,27 @@ class MenuView extends StatelessWidget {
             ));
           },).values,
           
-          Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.089,
-            left  : MediaQuery.of(context).size.width / 2 - 30,
-            child : FloatingActionButton(
-              heroTag   : 'UpdateTasks',
-              onPressed : context.watch<TasksBloc>().state.isLoading ? null : () => context.read<TasksBloc>().loadListTasks(
-                GetTasksModel(
-                  idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
-                  initDate      : DateFormat('yyyy-MM-dd').format( startDate ),
-                  endDate       : DateFormat('yyyy-MM-dd').format( endDate ),
-                )
-              ),
-              backgroundColor : context.watch<TasksBloc>().state.isLoading ? Colors.grey : Colors.blueAccent,
-              child           : AnimatedRotation(
-                turns   : context.read<TasksBloc>().state.isLoading ? 1 : 0,
-                duration: Duration(seconds: 1),
-                curve   : Curves.linear,
-                child   : const Icon(Icons.refresh, color: Colors.white),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   bottom: MediaQuery.of(context).size.height * 0.089,
+          //   left  : MediaQuery.of(context).size.width / 2 - 30,
+          //   child : FloatingActionButton(
+          //     heroTag   : 'UpdateTasks',
+          //     onPressed : context.watch<TasksBloc>().state.isLoading ? null : () => context.read<TasksBloc>().loadListTasks(
+          //       GetTasksModel(
+          //         idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
+          //         initDate      : DateFormat('yyyy-MM-dd').format( startDate ),
+          //         endDate       : DateFormat('yyyy-MM-dd').format( endDate ),
+          //       )
+          //     ),
+          //     backgroundColor : context.watch<TasksBloc>().state.isLoading ? Colors.grey : Colors.blueAccent,
+          //     child           : AnimatedRotation(
+          //       turns   : context.read<TasksBloc>().state.isLoading ? 1 : 0,
+          //       duration: Duration(seconds: 1),
+          //       curve   : Curves.linear,
+          //       child   : const Icon(Icons.refresh, color: Colors.white),
+          //     ),
+          //   ),
+          // ),
         
           Align(
             alignment : Alignment.bottomCenter, 

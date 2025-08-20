@@ -8,6 +8,8 @@ class LogsRequestDto {
     final int idTasks;
     final int idConcept;
     final String conceptText;
+    final String taskTitle;
+    final DateTime dateCapturated;
 
     LogsRequestDto({
       required this.description,
@@ -18,6 +20,8 @@ class LogsRequestDto {
       required this.idTasks,
       required this.idConcept,
       required this.conceptText,
+      required this.taskTitle,
+      required this.dateCapturated,
     });
 
 

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/features/tasks/domain/domain.dart';
-import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/tasks/presentation/widgets/widgets.dart';
 
 class TasksListContainer extends StatelessWidget {
 
@@ -30,75 +28,23 @@ class TasksListContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children          : [
               
-                SizedBox( height:LayoutConstants.spaceL ),
-              
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      task.title,
-                      style: GlobalFonts.paragraphBodyLargeBold,
-                    ),
+                TitleDescriptionDateAndCaptureLogContainer(task: task),
 
-                    CircleAvatar(
-                      backgroundColor : Colors.blueAccent,
-                      child           : Text('${task.idTasks}', style: GlobalFonts.paragraphBodySmallSemiBold.copyWith( color: Colors.white) ,),
-                    ),
-                  ],
-                ),
-              
-                SizedBox( height:LayoutConstants.spaceL ),
-                
-                Text(task.description),
-          
-                SizedBox( height:LayoutConstants.spaceL ),
-                
-                Text( formatDateDayMonthAndYear( DateTime.parse( task.createdAt.toIso8601String() ) ), style: GlobalFonts.paragraphBodySmallUnderline, ),
-          
-                SizedBox( height:LayoutConstants.spaceL ),
+                Divider( height: LayoutConstants.spaceXL ),
           
                 Row(
-                  children: [
+                  mainAxisAlignment : MainAxisAlignment.spaceBetween,
+                  children          : [
+
+                    Text('ID: ${task.idTasks}', style: GlobalFonts.paragraphBodyLargeSemiBold ,),
               
-                    if(task.logsCount > 0 ) Chip(
-                      label           : Text( 
-                        'Bitacoras: ${task.logsCount}',
-                        style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.green.shade300),
-                      ),
+                    if(task.logsCount > 0 ) CustomChip( 
+                      text            : 'Bitacoras: ${task.logsCount}',
                       backgroundColor : Colors.green.shade100,
-                      side            : BorderSide.none,
+                      textColor       : Colors.green.shade300,
                     ),
           
-                    if(task.logsCount == 0 ) Chip(
-                      label           : Text( 
-                        'Sin Bitacoras',
-                        style: GlobalFonts.paragraphBodyMediumBold.copyWith(color: Colors.red.shade300),
-                      ),
-                      backgroundColor : Colors.red.shade100,
-                      side            : BorderSide.none,
-                    ),
-              
-                    Spacer(),
-              
-                    IconButton(
-                      onPressed : () {
-                        context.read<TaksLogFormBloc>().selectIdTask(task.idTasks);
-                        context.read<TaksLogFormBloc>().selectNameTask(task.title);
-                        context.push('/logs');
-                      },
-                      icon      : Icon( Icons.add ),
-                      style     : ButtonStyle(
-                        shape: WidgetStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(LayoutConstants.spaceM),
-                            side: BorderSide(
-                              color: Colors.black,
-                              width: 1.2,
-                            ),
-                          )
-                        ),
-                      ),
-                    )
+                    if(task.logsCount == 0 ) CountsWithoutLogs(),
                   ],
                 ),            
               ],

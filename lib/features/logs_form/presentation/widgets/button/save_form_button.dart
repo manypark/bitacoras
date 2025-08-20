@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:bitacoras/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animate_do/animate_do.dart';
@@ -28,7 +29,8 @@ class SaveFormButton extends StatelessWidget {
 
             final savedLog = await context.read<TaksLogFormBloc>().submitTaksLog();
 
-            context.read<LogsListBloc>().addLogToList( LogsRequestDto(
+            context.read<LogsListBloc>().addLogToList( 
+              LogsRequestDto(
                 description : savedLog.description, 
                 imageUrl    : savedLog.pathImage, 
                 latitud     : savedLog.latitud,
@@ -36,7 +38,9 @@ class SaveFormButton extends StatelessWidget {
                 idUser      : context.read<LoginBloc>().state.userLogin?.idUser ?? 0, 
                 idTasks     : savedLog.idTask, 
                 idConcept   : savedLog.idOptionConcept,
-                conceptText : savedLog.conceptText
+                conceptText : savedLog.conceptText,
+                taskTitle   : savedLog.nameTask,
+                dateCapturated: DateTime.now(),
               )
             );
 
