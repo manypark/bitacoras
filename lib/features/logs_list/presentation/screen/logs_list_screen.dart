@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../views/views.dart';
-import 'package:bitacoras/core/configs/theme/fonts/fonts_global.dart';
 
 class LogsListScreen extends StatelessWidget {
 
@@ -11,7 +10,7 @@ class LogsListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bitacoras', style: GlobalFonts.paragraphBodyLargeSemiBold ,),
+        title: Text('Bitacoras'),
       ),
       body  : LogsListView(),
     );

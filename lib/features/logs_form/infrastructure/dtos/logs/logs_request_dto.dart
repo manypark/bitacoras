@@ -36,4 +36,20 @@ class LogsRequestDto {
       'description' : description,
     };
   }
+
+  factory LogsRequestDto.fromMap(Map<String, dynamic> map) {
+    return LogsRequestDto(
+      description: map['description'] ?? '',
+      imageUrl: map['imageUrl'] ?? '',
+      latitud: map['latitud']?.toDouble() ?? 0.0,
+      longitud: map['longitud']?.toDouble() ?? 0.0,
+      idUser: map['idUser']?.toInt() ?? 0,
+      idTasks: map['idTasks']?.toInt() ?? 0,
+      idConcept: map['idConcept']?.toInt() ?? 0,
+      conceptText: map['conceptText'] ?? '',
+      taskTitle: map['taskTitle'] ?? '',
+      dateCapturated: DateTime.parse( map['dateCapturated'] ),
+    );
+  }
+  
 }

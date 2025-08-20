@@ -1,14 +1,15 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:bitacoras/features/logs_form/infrastructure/dtos/logs/logs.dart';
 
 part 'logs_list_event.dart';
 part 'logs_list_state.dart';
 
-class LogsListBloc extends Bloc<LogsListEvent, LogsListState> {
+class LogsListBloc extends Bloc<LogsListEvent, LogsListState> with HydratedMixin {
 
   LogsListBloc() : super(LogsListInitial()) {
+    hydrate();
     on<LogsListEvent>((event, emit) {});
     on<AddLogsToList>( _onAddLogToList );
   }
@@ -22,6 +23,16 @@ class LogsListBloc extends Bloc<LogsListEvent, LogsListState> {
 // ==============================
   void _onAddLogToList( AddLogsToList event, Emitter<LogsListState> emit ) {
     emit( state.copyWith( logsList: [ ...state.logsList, ...event.logsList ] ) );
+  }
+  
+  @override
+  LogsListState? fromJson(Map<String, dynamic> json) {
+    return LogsListState.fromMap(json);
+  }
+  
+  @override
+  Map<String, dynamic>? toJson(LogsListState state) {
+    return LogsListState.toMap(state);
   }
 
 }
