@@ -12,10 +12,21 @@ class LogsListBloc extends Bloc<LogsListEvent, LogsListState> with HydratedMixin
     hydrate();
     on<LogsListEvent>((event, emit) {});
     on<AddLogsToList>( _onAddLogToList );
+    on<ResetLogList>( _onResetLogList );
+    on<DeleteOneLogList>( _onDeleteLogList );
   }
 
   void addLogToList( LogsRequestDto logsList ) {
     add( AddLogsToList( logsList: [logsList] ) );
+  }
+
+  void resetLogList() {
+    add( ResetLogList( logsList: [] ) );
+  }
+
+  void deleteOneLogList( String idLog ) {
+    final newLogList = state.logsList.where((log) => log.idLog != idLog ).toList();
+    add( DeleteOneLogList( logsList: newLogList ) );
   }
 
 // ==============================
@@ -23,6 +34,14 @@ class LogsListBloc extends Bloc<LogsListEvent, LogsListState> with HydratedMixin
 // ==============================
   void _onAddLogToList( AddLogsToList event, Emitter<LogsListState> emit ) {
     emit( state.copyWith( logsList: [ ...state.logsList, ...event.logsList ] ) );
+  }
+
+  void _onResetLogList( ResetLogList event, Emitter<LogsListState> emit ) {
+    emit( state.copyWith(logsList: event.logsList) );
+  }
+
+  void _onDeleteLogList( DeleteOneLogList event, Emitter<LogsListState> emit ) {
+    emit( state.copyWith(logsList: [ ...event.logsList ]) );
   }
   
   @override

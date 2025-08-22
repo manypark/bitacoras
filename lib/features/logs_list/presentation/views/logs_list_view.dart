@@ -1,3 +1,4 @@
+import 'package:bitacoras/features/logs_form/infrastructure/enums/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,8 +47,14 @@ class LogsListView extends StatelessWidget {
                               ImageLogWidget(log:log),
                               SizedBox( width:  LayoutConstants.spaceL,),
                               ConceptAndTasktitleTextWidget(log:log),
+
                               Spacer(),
-                              UploadLogButtonWidget()
+
+                              if( log.status == LogStatusEnum.capturated )
+                              UploadLogButtonWidget(),
+
+                              if( log.status == LogStatusEnum.uploaded )
+                              DeletelogButtonWidget( idLog: log.idLog ,)
                             ],
                           ),
 

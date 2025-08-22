@@ -36,6 +36,8 @@ class LogsListState extends Equatable {
         "conceptText"   : e.conceptText,
         "taskTitle"     : e.taskTitle,
         "dateCapturated": e.dateCapturated.toIso8601String(),
+        "status"        : e.status.name,
+        "idLog"         : e.idLog,
       }).toList(),
     };
   }

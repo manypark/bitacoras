@@ -7,11 +7,22 @@ class LogsListEvent extends Equatable {
 }
 
 class AddLogsToList extends LogsListEvent {
-
   final List<LogsRequestDto> logsList;
+  const AddLogsToList({this.logsList = const [] }); 
+  @override
+  List<Object> get props => [logsList];
+}
 
-  const AddLogsToList({this.logsList = const [] });
-  
+class ResetLogList extends LogsListEvent {
+  final List<LogsRequestDto> logsList;
+  const ResetLogList({ this.logsList = const [] });
+  @override
+  List<Object> get props => [logsList];
+}
+
+class DeleteOneLogList extends LogsListEvent {
+  final List<LogsRequestDto> logsList;
+  const DeleteOneLogList({ this.logsList = const [] });
   @override
   List<Object> get props => [logsList];
 }

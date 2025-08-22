@@ -6,6 +6,7 @@ import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/core/utils/constants/layout_constans.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/presentation.dart';
+import 'package:bitacoras/features/logs_list/presentation/blocs/blocs.dart';
 
 class LogOutSessionDialog extends StatelessWidget {
 
@@ -48,6 +49,7 @@ class LogOutSessionDialog extends StatelessWidget {
                     onPressed: () {
                       context.read<LoginBloc>().resetUser();
                       context.read<TasksBloc>().resetTasks();
+                      context.read<LogsListBloc>().resetLogList();
                       context.read<RangeDatesBloc>().onUpdateStartAdnEndDate( DateTime.now(), DateTime.now() );
                       context.go('/auth');
                     },

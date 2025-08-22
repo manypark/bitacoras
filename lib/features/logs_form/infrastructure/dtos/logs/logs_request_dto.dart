@@ -1,5 +1,8 @@
+import 'package:bitacoras/features/logs_form/infrastructure/enums/enums.dart';
+
 class LogsRequestDto {
 
+    final String idLog;
     final String description;
     final String imageUrl;
     final double latitud;
@@ -10,8 +13,10 @@ class LogsRequestDto {
     final String conceptText;
     final String taskTitle;
     final DateTime dateCapturated;
+    final LogStatusEnum status;
 
     LogsRequestDto({
+      this.status = LogStatusEnum.capturated,
       required this.description,
       required this.imageUrl,
       required this.latitud,
@@ -22,6 +27,7 @@ class LogsRequestDto {
       required this.conceptText,
       required this.taskTitle,
       required this.dateCapturated,
+      required this.idLog,
     });
 
 
@@ -37,19 +43,21 @@ class LogsRequestDto {
     };
   }
 
-  factory LogsRequestDto.fromMap(Map<String, dynamic> map) {
-    return LogsRequestDto(
-      description: map['description'] ?? '',
-      imageUrl: map['imageUrl'] ?? '',
-      latitud: map['latitud']?.toDouble() ?? 0.0,
-      longitud: map['longitud']?.toDouble() ?? 0.0,
-      idUser: map['idUser']?.toInt() ?? 0,
-      idTasks: map['idTasks']?.toInt() ?? 0,
-      idConcept: map['idConcept']?.toInt() ?? 0,
-      conceptText: map['conceptText'] ?? '',
-      taskTitle: map['taskTitle'] ?? '',
-      dateCapturated: DateTime.parse( map['dateCapturated'] ),
-    );
-  }
-  
+  factory LogsRequestDto.fromMap(Map<String, dynamic> map) => LogsRequestDto(
+    description   : map['description'] ?? '',
+    imageUrl      : map['imageUrl'] ?? '',
+    latitud       : map['latitud']?.toDouble() ?? 0.0,
+    longitud      : map['longitud']?.toDouble() ?? 0.0,
+    idUser        : map['idUser']?.toInt() ?? 0,
+    idTasks       : map['idTasks']?.toInt() ?? 0,
+    idConcept     : map['idConcept']?.toInt() ?? 0,
+    conceptText   : map['conceptText'] ?? '',
+    taskTitle     : map['taskTitle'] ?? '',
+    idLog         : map['idLog'] ?? '',
+    status        : LogStatusEnum.values.firstWhere(
+      (e) => e.name == map['status'],
+      orElse: () => LogStatusEnum.capturated,
+    ),
+    dateCapturated: DateTime.parse( map['dateCapturated'] ),
+  );  
 }

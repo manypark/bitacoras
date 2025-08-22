@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:bitacoras/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animate_do/animate_do.dart';
@@ -40,6 +39,7 @@ class SaveFormButton extends StatelessWidget {
                 idConcept   : savedLog.idOptionConcept,
                 conceptText : savedLog.conceptText,
                 taskTitle   : savedLog.nameTask,
+                idLog       : DateTime.now().millisecond.toString(),
                 dateCapturated: DateTime.now(),
               )
             );
