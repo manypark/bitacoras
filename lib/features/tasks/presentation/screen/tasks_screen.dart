@@ -14,6 +14,7 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title   : Text('Tareas del día'),
+        surfaceTintColor: Colors.transparent,
         actions : [
           IconButton(
             onPressed : () => context.push('/profile'),

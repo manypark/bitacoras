@@ -19,7 +19,10 @@ class ImageLogWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(LayoutConstants.spaceL),
       child       : Image.file(
         File(log.imageUrl),
-        errorBuilder: (context, error, stackTrace) => Icon( Icons.error, size:42 ),
+        errorBuilder: (context, error, stackTrace) {
+          if(log.imageUrl.contains('https')) return Image.network(log.imageUrl, width : 60, height: 60, fit : BoxFit.cover,);
+          return Icon( Icons.error, size:42 );
+        },
         width : 60,
         height: 60,
         fit   : BoxFit.cover,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:bitacoras/core/core.dart';
 import 'package:bitacoras/features/tasks/presentation/widgets/widgets.dart';
-import 'package:bitacoras/features/logs_form/infrastructure/dtos/logs/logs.dart';
+import 'package:bitacoras/features/logs_form/infrastructure/infrastructure.dart';
 
 class TimeLogAndStatusWidget extends StatelessWidget {
 
@@ -27,14 +27,20 @@ class TimeLogAndStatusWidget extends StatelessWidget {
         ),
     
         Spacer(),
-    
+
+        if(log.status == LogStatusEnum.capturated)
         CustomChip(
           text            : 'Capturada',
           backgroundColor : Colors.green.shade100,
           textColor       : Colors.green.shade300,
         ),
-    
-        // CountLogsChip( text:'Capturada' ),
+
+        if(log.status == LogStatusEnum.uploaded)
+        CustomChip(
+          text            : 'Subida',
+          backgroundColor : Colors.blueAccent.shade100,
+          textColor       : Colors.blueAccent.shade700,
+        ),
       ],
     );
   }
