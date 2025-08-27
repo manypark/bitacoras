@@ -10,8 +10,8 @@ class UserDto {
     final DateTime lastLogin;
     final DateTime createdAt;
     final DateTime updatedAt;
-    final List<MenuList> menuList;
-    final List<RolesList> rolesList;
+    final List<MenuListDto> menuList;
+    final List<RolesListDto> rolesList;
 
     UserDto({
         required this.token,
@@ -39,27 +39,27 @@ class UserDto {
         lastLogin: DateTime.parse(json["lastLogin"]),
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        menuList: List<MenuList>.from(json["menuList"].map((x) => MenuList.fromJson(x))),
-        rolesList: List<RolesList>.from(json["rolesList"].map((x) => RolesList.fromJson(x))),
+        menuList: List<MenuListDto>.from(json["menuList"].map((x) => MenuListDto.fromJson(x))),
+        rolesList: List<RolesListDto>.from(json["rolesList"].map((x) => RolesListDto.fromJson(x))),
     );
 
 }
 
-class MenuList {
+class MenuListDto {
   
     final int idMenu;
     final String name;
     final String route;
     final String icon;
 
-    MenuList({
+    MenuListDto({
         required this.idMenu,
         required this.name,
         required this.route,
         required this.icon,
     });
 
-    factory MenuList.fromJson(Map<String, dynamic> json) => MenuList(
+    factory MenuListDto.fromJson(Map<String, dynamic> json) => MenuListDto(
         idMenu: json["idMenu"],
         name  : json["name"],
         route : json["route"],
@@ -67,16 +67,16 @@ class MenuList {
     );
 }
 
-class RolesList {
+class RolesListDto {
     final int idRoles;
     final String name;
 
-    RolesList({
+    RolesListDto({
       required this.idRoles,
       required this.name,
     });
 
-    factory RolesList.fromJson(Map<String, dynamic> json) => RolesList(
+    factory RolesListDto.fromJson(Map<String, dynamic> json) => RolesListDto(
       idRoles : json["idRoles"],
       name    : json["name"],
     );

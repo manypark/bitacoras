@@ -26,7 +26,7 @@ class CustomDialog extends StatelessWidget {
       backgroundColor : Colors.white,
       shape           : RoundedRectangleBorder( borderRadius: BorderRadius.circular(10) ),
       child: SizedBox(
-        height: MediaQuery.sizeOf(context).height * 0.6,
+        height: MediaQuery.sizeOf(context).height * 0.65,
         child : Padding(
           padding: EdgeInsets.all(MediaQuery.sizeOf(context).height * 0.05),
           child: Column(

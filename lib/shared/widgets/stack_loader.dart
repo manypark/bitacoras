@@ -29,7 +29,7 @@ class StackLoader extends StatelessWidget {
           ),
 
           Center(
-            child: CircularProgress( color: Colors.white ),
+            child: CircularProgress( color: Colors.black ),
           )
 
         ]

@@ -1,7 +1,6 @@
-import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
-import 'package:bitacoras/features/auth/infrastructure/dtos/login_dto.dart';
+import 'package:bitacoras/features/auth/domain/entities/entities.dart';
 
-final loginError = LogInDto(
+final loginError = LogInEntity(
   status: false,
   message: '', 
   data: null

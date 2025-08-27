@@ -5,13 +5,15 @@ import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/auth/domain/usecase/usecase.dart';
 import 'package:bitacoras/features/auth/config/constants/constants.dart';
 import 'package:bitacoras/features/auth/domain/entities/user_entity.dart';
+import 'package:bitacoras/features/auth/infrastructure/repositories/repositories.dart';
+import 'package:bitacoras/features/auth/infrastructure/datasource/login_datasuorce_impl.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> with HydratedMixin {
 
-  final _loginUseCase = LoginUserCase();
+  final _loginUseCase = LoginUserCase( repository: LoginRepositoryImpl( datasource: LoginDatasourceImpl() ) );
 
   LoginBloc() : super( LoginState() ) {
     hydrate();

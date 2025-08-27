@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 
 import 'package:bitacoras/core/services/services.dart';
 import 'package:bitacoras/core/utils/error_message.dart';
-import 'package:bitacoras/features/auth/infrastructure/dtos/dtos.dart';
+import 'package:bitacoras/features/auth/domain/domain.dart';
 import 'package:bitacoras/features/auth/config/constants/constants.dart';
-import 'package:bitacoras/features/auth/domain/datasource/datasource.dart';
+import 'package:bitacoras/features/auth/infrastructure/infrastructure.dart';
 
 class LoginDatasourceImpl implements LoginDataSource {
 
@@ -16,20 +16,20 @@ class LoginDatasourceImpl implements LoginDataSource {
   }): httpClient = httpClient ?? HttpClientServiceImpl();
   
   @override
-  Future<(ErrorMessage?, LogInDto)> postLogin(String email, String password) async {
+  Future<(ErrorMessage?, LogInEntity)> postLogin(String email, String password) async {
     try {
 
       final isolateResponse = await Isolate.run( () async {
         return await httpClient.postWithoutAuth(
           path: '/auth/singIn',
           data: {
-            "email"   : "jose@gmail.com",
-            "password": "asd123A"
+            "email"   : email,
+            "password": password
           }
         );
       }, );
       
-      return (null, LogInDto.fromMap(isolateResponse) );
+      return (null, LoginMapper.dtoToEntity(isolateResponse) );
 
     } on DioException catch (e) {
 
