@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/toast/toast.dart';
+import 'package:bitacoras/shared/progres/progres.dart';
 import 'package:bitacoras/core/utils/constants/constans.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/logs_form/infrastructure/dtos/dtos.dart';
@@ -49,7 +50,7 @@ class UploadLogButtonWidget extends StatelessWidget {
         );
       },
       icon: !context.watch<UploadImageLogBloc>().state.isLoading ? Icon( Icons.cloud_upload_outlined, color: Colors.white ) : 
-      CircularProgressIndicator(color: Colors.white, strokeWidth: 1,),
+      CircularProgress( color: Colors.white ),
       style : ButtonStyle(
         backgroundColor : WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) return Colors.grey.shade400;

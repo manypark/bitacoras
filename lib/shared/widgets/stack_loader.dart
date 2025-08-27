@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:bitacoras/shared/progres/progres.dart';
+
 class StackLoader extends StatelessWidget {
 
   final bool animate;
@@ -27,7 +29,7 @@ class StackLoader extends StatelessWidget {
           ),
 
           Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgress( color: Colors.white ),
           )
 
         ]

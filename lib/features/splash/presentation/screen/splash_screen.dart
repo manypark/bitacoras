@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bitacoras/shared/progres/progres.dart';
 import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/presentation.dart';
 import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
@@ -42,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: CircularProgressIndicator.adaptive(),
+      child: CircularProgress( color: Colors.white ),
     );
   }
 }

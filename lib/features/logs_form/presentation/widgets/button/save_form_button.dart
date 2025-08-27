@@ -25,7 +25,9 @@ class SaveFormButton extends StatelessWidget {
         height: 50,
         width : double.infinity,
         child : ElevatedButton(
-          onPressed : () async {
+          onPressed : context.watch<IsLoadingCubit>().state.isLoading ? null : () async {
+
+            context.read<IsLoadingCubit>().startLoading();
 
             final savedLog = await context.read<TaksLogFormBloc>().submitTaksLog();
 
@@ -34,6 +36,7 @@ class SaveFormButton extends StatelessWidget {
                 context : context, 
                 title   : 'Captura una fotografía por favor',
               );
+              context.read<IsLoadingCubit>().stopLoading();
               return;
             }
 
@@ -60,9 +63,11 @@ class SaveFormButton extends StatelessWidget {
               title   : 'Bitacora guardada con éxito',
             );
 
+            context.read<IsLoadingCubit>().stopLoading();
             context.pop();
           },
-          child     : Text( 'Guardar Bitacora', style: GlobalFonts.paragraphBodyMediumRegular .copyWith(color: Colors.white),
+          child     : context.watch<IsLoadingCubit>().state.isLoading ? CircularProgress(color: Colors.white, ) :
+          Text( 'Guardar Bitacora', style: GlobalFonts.paragraphBodyMediumRegular .copyWith(color: Colors.white),
           ),
         ),
       ),

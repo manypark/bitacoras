@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:animate_do/animate_do.dart';
+
+import 'package:bitacoras/shared/progres/progres.dart';
 
 class ImageProfileContainer extends StatelessWidget {
 
@@ -25,7 +26,7 @@ class ImageProfileContainer extends StatelessWidget {
           fit           : BoxFit.cover,
           loadingBuilder: (context, child, loadingProgress) {
             if (loadingProgress == null) return child;
-            return Center( child: CircularProgressIndicator.adaptive() , );
+            return Center( child: CircularProgress( color: Colors.white ) , );
           },
           errorBuilder: (context, error, stackTrace) => Icon( Icons.person, size: 64, color: Colors.blueGrey.shade700, ), 
         ) :

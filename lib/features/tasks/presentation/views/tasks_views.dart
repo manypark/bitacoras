@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
+import 'package:bitacoras/shared/progres/progres.dart';
 import 'package:bitacoras/features/tasks/domain/models/models.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
@@ -30,7 +31,7 @@ class TasksView extends StatelessWidget {
           builder: (context, snapshot) {
         
             if ( snapshot.connectionState == ConnectionState.waiting || context.watch<TasksBloc>().state.isLoading ) { 
-              return Center( child: CircularProgressIndicator.adaptive() );
+              return Center( child: CircularProgress( color: Colors.white ) );
             }
         
             if ( snapshot.hasError ) return Center( child: Text('Error: ${snapshot.error.toString()}') );
