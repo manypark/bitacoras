@@ -28,10 +28,7 @@ class UploadImageLogBloc extends Bloc<UploadImageLogEvent, UploadImageLogState> 
 
     final (errMsg, newUrlImage) = await uploadImageUsecase(log.imageUrl, '${user.firstName}-${user.lastName}');
 
-    final newLogUploadet = log.copyWith(
-      imageUrl: newUrlImage,
-      status  : LogStatusEnum.uploaded
-    );
+    final newLogUploadet = log.copyWith( imageUrl:newUrlImage );
 
     add( UploadImageLogEvent( log:newLogUploadet ) );
     add( IsLoadingLogEvent( isLoading:false ) );

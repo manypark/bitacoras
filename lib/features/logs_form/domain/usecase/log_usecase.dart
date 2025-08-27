@@ -6,12 +6,9 @@ class TaskLogUsecase {
 
   final LogsRepository repository;
 
-  TaskLogUsecase({
-    LogsRepository? repository,
-  }): repository = repository ?? LogsRepositoryImpl();
+  TaskLogUsecase({ required this.repository });
 
   Future<(ErrorMessage?, LogEntity)> call( LogsRequestDto dataForm ) async {
     return await repository.postTaskLog(dataForm);
-  }
-  
+  } 
 }

@@ -1,7 +1,9 @@
+import 'package:bitacoras/core/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import 'package:bitacoras/features/logs_form/infrastructure/dtos/logs/logs.dart';
+import 'package:bitacoras/features/logs_form/domain/domain.dart';
+import 'package:bitacoras/features/logs_form/infrastructure/infrastructure.dart';
 
 part 'logs_list_event.dart';
 part 'logs_list_state.dart';
@@ -29,6 +31,21 @@ class LogsListBloc extends Bloc<LogsListEvent, LogsListState> with HydratedMixin
     }).toList();
 
     add( UpdateLogToList( logsList:newLogList ) );
+  }
+
+  Future<ErrorMessage?> uploadTaskLog( LogsRequestDto logImageUploaded ) async {
+
+    final logUseCase = TaskLogUsecase( repository: LogsRepositoryImpl() );
+
+    final (err, logEntity) = await logUseCase( logImageUploaded );
+
+    final newlogImageUploaded = logImageUploaded.copyWith( status:LogStatusEnum.uploaded );
+
+    if(err != null) return err;
+
+    if(err == null) updateLogToList( newlogImageUploaded );
+
+    return null;
   }
 
   void resetLogList() {
@@ -68,5 +85,4 @@ class LogsListBloc extends Bloc<LogsListEvent, LogsListState> with HydratedMixin
   Map<String, dynamic>? toJson(LogsListState state) {
     return LogsListState.toMap(state);
   }
-
 }

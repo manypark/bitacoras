@@ -103,5 +103,4 @@ class TaksLogFormBloc extends Bloc<TaksLogFormEvent, TaksLogFormState> {
   void _onWriteDescriptionLog( WriteDescriptionLog event, Emitter<TaksLogFormState> emit ) {
     emit( state.copyWith( description: event.description ) );
   }
-
 }

@@ -33,7 +33,20 @@ class UploadLogButtonWidget extends StatelessWidget {
           return;
         }
 
-        context.read<LogsListBloc>().updateLogToList(logUpdated);
+        final taskLogErr = await context.read<LogsListBloc>().uploadTaskLog(logUpdated);
+
+        if(taskLogErr != null) {
+          ToastificationAdapter().showErrorToast(
+            context : context, 
+            title   : taskLogErr.msg,
+          );
+          return;
+        }
+
+        ToastificationAdapter().showSuccessToast(
+          context : context, 
+          title   : 'Bitacora subida correctamente',
+        );
       },
       icon: !context.watch<UploadImageLogBloc>().state.isLoading ? Icon( Icons.cloud_upload_outlined, color: Colors.white ) : 
       CircularProgressIndicator(color: Colors.white, strokeWidth: 1,),
