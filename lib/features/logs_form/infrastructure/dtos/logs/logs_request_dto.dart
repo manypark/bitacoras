@@ -30,7 +30,6 @@ class LogsRequestDto {
       required this.idLog,
     });
 
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'idTasks'     : idTasks,
@@ -60,4 +59,34 @@ class LogsRequestDto {
     ),
     dateCapturated: DateTime.parse( map['dateCapturated'] ),
   );  
+
+  LogsRequestDto copyWith({
+    String? idLog,
+    String? description,
+    String? imageUrl,
+    double? latitud,
+    double? longitud,
+    int? idUser,
+    int? idTasks,
+    int? idConcept,
+    String? conceptText,
+    String? taskTitle,
+    DateTime? dateCapturated,
+    LogStatusEnum? status,
+  }) {
+    return LogsRequestDto(
+      idLog: idLog ?? this.idLog,
+      description: description ?? this.description,
+      imageUrl: imageUrl ?? this.imageUrl,
+      latitud: latitud ?? this.latitud,
+      longitud: longitud ?? this.longitud,
+      idUser: idUser ?? this.idUser,
+      idTasks: idTasks ?? this.idTasks,
+      idConcept: idConcept ?? this.idConcept,
+      conceptText: conceptText ?? this.conceptText,
+      taskTitle: taskTitle ?? this.taskTitle,
+      dateCapturated: dateCapturated ?? this.dateCapturated,
+      status: status ?? this.status,
+    );
+  }
 }

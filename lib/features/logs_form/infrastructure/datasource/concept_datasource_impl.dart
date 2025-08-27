@@ -19,7 +19,7 @@ class ConceptsDatasourceImpl implements ConceptDatasource {
       return (null, ConceptDto.fromMap(response) );
     } catch (e) {
       return (
-        ErrorMessage( code: '500', error_code: e.toString(), msg: e.toString() ),
+        ErrorMessage( error_code: e.toString(), msg: e.toString() ),
         ConceptDto(
           message : 'Error no controlado',
           status  : false,

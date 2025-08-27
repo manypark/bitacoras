@@ -62,7 +62,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> with HydratedMixin {
     emit(
       state.copyWith( 
         userLogin   : event.userLogin, 
-        errorMessage: ErrorMessage(code: '0', error_code: '', msg: ''),
+        errorMessage: ErrorMessage(error_code: '', msg: ''),
         accesToken  : event.accesToken
       )
     );

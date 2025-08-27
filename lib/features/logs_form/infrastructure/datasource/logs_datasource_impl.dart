@@ -25,7 +25,7 @@ class LogsDatasourceImpl implements LogsDatasource {
     } catch (e) {
       
       return (
-        ErrorMessage(code: '500', error_code: e.toString(), msg: e.toString()), 
+        ErrorMessage( error_code: e.toString(), msg: e.toString()), 
         LogsDto(
           message : '',
           status  : false,
