@@ -1,7 +1,7 @@
-import 'package:bitacoras/core/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
+import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/features/logs_form/domain/domain.dart';
 import 'package:bitacoras/features/logs_form/infrastructure/infrastructure.dart';
 

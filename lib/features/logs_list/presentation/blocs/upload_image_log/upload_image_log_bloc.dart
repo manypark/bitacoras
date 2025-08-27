@@ -13,12 +13,9 @@ class UploadImageLogBloc extends Bloc<UploadImageLogEvent, UploadImageLogState> 
 
   UploadImageLogBloc() : super( UploadImageLogInitial() ) {
     on<UploadImageLogEvent>( _updateStatusLog );
-    on<IsLoadingLogEvent>( _updateIsLoading );
   }
 
   Future<LogsRequestDto> uploadLogWithImageFromCludinary( LogsRequestDto log, UserEntity user ) async {
-
-    add( IsLoadingLogEvent( isLoading:true ) );
 
     final uploadImageUsecase = UploadImageLogUsecase(
       repository: UploadImageLogRepositoryImpl(
@@ -31,7 +28,6 @@ class UploadImageLogBloc extends Bloc<UploadImageLogEvent, UploadImageLogState> 
     final newLogUploadet = log.copyWith( imageUrl:newUrlImage );
 
     add( UploadImageLogEvent( log:newLogUploadet ) );
-    add( IsLoadingLogEvent( isLoading:false ) );
 
     return newLogUploadet;
   }
@@ -40,5 +36,4 @@ class UploadImageLogBloc extends Bloc<UploadImageLogEvent, UploadImageLogState> 
   // Hanlders Functions
   // ==============================
   void _updateStatusLog(  UploadImageLogEvent event, Emitter<UploadImageLogState> emit ) => emit( state.copyWith( log: event.log ) );
-  void _updateIsLoading(  IsLoadingLogEvent event, Emitter<UploadImageLogState> emit ) => emit( state.copyWith( isLoading: event.isLoading ) );
 }

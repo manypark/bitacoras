@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bitacoras/shared/cubit/cubit.dart';
 import 'package:bitacoras/shared/toast/toast.dart';
 import 'package:bitacoras/shared/progres/progres.dart';
 import 'package:bitacoras/core/utils/constants/constans.dart';
@@ -21,8 +22,10 @@ class UploadLogButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: context.watch<UploadImageLogBloc>().state.isLoading ? null : () async {
+      onPressed: context.watch<IsLoadingCubit>().state.isLoading ? null : () async {
         
+        context.read<IsLoadingCubit>().startLoading();
+
         final user = context.read<LoginBloc>().state.userLogin!;
         final logUpdated = await context.read<UploadImageLogBloc>().uploadLogWithImageFromCludinary(log, user);
 
@@ -31,6 +34,7 @@ class UploadLogButtonWidget extends StatelessWidget {
             context : context, 
             title   : 'Error al subir la imagen',
           );
+          context.read<IsLoadingCubit>().stopLoading();
           return;
         }
 
@@ -41,6 +45,7 @@ class UploadLogButtonWidget extends StatelessWidget {
             context : context, 
             title   : taskLogErr.msg,
           );
+          context.read<IsLoadingCubit>().stopLoading();
           return;
         }
 
@@ -48,8 +53,10 @@ class UploadLogButtonWidget extends StatelessWidget {
           context : context, 
           title   : 'Bitacora subida correctamente',
         );
+
+        context.read<IsLoadingCubit>().stopLoading();
       },
-      icon: !context.watch<UploadImageLogBloc>().state.isLoading ? Icon( Icons.cloud_upload_outlined, color: Colors.white ) : 
+      icon: !context.watch<IsLoadingCubit>().state.isLoading ? Icon( Icons.cloud_upload_outlined, color: Colors.white ) : 
       CircularProgress( color: Colors.white ),
       style : ButtonStyle(
         backgroundColor : WidgetStateProperty.resolveWith((states) {

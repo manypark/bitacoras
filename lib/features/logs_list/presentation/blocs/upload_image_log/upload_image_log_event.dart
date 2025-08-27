@@ -6,10 +6,3 @@ class UploadImageLogEvent extends Equatable {
   @override
   List<Object?> get props => [log];
 }
-
-class IsLoadingLogEvent extends UploadImageLogEvent {
-  final bool isLoading;
-  const IsLoadingLogEvent({ this.isLoading = false });
-  @override
-  List<Object?> get props => [isLoading];
-}

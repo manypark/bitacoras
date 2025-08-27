@@ -38,28 +38,6 @@ class MenuView extends StatelessWidget {
               child   : page,
             ));
           },).values,
-          
-          // Positioned(
-          //   bottom: MediaQuery.of(context).size.height * 0.089,
-          //   left  : MediaQuery.of(context).size.width / 2 - 30,
-          //   child : FloatingActionButton(
-          //     heroTag   : 'UpdateTasks',
-          //     onPressed : context.watch<TasksBloc>().state.isLoading ? null : () => context.read<TasksBloc>().loadListTasks(
-          //       GetTasksModel(
-          //         idUserAssigned: context.read<LoginBloc>().state.userLogin?.idUser ?? 0,
-          //         initDate      : DateFormat('yyyy-MM-dd').format( startDate ),
-          //         endDate       : DateFormat('yyyy-MM-dd').format( endDate ),
-          //       )
-          //     ),
-          //     backgroundColor : context.watch<TasksBloc>().state.isLoading ? Colors.grey : Colors.blueAccent,
-          //     child           : AnimatedRotation(
-          //       turns   : context.read<TasksBloc>().state.isLoading ? 1 : 0,
-          //       duration: Duration(seconds: 1),
-          //       curve   : Curves.linear,
-          //       child   : const Icon(Icons.refresh, color: Colors.white),
-          //     ),
-          //   ),
-          // ),
         
           Align(
             alignment : Alignment.bottomCenter, 

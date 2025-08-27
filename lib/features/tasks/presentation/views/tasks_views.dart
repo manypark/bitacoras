@@ -31,7 +31,7 @@ class TasksView extends StatelessWidget {
           builder: (context, snapshot) {
         
             if ( snapshot.connectionState == ConnectionState.waiting || context.watch<TasksBloc>().state.isLoading ) { 
-              return Center( child: CircularProgress( color: Colors.white ) );
+              return CircularProgress( color: Colors.black, strokeWidth: 2, );
             }
         
             if ( snapshot.hasError ) return Center( child: Text('Error: ${snapshot.error.toString()}') );
@@ -42,7 +42,7 @@ class TasksView extends StatelessWidget {
         
             if ( hasError && (listTasks?.isEmpty ?? false ) ) return Center(child: Text(msgError));
         
-            if ( listTasks?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyLargeBold,) ) );
+            if ( listTasks?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyTitleRegular,) ) );
         
             return ListTasksWidget(tasks: listTasks!);
           },
