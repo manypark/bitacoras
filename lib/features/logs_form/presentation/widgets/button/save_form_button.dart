@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bitacoras/shared/shared.dart';
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
@@ -28,6 +29,14 @@ class SaveFormButton extends StatelessWidget {
 
             final savedLog = await context.read<TaksLogFormBloc>().submitTaksLog();
 
+            if( savedLog.pathImage.isEmpty ) {
+              ToastificationAdapter().showErrorToast(
+                context : context, 
+                title   : 'Captura una fotografía por favor',
+              );
+              return;
+            }
+
             context.read<LogsListBloc>().addLogToList( 
               LogsRequestDto(
                 description : savedLog.description, 
@@ -46,13 +55,10 @@ class SaveFormButton extends StatelessWidget {
 
             context.read<TaksLogFormBloc>().resetLogForm();
 
-            final snackBar = SnackBar(
-              backgroundColor: Colors.blueAccent,
-              duration: Duration( seconds: 3 ),
-              content : Text('Bitacora guardada con éxito', style: GlobalFonts.paragraphBodyLargeRegular.copyWith( color: Colors.white ), ) 
+            ToastificationAdapter().showSuccessToast(
+              context : context, 
+              title   : 'Bitacora guardada con éxito',
             );
-
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
             context.pop();
           },

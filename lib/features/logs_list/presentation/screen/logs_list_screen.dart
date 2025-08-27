@@ -11,6 +11,7 @@ class LogsListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bitacoras'),
+        surfaceTintColor: Colors.transparent,
       ),
       body  : LogsListView(),
     );
