@@ -21,9 +21,6 @@ class MenuView extends StatelessWidget {
       final menuPositionState = context.watch<MenuBloc>().state.menuList;
       final indexState = menuPositionState.firstWhere((menu) => menu.position == true).index;
 
-      // final startDate = context.watch<RangeDatesBloc>().state.startDate;
-      // final endDate   = context.watch<RangeDatesBloc>().state.endDate;
-
       return Stack(
         clipBehavior: Clip.none,
         children    : [
