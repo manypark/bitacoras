@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/core/configs/configs.dart';
-import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/home/presentation/blocs/blocs.dart';
 
 class ToggleButtonNavigationBar extends StatelessWidget {
 

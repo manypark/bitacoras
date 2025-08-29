@@ -1,9 +1,12 @@
+import 'package:bitacoras/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../views/views.dart';
+import 'package:bitacoras/features/logs_list/presentation/blocs/blocs.dart';
 
 class LogsListScreen extends StatelessWidget {
-
+  
   const LogsListScreen({super.key});
 
   @override
@@ -13,7 +16,10 @@ class LogsListScreen extends StatelessWidget {
         title: Text('Bitacoras'),
         surfaceTintColor: Colors.transparent,
       ),
-      body  : LogsListView(),
+      body: BlocProvider(
+        create: (context) => getIt<UploadImageLogBloc>(),
+        child: LogsListView(),
+      ),
     );
   }
 }

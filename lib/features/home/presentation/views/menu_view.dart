@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bitacoras/shared/shared.dart';
 import 'package:bitacoras/features/tasks/presentation/presentation.dart';
 import 'package:bitacoras/features/logs_list/presentation/screen/screen.dart';
-import 'package:bitacoras/features/menu/presentation/blocs/menu/menu_bloc.dart';
+import 'package:bitacoras/features/home/presentation/blocs/menu/menu_bloc.dart';
 
 const List<Widget> pages = [
   TasksScreen(),

@@ -2,11 +2,13 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:bitacoras/core/utils/utils.dart';
 import 'package:bitacoras/core/configs/configs.dart';
 import 'package:bitacoras/shared/progres/progres.dart';
 import 'package:bitacoras/features/tasks/domain/models/models.dart';
-import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/logs_form/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/widgets/widgets.dart';
 
 class TasksView extends StatelessWidget {
@@ -44,7 +46,10 @@ class TasksView extends StatelessWidget {
         
             if ( listTasks?.isEmpty ?? false ) return Expanded( child: Center( child: Text('Lista vacía',  style: GlobalFonts.paragraphBodyTitleRegular,) ) );
         
-            return ListTasksWidget(tasks: listTasks!);
+            return BlocProvider(
+              create: (context) => getIt<TaksLogFormBloc>(),
+              child : ListTasksWidget(tasks: listTasks!),
+            );
           },
         ),
       ],

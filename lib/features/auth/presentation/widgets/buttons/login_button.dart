@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:bitacoras/shared/shared.dart';
-import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/home/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/config/constants/constants.dart';
 

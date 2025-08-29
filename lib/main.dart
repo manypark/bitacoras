@@ -10,7 +10,7 @@ import 'core/configs/configs.dart';
 import 'package:bitacoras/core/utils/utils.dart';
 import 'shared/cubit/is_loading/is_loading_cubit.dart';
 import 'features/logs_form/presentation/blocs/blocs.dart';
-import 'package:bitacoras/features/menu/presentation/blocs/blocs.dart';
+import 'package:bitacoras/features/home/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/auth/presentation/blocs/blocs.dart';
 import 'package:bitacoras/features/tasks/presentation/blocs/blocs.dart';
 import 'features/profile/presentation/cubits/theme_cubit/theme_cubit.dart';
@@ -32,10 +32,7 @@ void main() async {
   
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-  ]).then((_) {
-    runApp(const BlocsProviders());
-  });
-
+  ]).then((_) { runApp(const BlocsProviders()); });
 }
 
 class BlocsProviders extends StatelessWidget {
@@ -47,15 +44,13 @@ class BlocsProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers : [
         BlocProvider(create: (context) => getIt<LoginBloc>(), ),
-        BlocProvider(create: (context) => getIt<FormLoginBloc>(), ),
         BlocProvider(create: (context) => getIt<MenuBloc>(), ),
         BlocProvider(create: (context) => getIt<TasksBloc>(), ),
+        BlocProvider(create: (context) => getIt<TaksLogFormBloc>(), ),
         BlocProvider(create: (context) => getIt<RangeDatesBloc>(), ),
         BlocProvider(create: (context) => getIt<ThemeCubit>(), ),
-        BlocProvider(create: (context) => getIt<TaksLogFormBloc>(), ),
         BlocProvider(create: (context) => getIt<ConceptsBloc>(), ),
         BlocProvider(create: (context) => getIt<LogsListBloc>(), ),
-        BlocProvider(create: (context) => getIt<UploadImageLogBloc>(), ),
         BlocProvider(create: (context) => getIt<IsLoadingCubit>(), ),
       ],
       child : const MainApp(),

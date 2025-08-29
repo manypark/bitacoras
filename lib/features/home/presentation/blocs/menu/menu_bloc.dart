@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:bitacoras/features/menu/domain/entities/entities.dart';
+import 'package:bitacoras/features/home/domain/entities/entities.dart';
 
 part 'menu_event.dart';
 part 'menu_state.dart';
